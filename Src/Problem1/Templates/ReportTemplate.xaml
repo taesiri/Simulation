@@ -319,7 +319,7 @@
         </xrd:SectionDataGroup>
         <Paragraph>
             There are
-            <xrd:InlineAggregateValue AggregateGroup="ItemCount" AggregateValueType="Count" EmptyValue="no" FontWeight="Bold" /> item positions with a total of
+            <xrd:InlineAggregateValue AggregateGroup="ItemCount" AggregateValueType="Count" EmptyValue="no" FontWeight="Bold" /> item positions.
         </Paragraph>
         <Paragraph></Paragraph>
         <Paragraph FontFamily="Arial" FontSize="18" TextAlignment="Right" Foreground="Black">

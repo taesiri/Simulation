@@ -16,7 +16,7 @@ namespace Problem1.Dialog
     /// <summary>
     /// Interaction logic for NumberDialog.xaml
     /// </summary>
-    public partial class NumberDialog : Window
+    public partial class NumberDialog
     {
         public string EnterdText
         {

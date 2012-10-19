@@ -10,8 +10,11 @@ namespace Problem1
     {
         private readonly ScriptEngine _engine;
         private readonly ScriptScope _escope;
-        private readonly Func<int, int, int> _function;
+        private readonly Func<int, int, int> _randomGenerator;
         private readonly Func<int, int> _userDefinedMethod;
+
+        private readonly Func<int, int> _lifeTimeMapper;
+        private readonly Func<int, int> _delayTimeMapper;
 
         public ScriptReader()
         {
@@ -24,24 +27,42 @@ namespace Problem1
 
             _engine.Execute(scriptText, _escope);
 
-            if (!_escope.TryGetVariable<Func<int, int, int>>("function", out _function))
+            if (!_escope.TryGetVariable<Func<int, int, int>>("GeneratorFunc", out _randomGenerator))
             {
                 throw new Exception("Error Occurred in Executing python script!");
             }
-            if (!_escope.TryGetVariable<Func<int, int>>("myMethod", out _userDefinedMethod))
+            if (!_escope.TryGetVariable<Func<int, int>>("userDefinedFunc", out _userDefinedMethod))
+            {
+                throw new Exception("Error Occurred in Executing python script!");
+            }
+            if (!_escope.TryGetVariable<Func<int, int>>("LifeSpanMapper", out _lifeTimeMapper))
+            {
+                throw new Exception("Error Occurred in Executing python script!");
+            }
+            if (!_escope.TryGetVariable<Func<int, int>>("DelayMapper", out _delayTimeMapper))
             {
                 throw new Exception("Error Occurred in Executing python script!");
             }
         }
 
-        public int ReturnValue(int t1, int t2)
+        public int GenerateNumber(int t1, int t2)
         {
-            return _function(t1, t2);
+            return _randomGenerator(t1, t2);
         }
 
         public int UseDefinedMethod(int t1)
         {
             return _userDefinedMethod(t1);
+        }
+
+        public int MapLifeTime(int t1)
+        {
+            return _lifeTimeMapper(t1);
+
+        }
+        public int MapDelayTime(int t1)
+        {
+            return _delayTimeMapper(t1);
         }
     }
 }

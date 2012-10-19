@@ -11,7 +11,6 @@
             <xrd:InlineContextValue PropertyName="ReportTitle" />
         </Paragraph>
         <Paragraph FontFamily="Segoe UI" FontSize="24" >First Approach</Paragraph>
-        <Paragraph FontFamily="Arial" FontSize="24" TextAlignment="Right">حل به روش ابتدایی</Paragraph>
         <xrd:SectionDataGroup DataGroupName="ItemList">
             <Paragraph  FontFamily="Segoe UI" FontSize="16" FontWeight="Bold">1st Bearing</Paragraph>
             <Table CellSpacing="0" BorderBrush="White" BorderThickness="0.02cm" FontFamily="Segoe UI">
@@ -320,10 +319,10 @@
         </xrd:SectionDataGroup>
         <Paragraph>
             There are
-            <xrd:InlineAggregateValue AggregateGroup="ItemCount" AggregateValueType="Count" EmptyValue="no" FontWeight="Bold" /> item positions with a total of
+            <xrd:InlineAggregateValue AggregateGroup="ItemCount" AggregateValueType="Count" EmptyValue="no" FontWeight="Bold" /> item positions.
         </Paragraph>
         <Paragraph></Paragraph>
-        <Paragraph FontFamily="Arial" FontSize="25" TextAlignment="Right" Foreground="Red">
+        <Paragraph FontFamily="Arial" FontSize="18" TextAlignment="Right" Foreground="Black">
 
             محمدرضا تأثیری  و  علی لشگری
 

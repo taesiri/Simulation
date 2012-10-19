@@ -11,11 +11,22 @@ namespace Problem1
         {
             var returnList = new EventList();
             var scriptReader = new ScriptReader();
+            var cumulativeLifeTime = 0;
 
             while (length > 0)
             {
-                returnList.PushEvent(new Tuple<int, int, int, int, int>(scriptReader.ReturnValue(0,100), 0, 0,
-                                                                        scriptReader.ReturnValue(0,10), 0));
+                var randomLifeTimeNumber = scriptReader.GenerateNumber(0, 100);
+                var mappedLifeTimeValue = scriptReader.MapLifeTime(randomLifeTimeNumber);
+
+                var randomDelayNumber = scriptReader.GenerateNumber(0, 100);
+                var mappedDelayTimeValue = scriptReader.MapDelayTime(randomDelayNumber);
+
+                cumulativeLifeTime += mappedLifeTimeValue;
+
+                returnList.PushEvent(new Tuple<int, int, int, int, int>(randomLifeTimeNumber, mappedLifeTimeValue,
+                                                                        cumulativeLifeTime,
+                                                                        randomDelayNumber, mappedDelayTimeValue));
+
                 length--;
             }
             return returnList;
