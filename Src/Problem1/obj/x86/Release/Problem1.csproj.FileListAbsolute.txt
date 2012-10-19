@@ -1,0 +1,13 @@
+C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Src\Problem1\bin\Release\Problem1.exe
+C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Src\Problem1\bin\Release\Problem1.pdb
+C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Src\Problem1\obj\x86\Release\MainWindow.baml
+C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Src\Problem1\obj\x86\Release\MainWindow.g.cs
+C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Src\Problem1\obj\x86\Release\App.g.cs
+C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Src\Problem1\obj\x86\Release\Problem1_MarkupCompile.cache
+C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Src\Problem1\obj\x86\Release\Problem1.g.resources
+C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Src\Problem1\obj\x86\Release\Problem1.Properties.Resources.resources
+C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Src\Problem1\obj\x86\Release\Problem1.csproj.GenerateResource.Cache
+C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Src\Problem1\obj\x86\Release\Problem1.exe
+C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Src\Problem1\obj\x86\Release\Problem1.pdb
+C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Binaries\Release\Problem1.exe
+C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Binaries\Release\Problem1.pdb

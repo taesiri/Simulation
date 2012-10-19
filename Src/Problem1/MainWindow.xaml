@@ -1,0 +1,9 @@
+﻿<Window x:Class="Problem1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="[taesiri] + [lashgari]" Height="276" Width="413" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+    <Grid>
+        <Button Content="Solve problem Using Method 1" Height="26" Margin="12,12,12,0" Name="BtnSolve1" VerticalAlignment="Top" Click="BtnSolve1Click" />
+        <Button Content="Edit Script" Height="26" Margin="12,44,12,0" Name="btnEditScript" VerticalAlignment="Top" Click="Button2Click" />
+    </Grid>
+</Window>

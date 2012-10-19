@@ -1,0 +1,8 @@
+﻿<Window x:Class="Problem1.Method1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Method 1 - Output Document" Height="640" Width="720" WindowState="Maximized" Activated="WindowActivated">
+    <Grid>
+        <DocumentViewer Name="documentViewer"/>
+    </Grid>
+</Window>

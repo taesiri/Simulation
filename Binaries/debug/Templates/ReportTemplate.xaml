@@ -1,0 +1,332 @@
+﻿<FlowDocument xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:xrd="clr-namespace:CodeReason.Reports.Document;assembly=CodeReason.Reports" 
+              PageHeight="29.7cm" PageWidth="21cm" ColumnWidth="21cm">
+    <xrd:ReportProperties>
+        <xrd:ReportProperties.ReportName>Generated Report</xrd:ReportProperties.ReportName>
+        <xrd:ReportProperties.ReportTitle>Generated Report</xrd:ReportProperties.ReportTitle>
+    </xrd:ReportProperties>
+    <Section Padding="80,10,40,10" FontSize="12">
+        <Paragraph FontFamily="Segoe UI" FontSize="24" FontWeight="Bold" TextAlignment="Center">
+            <xrd:InlineContextValue PropertyName="ReportTitle" />
+        </Paragraph>
+        <Paragraph FontFamily="Segoe UI" FontSize="24" >First Approach</Paragraph>
+        <Paragraph FontFamily="Arial" FontSize="24" TextAlignment="Right">حل به روش ابتدایی</Paragraph>
+        <xrd:SectionDataGroup DataGroupName="ItemList">
+            <Paragraph  FontFamily="Segoe UI" FontSize="16" FontWeight="Bold">1st Bearing</Paragraph>
+            <Table CellSpacing="0" BorderBrush="White" BorderThickness="0.02cm" FontFamily="Segoe UI">
+                <Table.Resources>
+                    <!-- Style for header/footer rows. -->
+                    <Style x:Key="headerFooterRowStyle" TargetType="{x:Type TableRowGroup}">
+                        <Setter Property="FontWeight" Value="Normal"/>
+                        <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="Background" Value="#00D7FE"/>
+                    </Style>
+
+                    <!-- Style for data rows. -->
+                    <Style x:Key="dataRowStyle" TargetType="{x:Type TableRowGroup}">
+                        <Setter Property="FontSize" Value="12"/>
+                    </Style>
+
+                    <!-- Style for data cells. -->
+                    <Style TargetType="{x:Type TableCell}">
+                        <Setter Property="Padding" Value="0.1cm"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="BorderThickness" Value="0.02cm"/>
+                    </Style>
+                </Table.Resources>
+
+                <Table.Columns>
+                    <TableColumn Width="0.12*" />
+                    <TableColumn Width="0.35*" />
+                    <TableColumn Width="0.5*" />
+                    <TableColumn Width="0.5*" />
+                    <TableColumn Width="0.25*" />
+                    <TableColumn Width="0.25*" />
+                </Table.Columns>
+                <TableRowGroup Style="{StaticResource headerFooterRowStyle}">
+                    <TableRow>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>No.</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Random Number</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Lifetime</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Cumulative lifetime</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Random Number</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Suspension Time</Bold>
+                            </Paragraph>
+                        </TableCell>
+                    </TableRow>
+                </TableRowGroup>
+                <TableRowGroup Style="{StaticResource dataRowStyle}">
+                    <xrd:TableRowForDataTable TableName="Bearing1Table">
+                        <TableCell>
+                            <Paragraph>
+                                <xrd:InlineTableCellValue PropertyName="no" AggregateGroup="ItemCount"/>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph  TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="RandomNumber1" />
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph  TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="LifeTime" />
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph  TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="CumulativeLifetime"/>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph  TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="RandomNumber2" />
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph  TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="SuspensionTime" />
+                            </Paragraph>
+                        </TableCell>
+                    </xrd:TableRowForDataTable>
+                </TableRowGroup>
+            </Table>
+        </xrd:SectionDataGroup>
+        <xrd:SectionDataGroup DataGroupName="ItemList">
+            <Paragraph FontSize="16" FontWeight="Bold" FontFamily="Segoe UI">2nd Bearing</Paragraph>
+            <Table CellSpacing="0" BorderBrush="White" BorderThickness="0.02cm" FontFamily="Segoe UI">
+                <Table.Resources>
+                    <!-- Style for header/footer rows. -->
+                    <Style x:Key="headerFooterRowStyle" TargetType="{x:Type TableRowGroup}">
+                        <Setter Property="FontWeight" Value="Normal"/>
+                        <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="Background" Value="#DD00FE"/>
+                    </Style>
+
+                    <!-- Style for data rows. -->
+                    <Style x:Key="dataRowStyle" TargetType="{x:Type TableRowGroup}">
+                        <Setter Property="FontSize" Value="12"/>
+                    </Style>
+
+                    <!-- Style for data cells. -->
+                    <Style TargetType="{x:Type TableCell}">
+                        <Setter Property="Padding" Value="0.1cm"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="BorderThickness" Value="0.02cm"/>
+                    </Style>
+                </Table.Resources>
+
+                <Table.Columns>
+                    <TableColumn Width="0.12*" />
+                    <TableColumn Width="0.35*" />
+                    <TableColumn Width="0.5*" />
+                    <TableColumn Width="0.5*" />
+                    <TableColumn Width="0.25*" />
+                    <TableColumn Width="0.25*" />
+                </Table.Columns>
+                <TableRowGroup Style="{StaticResource headerFooterRowStyle}">
+                    <TableRow>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>No.</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Random Number</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Lifetime</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Cumulative lifetime</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Random Number</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Suspension Time</Bold>
+                            </Paragraph>
+                        </TableCell>
+                    </TableRow>
+                </TableRowGroup>
+                <TableRowGroup Style="{StaticResource dataRowStyle}">
+                    <xrd:TableRowForDataTable TableName="Bearing2Table">
+                        <TableCell>
+                            <Paragraph>
+                                <xrd:InlineTableCellValue PropertyName="no" AggregateGroup="ItemCount"/>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph  TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="RandomNumber1" />
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph  TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="LifeTime" />
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph  TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="CumulativeLifetime"/>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph  TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="RandomNumber2" />
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph  TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="SuspensionTime" />
+                            </Paragraph>
+                        </TableCell>
+                    </xrd:TableRowForDataTable>
+                </TableRowGroup>
+            </Table>
+        </xrd:SectionDataGroup>
+        <xrd:SectionDataGroup DataGroupName="ItemList">
+            <Paragraph FontSize="16" FontWeight="Bold" FontFamily="Segoe UI">3rd Bearing</Paragraph>
+            <Table CellSpacing="0" BorderBrush="White" BorderThickness="0.02cm" FontFamily="Segoe UI">
+                <Table.Resources>
+                    <!-- Style for header/footer rows. -->
+                    <Style x:Key="headerFooterRowStyle" TargetType="{x:Type TableRowGroup}">
+                        <Setter Property="FontWeight" Value="Normal"/>
+                        <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="Background" Value="#FEEF00"/>
+                    </Style>
+
+                    <!-- Style for data rows. -->
+                    <Style x:Key="dataRowStyle" TargetType="{x:Type TableRowGroup}">
+                        <Setter Property="FontSize" Value="12"/>
+                    </Style>
+
+                    <!-- Style for data cells. -->
+                    <Style TargetType="{x:Type TableCell}">
+                        <Setter Property="Padding" Value="0.1cm"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="BorderThickness" Value="0.02cm"/>
+                    </Style>
+                </Table.Resources>
+
+                <Table.Columns>
+                    <TableColumn Width="0.12*" />
+                    <TableColumn Width="0.35*" />
+                    <TableColumn Width="0.5*" />
+                    <TableColumn Width="0.5*" />
+                    <TableColumn Width="0.25*" />
+                    <TableColumn Width="0.25*" />
+                </Table.Columns>
+                <TableRowGroup Style="{StaticResource headerFooterRowStyle}">
+                    <TableRow>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>No.</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Random Number</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Lifetime</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Cumulative lifetime</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Random Number</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Suspension Time</Bold>
+                            </Paragraph>
+                        </TableCell>
+                    </TableRow>
+                </TableRowGroup>
+                <TableRowGroup Style="{StaticResource dataRowStyle}">
+                    <xrd:TableRowForDataTable TableName="Bearing3Table">
+                        <TableCell>
+                            <Paragraph>
+                                <xrd:InlineTableCellValue PropertyName="no" AggregateGroup="ItemCount"/>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph  TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="RandomNumber1" />
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph  TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="LifeTime" />
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph  TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="CumulativeLifetime"/>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph  TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="RandomNumber2" />
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph  TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="SuspensionTime" />
+                            </Paragraph>
+                        </TableCell>
+                    </xrd:TableRowForDataTable>
+                </TableRowGroup>
+            </Table>
+        </xrd:SectionDataGroup>
+        <Paragraph>
+            There are
+            <xrd:InlineAggregateValue AggregateGroup="ItemCount" AggregateValueType="Count" EmptyValue="no" FontWeight="Bold" /> item positions with a total of
+        </Paragraph>
+        <Paragraph></Paragraph>
+        <Paragraph FontFamily="Arial" FontSize="25" TextAlignment="Right" Foreground="Red">
+
+            محمدرضا تأثیری  و  علی لشگری
+
+        </Paragraph>
+    </Section>
+</FlowDocument>
