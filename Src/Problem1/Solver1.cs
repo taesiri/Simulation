@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Problem1.ScriptReaderEngine;
 
 namespace Problem1
 {
@@ -10,7 +8,7 @@ namespace Problem1
         public static EventList SolveIt(int length)
         {
             var returnList = new EventList();
-            var scriptReader = new ScriptReader();
+            var scriptReader = new PythonScriptReader();
             var cumulativeLifeTime = 0;
 
             while (length > 0)
@@ -30,6 +28,9 @@ namespace Problem1
                 length--;
             }
             return returnList;
+
+
+            
         }
     }
 }

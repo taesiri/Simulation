@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 namespace Problem1
 {
     public class EventList
@@ -22,6 +19,5 @@ namespace Problem1
         {
             return _mainList;
         }
-
     }
 }

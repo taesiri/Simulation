@@ -36,6 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AurelienRibon.Ui.SyntaxHighlightBox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="CodeReason.Reports, Version=0.5.0.0, Culture=neutral, PublicKeyToken=74fc60a060db7911, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Binaries\debug\CodeReason.Reports.dll</HintPath>
@@ -77,7 +78,11 @@
       <DependentUpon>NumberDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="EventList.cs" />
-    <Compile Include="ScriptReader.cs" />
+    <Compile Include="ScriptEditor\ScriptEditorWindow.xaml.cs">
+      <DependentUpon>ScriptEditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ScriptReaderEngine\IScriptReader.cs" />
+    <Compile Include="ScriptReaderEngine\PythonScriptReader.cs" />
     <Compile Include="Solver1.cs" />
     <Page Include="Dialog\NumberDialog.xaml">
       <SubType>Designer</SubType>
@@ -107,6 +112,10 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Page Include="ScriptEditor\ScriptEditorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Method1.xaml.cs">

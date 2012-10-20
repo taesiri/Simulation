@@ -1,10 +1,11 @@
-﻿import sys
+#Copyright 2012 (c) MohammadReza Taesiri & Ali Lashgari
+import sys
 import clr
 clr.AddReference("IronPython")
 clr.AddReference("IronPython.Modules")
 sys.path.append(r'C:\Program Files (x86)\IronPython 2.7\Lib')
-
 import random
+from math import sqrt
 
 def GeneratorFunc(min,max):
 	if min < max:
