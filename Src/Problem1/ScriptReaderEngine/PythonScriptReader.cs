@@ -8,13 +8,12 @@ namespace Problem1.ScriptReaderEngine
 {
     public class PythonScriptReader : IScriptReader
     {
+        private readonly Func<int, int> _delayTimeMapper;
         private readonly ScriptEngine _engine;
         private readonly ScriptScope _escope;
+        private readonly Func<int, int> _lifeTimeMapper;
         private readonly Func<int, int, int> _randomGenerator;
         private readonly Func<int, int> _userDefinedMethod;
-
-        private readonly Func<int, int> _lifeTimeMapper;
-        private readonly Func<int, int> _delayTimeMapper;
 
         public PythonScriptReader()
         {
@@ -22,34 +21,34 @@ namespace Problem1.ScriptReaderEngine
             _escope = _engine.CreateScope();
 
             var reader = new StreamReader(new FileStream(@"Scripts\Script.py", FileMode.Open, FileAccess.Read));
-            var scriptText = reader.ReadToEnd();
+            string scriptText = reader.ReadToEnd();
             reader.Close();
 
             _engine.Execute(scriptText, _escope);
 
-            if (!_escope.TryGetVariable<Func<int, int, int>>("GeneratorFunc", out _randomGenerator))
+            if (!_escope.TryGetVariable("GeneratorFunc", out _randomGenerator))
             {
                 MessageBox.Show("Error Occurred in Executing python script! - GeneratorFunc", "Error");
                 throw new Exception("Error Occurred in Executing python script!");
             }
-            if (!_escope.TryGetVariable<Func<int, int>>("userDefinedFunc", out _userDefinedMethod))
+            if (!_escope.TryGetVariable("userDefinedFunc", out _userDefinedMethod))
             {
                 MessageBox.Show("Error Occurred in Executing python script! - userDefinedFunc", "Error");
                 throw new Exception("Error Occurred in Executing python script!");
             }
-            if (!_escope.TryGetVariable<Func<int, int>>("LifeSpanMapper", out _lifeTimeMapper))
+            if (!_escope.TryGetVariable("LifeSpanMapper", out _lifeTimeMapper))
             {
                 MessageBox.Show("Error Occurred in Executing python script! - LifeSpanMapper", "Error");
                 throw new Exception("Error Occurred in Executing python script!");
             }
-            if (!_escope.TryGetVariable<Func<int, int>>("DelayMapper", out _delayTimeMapper))
+            if (!_escope.TryGetVariable("DelayMapper", out _delayTimeMapper))
             {
                 MessageBox.Show("Error Occurred in Executing python script! - DelayMapper", "Error");
                 throw new Exception("Error Occurred in Executing python script!");
             }
-
-           
         }
+
+        #region IScriptReader Members
 
         public int GenerateNumber(int t1, int t2)
         {
@@ -64,12 +63,13 @@ namespace Problem1.ScriptReaderEngine
         public int MapLifeTime(int t1)
         {
             return _lifeTimeMapper(t1);
-
         }
 
         public int MapDelayTime(int t1)
         {
             return _delayTimeMapper(t1);
         }
+
+        #endregion
     }
 }

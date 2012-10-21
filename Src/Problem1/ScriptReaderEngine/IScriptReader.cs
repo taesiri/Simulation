@@ -1,6 +1,6 @@
 ﻿namespace Problem1.ScriptReaderEngine
 {
-    interface IScriptReader
+    internal interface IScriptReader
     {
         int GenerateNumber(int t1, int t2);
         int UseDefinedMethod(int t1);

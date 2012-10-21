@@ -1,6 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
 using System.Windows;
+using System.Windows.Controls;
 using AurelienRibon.Ui.SyntaxHighlightBox;
 
 namespace Problem1.ScriptEditor
@@ -10,7 +12,6 @@ namespace Problem1.ScriptEditor
     /// </summary>
     public partial class ScriptEditorWindow
     {
-
         private readonly string _firstScript;
         private bool _isSaved;
 
@@ -22,7 +23,8 @@ namespace Problem1.ScriptEditor
             {
                 if (!File.Exists(@"Scripts\Script.py"))
                 {
-                    MessageBox.Show("Could not find \"Script.py\"!", "[warning!]",MessageBoxButton.OK,MessageBoxImage.Warning);
+                    MessageBox.Show("Could not find \"Script.py\"!", "[warning!]", MessageBoxButton.OK,
+                                    MessageBoxImage.Warning);
                     File.Create(@"Scripts\Script.py");
                 }
 
@@ -42,18 +44,19 @@ namespace Problem1.ScriptEditor
         private bool IsCodeChanged()
         {
             if (_firstScript != shbox.Text)
-                if(!_isSaved)
+                if (!_isSaved)
                     return true;
 
             return false;
         }
 
-        private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void WindowClosing(object sender, CancelEventArgs e)
         {
             if (IsCodeChanged())
             {
-                var dialogResult = MessageBox.Show("Do you want to save changes you made to Script?", "Script Editor", MessageBoxButton.YesNoCancel);
-                if (dialogResult  == MessageBoxResult.Yes)
+                MessageBoxResult dialogResult = MessageBox.Show("Do you want to save changes you made to Script?",
+                                                                "Script Editor", MessageBoxButton.YesNoCancel);
+                if (dialogResult == MessageBoxResult.Yes)
                 {
                     DoSave();
                 }
@@ -81,21 +84,24 @@ namespace Problem1.ScriptEditor
             }
             catch (Exception exp)
             {
-                MessageBox.Show("Could not save to \"Script.py\"!\n" + exp.Message, "[warning!]", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Could not save to \"Script.py\"!\n" + exp.Message, "[warning!]", MessageBoxButton.OK,
+                                MessageBoxImage.Error);
             }
         }
+
         private bool DoTest()
         {
             //throw new NotImplementedException();
             return true;
         }
+
         private void BtnSaveClick(object sender, RoutedEventArgs e)
         {
             DoSave();
             Close();
         }
 
-        private void ShboxTextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void ShboxTextChanged(object sender, TextChangedEventArgs e)
         {
             _isSaved = false;
         }

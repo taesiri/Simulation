@@ -4,16 +4,41 @@ using System.Linq;
 using Problem1.ScriptReaderEngine;
 using Problem1.TableRows;
 
-namespace Problem1.Sovlers
+namespace Problem1.Solvers
 {
     public class SolverEngine
     {
-        private readonly bool _isInitialized = false;
-        private readonly ReaderEngine _readerEngine;
-        private readonly SolvingMethod _solverMethod;
+        #region ReaderEngine enum
+
+        public enum ReaderEngine
+        {
+            Python,
+            CSharp,
+            Ruby,
+            FSharp,
+            BuiltIn
+        }
+
+        #endregion
+
+        #region SolvingMethod enum
+
+        public enum SolvingMethod
+        {
+            Method1,
+            Method2
+        }
+
+        #endregion
+
         private readonly int _caseLength;
 
+        private readonly bool _isInitialized;
+        private readonly ReaderEngine _readerEngine;
+
         private readonly IScriptReader _scriptReader;
+        private readonly SolvingMethod _solverMethod;
+
         public SolverEngine(ReaderEngine engine, SolvingMethod method, int length)
         {
             _isInitialized = true;
@@ -27,15 +52,15 @@ namespace Problem1.Sovlers
             }
             else if (_readerEngine == ReaderEngine.CSharp)
             {
-
             }
             else if (_readerEngine == ReaderEngine.FSharp)
             {
-
             }
             else if (_readerEngine == ReaderEngine.Ruby)
             {
-
+            }
+            else if (_readerEngine == ReaderEngine.BuiltIn)
+            {
             }
         }
 
@@ -64,20 +89,20 @@ namespace Problem1.Sovlers
         private ReportTableRowList Method1(int length, IScriptReader scriptReader)
         {
             var list = new ReportTableRowList();
-            var cumulativeLifeTime = 0;
+            int cumulativeLifeTime = 0;
             while (length > 0)
             {
-                var randomLifeTimeNumber = scriptReader.GenerateNumber(0, 100);
-                var mappedLifeTimeValue = scriptReader.MapLifeTime(randomLifeTimeNumber);
+                int randomLifeTimeNumber = scriptReader.GenerateNumber(0, 100);
+                int mappedLifeTimeValue = scriptReader.MapLifeTime(randomLifeTimeNumber);
 
-                var randomDelayNumber = scriptReader.GenerateNumber(0, 100);
-                var mappedDelayTimeValue = scriptReader.MapDelayTime(randomDelayNumber);
+                int randomDelayNumber = scriptReader.GenerateNumber(0, 100);
+                int mappedDelayTimeValue = scriptReader.MapDelayTime(randomDelayNumber);
 
                 cumulativeLifeTime += mappedLifeTimeValue;
 
                 list.PushRow(new ReportTableRowClass(randomLifeTimeNumber, mappedLifeTimeValue,
-                                                                  cumulativeLifeTime,
-                                                                  randomDelayNumber, mappedDelayTimeValue));
+                                                     cumulativeLifeTime,
+                                                     randomDelayNumber, mappedDelayTimeValue));
 
                 length--;
             }
@@ -87,18 +112,18 @@ namespace Problem1.Sovlers
         private ReportTableRowList Method2(int length, IScriptReader scriptReader)
         {
             var list = new ReportTableRowList();
-            var cumulativeLifeTime = 0;
+            int cumulativeLifeTime = 0;
 
             while (length > 0)
             {
-                var randomDelayNumber = scriptReader.GenerateNumber(1, 100);
-                var mappedDelayTimeValue = scriptReader.MapDelayTime(randomDelayNumber);
+                int randomDelayNumber = scriptReader.GenerateNumber(1, 100);
+                int mappedDelayTimeValue = scriptReader.MapDelayTime(randomDelayNumber);
 
-                var life1 = scriptReader.MapLifeTime(scriptReader.GenerateNumber(1, 100));
-                var life2 = scriptReader.MapLifeTime(scriptReader.GenerateNumber(1, 100));
-                var life3 = scriptReader.MapLifeTime(scriptReader.GenerateNumber(1, 100));
+                int life1 = scriptReader.MapLifeTime(scriptReader.GenerateNumber(1, 100));
+                int life2 = scriptReader.MapLifeTime(scriptReader.GenerateNumber(1, 100));
+                int life3 = scriptReader.MapLifeTime(scriptReader.GenerateNumber(1, 100));
 
-                var firstFailure = new List<int>() {life1, life2, life3}.Min();
+                int firstFailure = new List<int> {life1, life2, life3}.Min();
 
                 cumulativeLifeTime += firstFailure;
 
@@ -108,19 +133,6 @@ namespace Problem1.Sovlers
                 length--;
             }
             return list;
-        }
-
-        public enum ReaderEngine
-        {
-            Python,
-            CSharp,
-            Ruby,
-            FSharp
-        }
-        public enum SolvingMethod
-        {
-            Method1,
-            Method2
         }
     }
 }

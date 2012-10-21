@@ -83,6 +83,8 @@
     <Compile Include="Dialog\NumberDialog.xaml.cs">
       <DependentUpon>NumberDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ScriptReaderEngine\BuiltInFunctions.cs" />
+    <Compile Include="ScriptReaderEngine\DynamicLibraryInvoker.cs" />
     <Compile Include="TableRows\ReportTableRowClass.cs" />
     <Compile Include="TableRows\ReportTableRowList.cs" />
     <Compile Include="Method2.xaml.cs">
@@ -93,9 +95,9 @@
     </Compile>
     <Compile Include="ScriptReaderEngine\IScriptReader.cs" />
     <Compile Include="ScriptReaderEngine\PythonScriptReader.cs" />
-    <Compile Include="Sovlers\Solver1.cs" />
-    <Compile Include="Sovlers\SolverEngine.cs" />
-    <Compile Include="Sovlers\Solver2.cs" />
+    <Compile Include="Solvers\Solver1.cs" />
+    <Compile Include="Solvers\SolverEngine.cs" />
+    <Compile Include="Solvers\Solver2.cs" />
     <Page Include="Dialog\NumberDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

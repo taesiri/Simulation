@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Windows;
 using Problem1.Dialog;
 using Problem1.ScriptEditor;
-using Problem1.Sovlers;
+using Problem1.Solvers;
+using Problem1.TableRows;
 
 namespace Problem1
 {
@@ -25,7 +24,7 @@ namespace Problem1
 
             if (numberDialog.DialogResult.HasValue && numberDialog.DialogResult.Value)
             {
-                var numb = Convert.ToInt32(numberDialog.EnterdText);
+                int numb = Convert.ToInt32(numberDialog.EnterdText);
 
                 try
                 {
@@ -33,13 +32,15 @@ namespace Problem1
 
                     MessageBox.Show("Please wait while we processing your request!", "[wait]");
 
-                    var solverEngine = new SolverEngine(SolverEngine.ReaderEngine.Python,SolverEngine.SolvingMethod.Method1, numb);
-                    var bearing1 = solverEngine.SolveIt();
-                    var bearing2 = solverEngine.SolveIt();
-                    var bearing3 = solverEngine.SolveIt();
+                    var solverEngine = new SolverEngine(SolverEngine.ReaderEngine.Python,
+                                                        SolverEngine.SolvingMethod.Method1, numb);
+                    ReportTableRowList bearing1 = solverEngine.SolveIt();
+                    ReportTableRowList bearing2 = solverEngine.SolveIt();
+                    ReportTableRowList bearing3 = solverEngine.SolveIt();
 
-                    MessageBox.Show("Please wait while we Generating your Report", "[done processing] - " + DateTime.Now.Subtract(timer).ToString());
-                    
+                    MessageBox.Show("Please wait while we Generating your Report",
+                                    "[done processing] - " + DateTime.Now.Subtract(timer).ToString());
+
                     var method = new Method1(bearing1, bearing2, bearing3);
                     method.Show();
                 }
@@ -52,8 +53,8 @@ namespace Problem1
             {
                 return;
             }
-    
         }
+
         private void BtnSolve2Click(object sender, RoutedEventArgs e)
         {
             var numberDialog = new NumberDialog();
@@ -61,16 +62,18 @@ namespace Problem1
 
             if (numberDialog.DialogResult.HasValue && numberDialog.DialogResult.Value)
             {
-                var numb = Convert.ToInt32(numberDialog.EnterdText);
+                int numb = Convert.ToInt32(numberDialog.EnterdText);
                 try
                 {
                     DateTime timer = DateTime.Now;
                     MessageBox.Show("Please wait while we processing your request!", "[wait]");
 
-                    var solverEngine = new SolverEngine(SolverEngine.ReaderEngine.Python,SolverEngine.SolvingMethod.Method2, numb);
-                    var data = solverEngine.SolveIt();
+                    var solverEngine = new SolverEngine(SolverEngine.ReaderEngine.Python,
+                                                        SolverEngine.SolvingMethod.Method2, numb);
+                    ReportTableRowList data = solverEngine.SolveIt();
 
-                    MessageBox.Show("Please wait while we Generating your Report", "[done processing] - " + DateTime.Now.Subtract(timer).ToString());
+                    MessageBox.Show("Please wait while we Generating your Report",
+                                    "[done processing] - " + DateTime.Now.Subtract(timer).ToString());
 
                     var method = new Method2(data);
                     method.Show();
@@ -84,7 +87,6 @@ namespace Problem1
             {
                 return;
             }
-    
         }
 
         private void BtnEditScriptClick(object sender, RoutedEventArgs e)
@@ -97,7 +99,5 @@ namespace Problem1
         {
             Application.Current.Shutdown();
         }
-
-
     }
 }

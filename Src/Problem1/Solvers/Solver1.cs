@@ -1,9 +1,9 @@
 ﻿//Deprecated
-using System;
+
 using Problem1.ScriptReaderEngine;
 using Problem1.TableRows;
 
-namespace Problem1.Sovlers
+namespace Problem1.Solvers
 {
     public static class Solver1
     {
@@ -11,15 +11,15 @@ namespace Problem1.Sovlers
         {
             var returnList = new ReportTableRowList();
             var scriptReader = new PythonScriptReader();
-            var cumulativeLifeTime = 0;
+            int cumulativeLifeTime = 0;
 
             while (length > 0)
             {
-                var randomLifeTimeNumber = scriptReader.GenerateNumber(1, 100);
-                var mappedLifeTimeValue = scriptReader.MapLifeTime(randomLifeTimeNumber);
+                int randomLifeTimeNumber = scriptReader.GenerateNumber(1, 100);
+                int mappedLifeTimeValue = scriptReader.MapLifeTime(randomLifeTimeNumber);
 
-                var randomDelayNumber = scriptReader.GenerateNumber(1, 100);
-                var mappedDelayTimeValue = scriptReader.MapDelayTime(randomDelayNumber);
+                int randomDelayNumber = scriptReader.GenerateNumber(1, 100);
+                int mappedDelayTimeValue = scriptReader.MapDelayTime(randomDelayNumber);
 
                 cumulativeLifeTime += mappedLifeTimeValue;
 

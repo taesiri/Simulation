@@ -14,14 +14,13 @@ namespace Problem1
     /// </summary>
     public partial class Method2
     {
-
+        private readonly List<ReportTableRowList> _eventList;
         private bool _firstActivated = true;
-        private readonly List<ReportTableRowList> _eventList; 
 
         public Method2(ReportTableRowList data)
         {
             InitializeComponent();
-            _eventList = new List<ReportTableRowList> { data };
+            _eventList = new List<ReportTableRowList> {data};
         }
 
         private void FillDataTable(ref DataTable table, int eventIndex)
@@ -35,14 +34,15 @@ namespace Problem1
             table.Columns.Add("RandomNumber", typeof (int));
             table.Columns.Add("SuspensionTime", typeof (int));
 
-            var tempList = _eventList[eventIndex].ReturnData();
-            var counter = 1;
-            foreach (var elemet in tempList)
+            List<ReportTableRowClass> tempList = _eventList[eventIndex].ReturnData();
+            int counter = 1;
+            foreach (ReportTableRowClass elemet in tempList)
             {
                 // Add Element To the Table
                 table.Rows.Add(new object[]
                                    {
-                                       counter, elemet.Column1, elemet.Column2, elemet.Column3, elemet.Column4, elemet.Column5,
+                                       counter, elemet.Column1, elemet.Column2, elemet.Column3, elemet.Column4,
+                                       elemet.Column5,
                                        elemet.Column6, elemet.Column7
                                    });
                 counter++;
@@ -59,7 +59,9 @@ namespace Problem1
             {
                 var reportDocument = new ReportDocument();
 
-                var reader = new StreamReader(new FileStream(@"Templates\ReportTemplate-Method2.xaml", FileMode.Open, FileAccess.Read));
+                var reader =
+                    new StreamReader(new FileStream(@"Templates\ReportTemplate-Method2.xaml", FileMode.Open,
+                                                    FileAccess.Read));
                 reportDocument.XamlData = reader.ReadToEnd();
                 reportDocument.XamlImagePath = Path.Combine(Environment.CurrentDirectory, @"Templates\");
                 reader.Close();
@@ -68,8 +70,8 @@ namespace Problem1
                 data.ReportDocumentValues.Add("PrintDate", DateTime.Now); // print date is now
 
                 var table = new DataTable("Bearing1Table");
-                FillDataTable(ref table,0);
-         
+                FillDataTable(ref table, 0);
+
                 data.DataTables.Add(table);
 
                 DateTime dateTimeStart = DateTime.Now; // start time measure here
@@ -83,10 +85,10 @@ namespace Problem1
             catch (Exception ex)
             {
                 // show exception
-                MessageBox.Show(string.Format("{0}\r\n\r\n{1}\r\n{2}", ex.Message, ex.GetType(), ex.StackTrace), ex.GetType().ToString(),
+                MessageBox.Show(string.Format("{0}\r\n\r\n{1}\r\n{2}", ex.Message, ex.GetType(), ex.StackTrace),
+                                ex.GetType().ToString(),
                                 MessageBoxButton.OK, MessageBoxImage.Stop);
             }
         }
-
     }
 }
