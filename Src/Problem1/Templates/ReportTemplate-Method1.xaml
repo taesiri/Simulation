@@ -16,14 +16,14 @@
             <Table CellSpacing="0" BorderBrush="White" BorderThickness="0.02cm" FontFamily="Segoe UI">
                 <Table.Resources>
                     <!-- Style for header/footer rows. -->
-                    <Style x:Key="headerFooterRowStyle" TargetType="{x:Type TableRowGroup}">
+                    <Style x:Key="headerFooterRowStyle" TargetType="{x:Type Table1RowGroup}">
                         <Setter Property="FontWeight" Value="Normal"/>
                         <Setter Property="FontSize" Value="12"/>
                         <Setter Property="Background" Value="#00D7FE"/>
                     </Style>
 
                     <!-- Style for data rows. -->
-                    <Style x:Key="dataRowStyle" TargetType="{x:Type TableRowGroup}">
+                    <Style x:Key="dataRowStyle" TargetType="{x:Type Table1RowGroup}">
                         <Setter Property="FontSize" Value="12"/>
                     </Style>
 
@@ -43,8 +43,8 @@
                     <TableColumn Width="0.25*" />
                     <TableColumn Width="0.25*" />
                 </Table.Columns>
-                <TableRowGroup Style="{StaticResource headerFooterRowStyle}">
-                    <TableRow>
+                <Table1RowGroup Style="{StaticResource headerFooterRowStyle}">
+                    <Table1Row>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
                                 <Bold>No.</Bold>
@@ -75,10 +75,10 @@
                                 <Bold>Suspension Time</Bold>
                             </Paragraph>
                         </TableCell>
-                    </TableRow>
-                </TableRowGroup>
-                <TableRowGroup Style="{StaticResource dataRowStyle}">
-                    <xrd:TableRowForDataTable TableName="Bearing1Table">
+                    </Table1Row>
+                </Table1RowGroup>
+                <Table1RowGroup Style="{StaticResource dataRowStyle}">
+                    <xrd:Table1RowForDataTable TableName="Bearing1Table">
                         <TableCell>
                             <Paragraph>
                                 <xrd:InlineTableCellValue PropertyName="no" AggregateGroup="ItemCount"/>
@@ -109,8 +109,8 @@
                                 <xrd:InlineTableCellValue PropertyName="SuspensionTime" />
                             </Paragraph>
                         </TableCell>
-                    </xrd:TableRowForDataTable>
-                </TableRowGroup>
+                    </xrd:Table1RowForDataTable>
+                </Table1RowGroup>
             </Table>
         </xrd:SectionDataGroup>
         <xrd:SectionDataGroup DataGroupName="ItemList">
@@ -118,14 +118,14 @@
             <Table CellSpacing="0" BorderBrush="White" BorderThickness="0.02cm" FontFamily="Segoe UI">
                 <Table.Resources>
                     <!-- Style for header/footer rows. -->
-                    <Style x:Key="headerFooterRowStyle" TargetType="{x:Type TableRowGroup}">
+                    <Style x:Key="headerFooterRowStyle" TargetType="{x:Type Table1RowGroup}">
                         <Setter Property="FontWeight" Value="Normal"/>
                         <Setter Property="FontSize" Value="12"/>
                         <Setter Property="Background" Value="#DD00FE"/>
                     </Style>
 
                     <!-- Style for data rows. -->
-                    <Style x:Key="dataRowStyle" TargetType="{x:Type TableRowGroup}">
+                    <Style x:Key="dataRowStyle" TargetType="{x:Type Table1RowGroup}">
                         <Setter Property="FontSize" Value="12"/>
                     </Style>
 
@@ -145,8 +145,8 @@
                     <TableColumn Width="0.25*" />
                     <TableColumn Width="0.25*" />
                 </Table.Columns>
-                <TableRowGroup Style="{StaticResource headerFooterRowStyle}">
-                    <TableRow>
+                <Table1RowGroup Style="{StaticResource headerFooterRowStyle}">
+                    <Table1Row>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
                                 <Bold>No.</Bold>
@@ -177,10 +177,10 @@
                                 <Bold>Suspension Time</Bold>
                             </Paragraph>
                         </TableCell>
-                    </TableRow>
-                </TableRowGroup>
-                <TableRowGroup Style="{StaticResource dataRowStyle}">
-                    <xrd:TableRowForDataTable TableName="Bearing2Table">
+                    </Table1Row>
+                </Table1RowGroup>
+                <Table1RowGroup Style="{StaticResource dataRowStyle}">
+                    <xrd:Table1RowForDataTable TableName="Bearing2Table">
                         <TableCell>
                             <Paragraph>
                                 <xrd:InlineTableCellValue PropertyName="no" AggregateGroup="ItemCount"/>
@@ -211,8 +211,8 @@
                                 <xrd:InlineTableCellValue PropertyName="SuspensionTime" />
                             </Paragraph>
                         </TableCell>
-                    </xrd:TableRowForDataTable>
-                </TableRowGroup>
+                    </xrd:Table1RowForDataTable>
+                </Table1RowGroup>
             </Table>
         </xrd:SectionDataGroup>
         <xrd:SectionDataGroup DataGroupName="ItemList">
@@ -220,14 +220,14 @@
             <Table CellSpacing="0" BorderBrush="White" BorderThickness="0.02cm" FontFamily="Segoe UI">
                 <Table.Resources>
                     <!-- Style for header/footer rows. -->
-                    <Style x:Key="headerFooterRowStyle" TargetType="{x:Type TableRowGroup}">
+                    <Style x:Key="headerFooterRowStyle" TargetType="{x:Type Table1RowGroup}">
                         <Setter Property="FontWeight" Value="Normal"/>
                         <Setter Property="FontSize" Value="12"/>
                         <Setter Property="Background" Value="#FEEF00"/>
                     </Style>
 
                     <!-- Style for data rows. -->
-                    <Style x:Key="dataRowStyle" TargetType="{x:Type TableRowGroup}">
+                    <Style x:Key="dataRowStyle" TargetType="{x:Type Table1RowGroup}">
                         <Setter Property="FontSize" Value="12"/>
                     </Style>
 
@@ -247,8 +247,8 @@
                     <TableColumn Width="0.25*" />
                     <TableColumn Width="0.25*" />
                 </Table.Columns>
-                <TableRowGroup Style="{StaticResource headerFooterRowStyle}">
-                    <TableRow>
+                <Table1RowGroup Style="{StaticResource headerFooterRowStyle}">
+                    <Table1Row>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
                                 <Bold>No.</Bold>
@@ -279,10 +279,10 @@
                                 <Bold>Suspension Time</Bold>
                             </Paragraph>
                         </TableCell>
-                    </TableRow>
-                </TableRowGroup>
-                <TableRowGroup Style="{StaticResource dataRowStyle}">
-                    <xrd:TableRowForDataTable TableName="Bearing3Table">
+                    </Table1Row>
+                </Table1RowGroup>
+                <Table1RowGroup Style="{StaticResource dataRowStyle}">
+                    <xrd:Table1RowForDataTable TableName="Bearing3Table">
                         <TableCell>
                             <Paragraph>
                                 <xrd:InlineTableCellValue PropertyName="no" AggregateGroup="ItemCount"/>
@@ -313,8 +313,8 @@
                                 <xrd:InlineTableCellValue PropertyName="SuspensionTime" />
                             </Paragraph>
                         </TableCell>
-                    </xrd:TableRowForDataTable>
-                </TableRowGroup>
+                    </xrd:Table1RowForDataTable>
+                </Table1RowGroup>
             </Table>
         </xrd:SectionDataGroup>
         <Paragraph>

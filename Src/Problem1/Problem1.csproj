@@ -17,7 +17,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -34,6 +34,12 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Problem1.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>about-us-red.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AurelienRibon.Ui.SyntaxHighlightBox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
@@ -77,13 +83,19 @@
     <Compile Include="Dialog\NumberDialog.xaml.cs">
       <DependentUpon>NumberDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EventList.cs" />
+    <Compile Include="TableRows\ReportTableRowClass.cs" />
+    <Compile Include="TableRows\ReportTableRowList.cs" />
+    <Compile Include="Method2.xaml.cs">
+      <DependentUpon>Method2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ScriptEditor\ScriptEditorWindow.xaml.cs">
       <DependentUpon>ScriptEditorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ScriptReaderEngine\IScriptReader.cs" />
     <Compile Include="ScriptReaderEngine\PythonScriptReader.cs" />
-    <Compile Include="Solver1.cs" />
+    <Compile Include="Sovlers\Solver1.cs" />
+    <Compile Include="Sovlers\SolverEngine.cs" />
+    <Compile Include="Sovlers\Solver2.cs" />
     <Page Include="Dialog\NumberDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -104,18 +116,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Resource Include="Copyright.txt" />
+    <Resource Include="Images\news-blue.ico" />
+    <Resource Include="Images\about-us-red.ico" />
+    <Resource Include="about-us-red.ico" />
     <Content Include="Scripts\Script.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Templates\ReportTemplate.xaml">
+    <Content Include="Templates\ReportTemplate-Method1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Page Include="Method2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ScriptEditor\ScriptEditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Content Include="Templates\ReportTemplate-Method2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Method1.xaml.cs">

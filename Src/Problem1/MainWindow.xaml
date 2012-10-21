@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Problem1.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="[taesiri] + [lashgari]" Height="368" Width="271" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="[taesiri] + [lashgari]" Height="368" Width="271" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="/Problem1;component/Images/about-us-red.ico">
     <Grid>
         <Grid.Resources>
             <ControlTemplate x:Key="ButtonTemplate" TargetType="{x:Type Button}">
@@ -20,7 +20,40 @@
         </Grid.Resources>
 
         <Button Content="Solve problem Using Method 1" Height="26" Margin="12,12,12,0" Name="BtnSolve1" VerticalAlignment="Top" Click="BtnSolve1Click" Template="{StaticResource ButtonTemplate}" Cursor="Hand" />
-        <Button Content="Edit Script" Height="26" Margin="12,44,12,0" Name="btnEditScript" VerticalAlignment="Top" Click="BtnEditScriptClick" Template="{StaticResource ButtonTemplate}" Cursor="Hand" />
+        <Button Content="Solve problem Using Method 2" Cursor="Hand" Height="26" Margin="12,44,12,0" Name="BtnSolve2" VerticalAlignment="Top" Click="BtnSolve2Click">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="Border" Background="Lime" CornerRadius="4">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="#0EC300" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="#00FF1E" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button Content="Edit Script" Height="26" Margin="12,259,12,0" Name="btnEditScript" VerticalAlignment="Top" Click="BtnEditScriptClick"  Cursor="Hand" >
+            <Button.Template>
+            <ControlTemplate TargetType="{x:Type Button}">
+                <Border x:Name="Border" Background="#CC0099" CornerRadius="4">
+                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                </Border>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter TargetName="Border" Property="Background" Value="#9C00C3" />
+                    </Trigger>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter TargetName="Border" Property="Background" Value="#8A00FF" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+            </Button.Template>
+        </Button>
         <Button Content="Exit !" Height="26" Margin="12,291,12,0" Name="btnExit"  VerticalAlignment="Top" Click="BtnExitClick" Cursor="Hand">
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -38,5 +71,6 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
+        
     </Grid>
 </Window>

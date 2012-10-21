@@ -1,4 +1,3 @@
-#Copyright 2012 (c) MohammadReza Taesiri & Ali Lashgari
 import sys
 import clr
 clr.AddReference("IronPython")
@@ -20,21 +19,21 @@ def DelayMapper(x):
 	if x >= 0 and x < 10:
 		return 1;
 	elif x >= 10 and x < 20:
-		return 1;
-	elif x >= 20 and x<30:
 		return 2;
-	elif x >= 30 and x < 40:
+	elif x >= 20 and x<30:
 		return 3;
-	elif x >= 40 and x<50:
+	elif x >= 30 and x < 40:
 		return 4;
-	elif x >= 50 and x < 60:
+	elif x >= 40 and x<50:
 		return 5;
-	elif x >= 60 and x < 70:
+	elif x >= 50 and x < 60:
 		return 6;
-	elif x >= 70 and x<80:
+	elif x >= 60 and x < 70:
 		return 7;
-	elif x >= 80 and x <= 90:
+	elif x >= 70 and x<80:
 		return 8;
+	elif x >= 80 and x <= 90:
+		return 9;
 	else:
 		return 4;
 

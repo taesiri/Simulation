@@ -92,6 +92,7 @@ namespace Problem1.ScriptEditor
         private void BtnSaveClick(object sender, RoutedEventArgs e)
         {
             DoSave();
+            Close();
         }
 
         private void ShboxTextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)

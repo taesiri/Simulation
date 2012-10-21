@@ -1,7 +1,7 @@
-﻿<Window x:Class="Problem1.Method1"
+﻿<Window x:Class="Problem1.Method2"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Method 1 - Output Document" Height="640" Width="720" WindowState="Maximized" Activated="WindowActivated" Icon="/Problem1;component/Images/news-blue.ico">
+        Title="Method 2 - Output Document" Height="487" Width="580" WindowState="Maximized" Activated="WindowActivated" Icon="/Problem1;component/Images/news-blue.ico">
     <Grid>
         <DocumentViewer Name="documentViewer"/>
     </Grid>

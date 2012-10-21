@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Problem1.Dialog.NumberDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="User Action Required!" Height="180" Width="371" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="User Action Required!" Height="180" Width="371" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" ShowInTaskbar="False">
     <Grid>
         <Label Content="Please select the number of failures" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="label1" VerticalAlignment="Top" />
         <TextBox Height="23"  Name="txtNumber" VerticalAlignment="Top" HorizontalAlignment="Center" Width="183" Margin="83,57,83,0" Text="12" />

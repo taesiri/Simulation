@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/script.py")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("templates/reporttemplate.xaml")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("templates/reporttemplate-method1.xaml")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("templates/reporttemplate-method2.xaml")]
 
 

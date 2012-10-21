@@ -3,33 +3,37 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Windows;
-using CodeReason.Reports;
 using System.Windows.Xps.Packaging;
+using CodeReason.Reports;
 using Problem1.TableRows;
 
 namespace Problem1
 {
     /// <summary>
-    /// Interaction logic for Method1.xaml
+    /// Interaction logic for Method2.xaml
     /// </summary>
-    public partial class Method1
+    public partial class Method2
     {
+
         private bool _firstActivated = true;
-        private readonly List<ReportTableRowList> _eventList;
-        public Method1(ReportTableRowList dataList1, ReportTableRowList dataList2, ReportTableRowList dataList3)
+        private readonly List<ReportTableRowList> _eventList; 
+
+        public Method2(ReportTableRowList data)
         {
             InitializeComponent();
-            _eventList = new List<ReportTableRowList> { dataList1, dataList2, dataList3 };
+            _eventList = new List<ReportTableRowList> { data };
         }
 
-        private void FillDataTable(ref DataTable table,int eventIndex)
+        private void FillDataTable(ref DataTable table, int eventIndex)
         {
-            table.Columns.Add("no", typeof(int));
-            table.Columns.Add("RandomNumber1", typeof(int));
-            table.Columns.Add("LifeTime", typeof(int));
-            table.Columns.Add("CumulativeLifetime", typeof(int));
-            table.Columns.Add("RandomNumber2", typeof(int));
-            table.Columns.Add("SuspensionTime", typeof(int));
+            table.Columns.Add("no", typeof (int));
+            table.Columns.Add("Bearing1", typeof (int));
+            table.Columns.Add("Bearing2", typeof (int));
+            table.Columns.Add("Bearing3", typeof (int));
+            table.Columns.Add("FirstFail", typeof (int));
+            table.Columns.Add("CumulativeLifetime", typeof (int));
+            table.Columns.Add("RandomNumber", typeof (int));
+            table.Columns.Add("SuspensionTime", typeof (int));
 
             var tempList = _eventList[eventIndex].ReturnData();
             var counter = 1;
@@ -38,8 +42,8 @@ namespace Problem1
                 // Add Element To the Table
                 table.Rows.Add(new object[]
                                    {
-                                       counter, elemet.Column1, elemet.Column2, elemet.Column3, elemet.Column4,
-                                       elemet.Column5
+                                       counter, elemet.Column1, elemet.Column2, elemet.Column3, elemet.Column4, elemet.Column5,
+                                       elemet.Column6, elemet.Column7
                                    });
                 counter++;
             }
@@ -55,7 +59,7 @@ namespace Problem1
             {
                 var reportDocument = new ReportDocument();
 
-                var reader = new StreamReader(new FileStream(@"Templates\ReportTemplate-Method1.xaml", FileMode.Open, FileAccess.Read));
+                var reader = new StreamReader(new FileStream(@"Templates\ReportTemplate-Method2.xaml", FileMode.Open, FileAccess.Read));
                 reportDocument.XamlData = reader.ReadToEnd();
                 reportDocument.XamlImagePath = Path.Combine(Environment.CurrentDirectory, @"Templates\");
                 reader.Close();
@@ -65,14 +69,8 @@ namespace Problem1
 
                 var table = new DataTable("Bearing1Table");
                 FillDataTable(ref table,0);
-                var table2 = new DataTable("Bearing2Table");
-                FillDataTable(ref table2,1);
-                var table3 = new DataTable("Bearing3Table");
-                FillDataTable(ref table3,2);
-
+         
                 data.DataTables.Add(table);
-                data.DataTables.Add(table2);
-                data.DataTables.Add(table3);
 
                 DateTime dateTimeStart = DateTime.Now; // start time measure here
 
@@ -89,5 +87,6 @@ namespace Problem1
                                 MessageBoxButton.OK, MessageBoxImage.Stop);
             }
         }
+
     }
 }

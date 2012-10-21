@@ -25,10 +25,13 @@ C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Binaries\Debug\P
 C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Src\Problem1\obj\x86\Debug\Method1.baml
 C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Src\Problem1\obj\x86\Debug\Method1.g.cs
 C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Src\Problem1\obj\x86\Debug\Problem1_Content.g.cs
-C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Binaries\Debug\Templates\ReportTemplate.xaml
 C:\Users\Mreza\documents\visual studio 2010\Projects\Simulation\Src\Problem1\obj\x86\Debug\Problem1.csprojResolveAssemblyReference.cache
 C:\Users\Mreza\documents\visual studio 2010\Projects\Simulation\Binaries\Debug\Scripts\Script.py
 C:\Users\Mreza\documents\visual studio 2010\Projects\Simulation\Src\Problem1\obj\x86\Debug\Dialog\NumberDialog.baml
 C:\Users\Mreza\documents\visual studio 2010\Projects\Simulation\Src\Problem1\obj\x86\Debug\Dialog\NumberDialog.g.cs
 C:\Users\Mreza\documents\visual studio 2010\Projects\Simulation\Src\Problem1\obj\x86\Debug\ScriptEditor\ScriptEditorWindow.baml
 C:\Users\Mreza\documents\visual studio 2010\Projects\Simulation\Src\Problem1\obj\x86\Debug\ScriptEditor\ScriptEditorWindow.g.cs
+C:\Users\Mreza\documents\visual studio 2010\Projects\Simulation\Src\Problem1\obj\x86\Debug\Method2.baml
+C:\Users\Mreza\documents\visual studio 2010\Projects\Simulation\Src\Problem1\obj\x86\Debug\Method2.g.cs
+C:\Users\Mreza\documents\visual studio 2010\Projects\Simulation\Binaries\Debug\Templates\ReportTemplate-Method1.xaml
+C:\Users\Mreza\documents\visual studio 2010\Projects\Simulation\Binaries\Debug\Templates\ReportTemplate-Method2.xaml
