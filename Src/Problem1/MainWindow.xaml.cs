@@ -24,7 +24,7 @@ namespace Problem1
 
             if (numberDialog.DialogResult.HasValue && numberDialog.DialogResult.Value)
             {
-                int numb = Convert.ToInt32(numberDialog.EnterdText);
+                int numb = numberDialog.SelectedInteger;
 
                 try
                 {
@@ -62,7 +62,7 @@ namespace Problem1
 
             if (numberDialog.DialogResult.HasValue && numberDialog.DialogResult.Value)
             {
-                int numb = Convert.ToInt32(numberDialog.EnterdText);
+                int numb = numberDialog.SelectedInteger;
                 try
                 {
                     DateTime timer = DateTime.Now;

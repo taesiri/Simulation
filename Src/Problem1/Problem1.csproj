@@ -47,6 +47,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Binaries\debug\CodeReason.Reports.dll</HintPath>
     </Reference>
+    <Reference Include="CodeReason.Reports.Charts.Visifire, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="IronPython, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\IronPython 2.7\Platforms\Net35\IronPython.dll</HintPath>
     </Reference>
@@ -74,6 +75,7 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit.Extended, Version=1.7.4644.13122, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

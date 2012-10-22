@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace Problem1.Dialog
 {
@@ -12,9 +13,12 @@ namespace Problem1.Dialog
             InitializeComponent();
         }
 
-        public string EnterdText
+        public int SelectedInteger
         {
-            get { return txtNumber.Text; }
+            get
+            {
+                return Convert.ToInt32(textBox1.Text);
+            }
         }
 
         private void BtnOkClick(object sender, RoutedEventArgs e)

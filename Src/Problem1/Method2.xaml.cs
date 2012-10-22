@@ -23,19 +23,21 @@ namespace Problem1
             _eventList = new List<ReportTableRowList> {data};
         }
 
-        private void FillDataTable(ref DataTable table, int eventIndex)
+        private void FillDataTable(ref DataTable table, int eventIndex,out int tLife, out int tWasted)
         {
-            table.Columns.Add("no", typeof (int));
-            table.Columns.Add("Bearing1", typeof (int));
-            table.Columns.Add("Bearing2", typeof (int));
-            table.Columns.Add("Bearing3", typeof (int));
-            table.Columns.Add("FirstFail", typeof (int));
-            table.Columns.Add("CumulativeLifetime", typeof (int));
-            table.Columns.Add("RandomNumber", typeof (int));
-            table.Columns.Add("SuspensionTime", typeof (int));
+            table.Columns.Add("no", typeof(string));
+            table.Columns.Add("Bearing1", typeof(string));
+            table.Columns.Add("Bearing2", typeof(string));
+            table.Columns.Add("Bearing3", typeof(string));
+            table.Columns.Add("FirstFail", typeof(string));
+            table.Columns.Add("CumulativeLifetime", typeof(int));
+            table.Columns.Add("RandomNumber", typeof(string));
+            table.Columns.Add("SuspensionTime", typeof(int));
 
             List<ReportTableRowClass> tempList = _eventList[eventIndex].ReturnData();
             int counter = 1;
+            int totalLife = 0;
+            int totalWaste = 0;
             foreach (ReportTableRowClass elemet in tempList)
             {
                 // Add Element To the Table
@@ -46,7 +48,12 @@ namespace Problem1
                                        elemet.Column6, elemet.Column7
                                    });
                 counter++;
+                totalLife += elemet.Column4;
+                totalWaste += elemet.Column7;
             }
+            table.Rows.Add(new object[] { "Total", "---", "---", "---", "---", totalLife, "---", totalWaste });
+            tWasted = totalWaste;
+            tLife = totalLife;
         }
 
         private void WindowActivated(object sender, EventArgs e)
@@ -70,9 +77,24 @@ namespace Problem1
                 data.ReportDocumentValues.Add("PrintDate", DateTime.Now); // print date is now
 
                 var table = new DataTable("Bearing1Table");
-                FillDataTable(ref table, 0);
+
+                int totalLife, totalWasted;
+                FillDataTable(ref table, 0, out totalLife, out totalWasted);
 
                 data.DataTables.Add(table);
+
+
+                var mtable = new DataTable("BearingsLife3DChart");
+                mtable.Columns.Add("Bearing", typeof(string));
+                mtable.Columns.Add("Total LifeSpan", typeof(int));
+                mtable.Rows.Add(new object[] { "Total", totalLife });
+                data.DataTables.Add(mtable);
+
+                mtable = new DataTable("BearingsWastes3DChart");
+                mtable.Columns.Add("Bearing", typeof(string));
+                mtable.Columns.Add("Waste Time", typeof(int));
+                mtable.Rows.Add(new object[] { "Total", totalWasted });
+                data.DataTables.Add(mtable);
 
                 DateTime dateTimeStart = DateTime.Now; // start time measure here
 

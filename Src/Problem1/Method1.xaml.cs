@@ -23,27 +23,34 @@ namespace Problem1
             _eventList = new List<ReportTableRowList> {dataList1, dataList2, dataList3};
         }
 
-        private void FillDataTable(ref DataTable table, int eventIndex)
+        private void FillDataTable(ref DataTable table, int eventIndex, out int tLife,out int tWaste)
         {
-            table.Columns.Add("no", typeof (int));
-            table.Columns.Add("RandomNumber1", typeof (int));
-            table.Columns.Add("LifeTime", typeof (int));
-            table.Columns.Add("CumulativeLifetime", typeof (int));
-            table.Columns.Add("RandomNumber2", typeof (int));
-            table.Columns.Add("SuspensionTime", typeof (int));
+            table.Columns.Add("no", typeof (string));
+            table.Columns.Add("RandomNumber1", typeof (string));
+            table.Columns.Add("LifeTime", typeof(string));
+            table.Columns.Add("CumulativeLifetime", typeof(string));
+            table.Columns.Add("RandomNumber2", typeof(string));
+            table.Columns.Add("SuspensionTime", typeof(string));
 
             List<ReportTableRowClass> tempList = _eventList[eventIndex].ReturnData();
             int counter = 1;
+            int totalLife = 0;
+            int totalWaste = 0;
             foreach (ReportTableRowClass elemet in tempList)
             {
                 // Add Element To the Table
                 table.Rows.Add(new object[]
                                    {
-                                       counter, elemet.Column1, elemet.Column2, elemet.Column3, elemet.Column4,
-                                       elemet.Column5
+                                       counter, elemet.Column1, elemet.Column2,
+                                       elemet.Column3, elemet.Column4, elemet.Column5
                                    });
                 counter++;
+                totalLife += elemet.Column2;
+                totalWaste += elemet.Column5;
             }
+            table.Rows.Add(new object[] {"Total", "---","---", totalLife, "---", totalWaste});
+            tLife = totalLife;
+            tWaste = totalWaste;
         }
 
         private void WindowActivated(object sender, EventArgs e)
@@ -66,16 +73,42 @@ namespace Problem1
                 var data = new ReportData();
                 data.ReportDocumentValues.Add("PrintDate", DateTime.Now); // print date is now
 
+                int bearing1Life = 0;
+                int bearing2Life = 0;
+                int bearing3Life = 0;
+                int bearing1Waste = 0;
+                int bearing2Waste = 0;
+                int bearing3Waste = 0;
+
                 var table = new DataTable("Bearing1Table");
-                FillDataTable(ref table, 0);
+                FillDataTable(ref table, 0, out bearing1Life, out bearing1Waste);
                 var table2 = new DataTable("Bearing2Table");
-                FillDataTable(ref table2, 1);
+                FillDataTable(ref table2, 1, out bearing2Life, out bearing2Waste);
                 var table3 = new DataTable("Bearing3Table");
-                FillDataTable(ref table3, 2);
+                FillDataTable(ref table3, 2, out bearing3Life, out bearing3Waste);
 
                 data.DataTables.Add(table);
                 data.DataTables.Add(table2);
                 data.DataTables.Add(table3);
+
+
+
+                var mtable = new DataTable("BearingsLife3DChart");
+                mtable.Columns.Add("Bearing", typeof(string));
+                mtable.Columns.Add("Total LifeSpan", typeof(int));
+                mtable.Rows.Add(new object[] { "Bearing 1", bearing1Life });
+                mtable.Rows.Add(new object[] { "Bearing 2", bearing2Life });
+                mtable.Rows.Add(new object[] { "Bearing 3", bearing3Life });
+                data.DataTables.Add(mtable);
+
+                mtable = new DataTable("BearingsWastes3DChart");
+                mtable.Columns.Add("Bearing", typeof(string));
+                mtable.Columns.Add("Waste Time", typeof(int));
+                mtable.Rows.Add(new object[] { "Bearing 1", bearing1Waste });
+                mtable.Rows.Add(new object[] { "Bearing 2", bearing2Waste });
+                mtable.Rows.Add(new object[] { "Bearing 3", bearing3Waste });
+                data.DataTables.Add(mtable);
+
 
                 DateTime dateTimeStart = DateTime.Now; // start time measure here
 
