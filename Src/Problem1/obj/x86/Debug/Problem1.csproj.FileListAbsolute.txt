@@ -35,3 +35,4 @@ C:\Users\Mreza\documents\visual studio 2010\Projects\Simulation\Src\Problem1\obj
 C:\Users\Mreza\documents\visual studio 2010\Projects\Simulation\Src\Problem1\obj\x86\Debug\Method2.g.cs
 C:\Users\Mreza\documents\visual studio 2010\Projects\Simulation\Binaries\Debug\Templates\ReportTemplate-Method1.xaml
 C:\Users\Mreza\documents\visual studio 2010\Projects\Simulation\Binaries\Debug\Templates\ReportTemplate-Method2.xaml
+C:\Users\Mreza\documents\visual studio 2010\Projects\Simulation\Binaries\Debug\Scripts\Script.rb

@@ -52,6 +52,7 @@ namespace Problem1.Solvers
             }
             else if (_readerEngine == ReaderEngine.CSharp)
             {
+                _scriptReader = new BuiltInFunctions();
             }
             else if (_readerEngine == ReaderEngine.FSharp)
             {

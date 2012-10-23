@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/script.rb")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/script.py")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("templates/reporttemplate-method1.xaml")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("templates/reporttemplate-method2.xaml")]

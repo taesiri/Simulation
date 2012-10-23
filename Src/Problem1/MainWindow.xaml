@@ -37,7 +37,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Content="Edit Script" Height="26" Margin="12,259,12,0" Name="btnEditScript" VerticalAlignment="Top" Click="BtnEditScriptClick"  Cursor="Hand" >
+        <Button Content="Edit Script" Height="26" Margin="12,0,12,44" Name="btnEditScript" VerticalAlignment="Bottom" Click="BtnEditScriptClick"  Cursor="Hand" >
             <Button.Template>
             <ControlTemplate TargetType="{x:Type Button}">
                 <Border x:Name="Border" Background="#CC0099" CornerRadius="4">
@@ -54,7 +54,7 @@
             </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Content="Exit !" Height="26" Margin="12,291,12,0" Name="btnExit"  VerticalAlignment="Top" Click="BtnExitClick" Cursor="Hand">
+        <Button Content="Exit !" Height="26" Margin="12,0,12,12" Name="btnExit"  VerticalAlignment="Bottom" Click="BtnExitClick" Cursor="Hand">
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="Border" Background="#FF1717" CornerRadius="4">
@@ -88,5 +88,17 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
+        <Grid Height="145" Margin="12,0,12,76" Name="grid1" VerticalAlignment="Bottom">
+            <Label Content="Choose Solver Engine" Height="28" HorizontalAlignment="Left" Margin="6,3,0,0" Name="label1" VerticalAlignment="Top" />
+            <Border Margin="6,28,6,6" Name="border1" BorderThickness="1" BorderBrush="#BF9A9A9A">
+                <StackPanel Name="stackPanel1" Height="104" Width="206">
+                    <RadioButton Content="Built-In CSharp Function" Height="20" Name="rBtnBuiltInCSharp" VerticalContentAlignment="Center" />
+                    <RadioButton Content="IronPython Engine" Height="20" Name="rBtnIronPython" VerticalContentAlignment="Center" IsChecked="True" />
+                    <RadioButton Content="IronRuby Engine" Height="20" Name="radioButton3" VerticalContentAlignment="Center" IsEnabled="False" />
+                    <RadioButton Content="FSharp - Dynamic Library Invoker" Height="20" Name="radioButton4" VerticalContentAlignment="Center" IsEnabled="False" />
+                    <RadioButton Content="CSharp - Dynamic Library Invoker " Height="20" Name="radioButton5" VerticalContentAlignment="Center" IsEnabled="False" />
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 </Window>

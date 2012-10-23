@@ -1,21 +1,26 @@
 ﻿using System;
-
 namespace Problem1.ScriptReaderEngine
 {
     public class BuiltInFunctions : IScriptReader
     {
         #region IScriptReader Members
 
+        private readonly Random _randomEngine ;
+
+        public BuiltInFunctions()
+        {
+            _randomEngine = new Random(DateTime.Now.Millisecond);
+        }
         public int GenerateNumber(int t1, int t2)
         {
-            var rnd = new Random();
-            return rnd.Next(t1, t2);
+            var returnValue = _randomEngine.Next(t1, t2);
+            return returnValue;
         }
 
         public int UseDefinedMethod(int t1)
         {
-            var rnd = new Random();
-            return rnd.Next(t1);
+            var returnValue = _randomEngine.Next(t1);
+            return returnValue;
         }
 
         public int MapLifeTime(int t1)

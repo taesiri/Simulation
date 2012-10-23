@@ -32,8 +32,25 @@ namespace Problem1
 
                     MessageBox.Show("Please wait while we processing your request!", "[wait]");
 
-                    var solverEngine = new SolverEngine(SolverEngine.ReaderEngine.Python,
+                    SolverEngine solverEngine;
+                    if (rBtnBuiltInCSharp.IsChecked == true)
+                    {
+                        solverEngine = new SolverEngine(SolverEngine.ReaderEngine.CSharp,
+                                                       SolverEngine.SolvingMethod.Method1, numb);
+                    }
+                    else if (rBtnIronPython.IsChecked == true)
+                    {
+                        solverEngine = new SolverEngine(SolverEngine.ReaderEngine.Python,
                                                         SolverEngine.SolvingMethod.Method1, numb);
+                    }
+                    else
+                    {
+                        //Default Set to CSharp Built-In
+                        solverEngine = new SolverEngine(SolverEngine.ReaderEngine.CSharp,
+                                                        SolverEngine.SolvingMethod.Method1, numb); 
+                    }
+
+                   
                     ReportTableRowList bearing1 = solverEngine.SolveIt();
                     ReportTableRowList bearing2 = solverEngine.SolveIt();
                     ReportTableRowList bearing3 = solverEngine.SolveIt();
@@ -68,8 +85,24 @@ namespace Problem1
                     DateTime timer = DateTime.Now;
                     MessageBox.Show("Please wait while we processing your request!", "[wait]");
 
-                    var solverEngine = new SolverEngine(SolverEngine.ReaderEngine.Python,
+                    SolverEngine solverEngine;
+                    if (rBtnBuiltInCSharp.IsChecked == true)
+                    {
+                        solverEngine = new SolverEngine(SolverEngine.ReaderEngine.CSharp,
+                                                       SolverEngine.SolvingMethod.Method2, numb);
+                    }
+                    else if (rBtnIronPython.IsChecked == true)
+                    {
+                        solverEngine = new SolverEngine(SolverEngine.ReaderEngine.Python,
                                                         SolverEngine.SolvingMethod.Method2, numb);
+                    }
+                    else
+                    {
+                        //Default Set to CSharp Built-In
+                        solverEngine = new SolverEngine(SolverEngine.ReaderEngine.CSharp,
+                                                        SolverEngine.SolvingMethod.Method2, numb);
+                    }
+
                     ReportTableRowList data = solverEngine.SolveIt();
 
                     MessageBox.Show("Please wait while we Generating your Report",
