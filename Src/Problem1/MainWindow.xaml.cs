@@ -28,10 +28,8 @@ namespace Problem1
 
                 try
                 {
-                    DateTime timer = DateTime.Now;
-
                     MessageBox.Show("Please wait while we processing your request!", "[wait]");
-
+                    DateTime timer = DateTime.Now;
                     SolverEngine solverEngine;
                     if (rBtnBuiltInCSharp.IsChecked == true)
                     {
@@ -50,15 +48,15 @@ namespace Problem1
                                                         SolverEngine.SolvingMethod.Method1, numb); 
                     }
 
-                   
                     ReportTableRowList bearing1 = solverEngine.SolveIt();
                     ReportTableRowList bearing2 = solverEngine.SolveIt();
                     ReportTableRowList bearing3 = solverEngine.SolveIt();
 
+                    var totalTime = DateTime.Now.Subtract(timer);
                     MessageBox.Show("Please wait while we Generating your Report",
-                                    "[done processing] - " + DateTime.Now.Subtract(timer).ToString());
+                                    "[done processing] - " + totalTime.ToString());
 
-                    var method = new Method1(bearing1, bearing2, bearing3);
+                    var method = new Method1(bearing1, bearing2, bearing3, totalTime);
                     method.Show();
                 }
                 catch (Exception exp)
@@ -82,8 +80,8 @@ namespace Problem1
                 int numb = numberDialog.SelectedInteger;
                 try
                 {
-                    DateTime timer = DateTime.Now;
                     MessageBox.Show("Please wait while we processing your request!", "[wait]");
+                    DateTime timer = DateTime.Now;
 
                     SolverEngine solverEngine;
                     if (rBtnBuiltInCSharp.IsChecked == true)

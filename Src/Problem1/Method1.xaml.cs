@@ -16,11 +16,12 @@ namespace Problem1
     {
         private readonly List<ReportTableRowList> _eventList;
         private bool _firstActivated = true;
-
-        public Method1(ReportTableRowList dataList1, ReportTableRowList dataList2, ReportTableRowList dataList3)
+        private TimeSpan _time;
+        public Method1(ReportTableRowList dataList1, ReportTableRowList dataList2, ReportTableRowList dataList3, TimeSpan time)
         {
             InitializeComponent();
             _eventList = new List<ReportTableRowList> {dataList1, dataList2, dataList3};
+            _time = time;
         }
 
         private void FillDataTable(ref DataTable table, int eventIndex, out int tLife,out int tWaste)
@@ -116,7 +117,7 @@ namespace Problem1
                 documentViewer.Document = xps.GetFixedDocumentSequence();
 
                 // show the elapsed time in window title
-                Title += string.Format(" - Generated in {0}ms", (DateTime.Now - dateTimeStart).TotalMilliseconds);
+                Title += string.Format(" - Generated in {0}ms", (_time + (DateTime.Now - dateTimeStart)).TotalMilliseconds);
             }
             catch (Exception ex)
             {

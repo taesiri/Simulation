@@ -71,7 +71,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Content="Compare 2 Methods" Cursor="Hand" Height="26" Margin="12,76,12,0" Name="btnCompare" VerticalAlignment="Top">
+        <Button Content="Compare 2 Methods" Cursor="Hand" Height="26" Margin="12,76,12,0" Name="btnCompare" VerticalAlignment="Top" IsEnabled="False">
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Background="#CCFF00" CornerRadius="4" Name="Border">

@@ -7,7 +7,59 @@
         <xrd:ReportProperties.ReportName>Generated Report</xrd:ReportProperties.ReportName>
         <xrd:ReportProperties.ReportTitle>Generated Report</xrd:ReportProperties.ReportTitle>
     </xrd:ReportProperties>
-    <Section Padding="80,10,40,10" FontSize="12">
+    <xrd:SectionReportFooter PageFooterHeight="2" Padding="10,0,10,10" FontSize="12">
+        <Table CellSpacing="0">
+            <Table.Columns>
+                <TableColumn Width="*" />
+                <TableColumn Width="*" />
+            </Table.Columns>
+            <TableRowGroup>
+                <TableRow>
+                    <TableCell>
+                        <Paragraph>
+                        </Paragraph>
+                    </TableCell>
+                    <TableCell>
+                        <Paragraph TextAlignment="Right">
+                            Page
+                            <xrd:InlineContextValue PropertyName="PageNumber" FontWeight="Bold" /> of
+                            <xrd:InlineContextValue PropertyName="PageCount" FontWeight="Bold" />
+                        </Paragraph>
+                    </TableCell>
+                </TableRow>
+            </TableRowGroup>
+        </Table>
+    </xrd:SectionReportFooter>
+    <Section>
+        <Paragraph/>
+        <Paragraph TextAlignment="Center">
+            <Image Tag="aut.jpg" Width="8cm"  />
+        </Paragraph>
+        <Paragraph TextAlignment="Center"  FontFamily="Arial" FontSize="48" FontWeight="Bold">
+             گزارش 
+        </Paragraph>
+        <Paragraph TextAlignment="Center" FontFamily="Arial" FontSize="24">
+            حل با استفاده از روش اول
+        </Paragraph>
+        <Paragraph/>
+        <Paragraph/>
+        <Paragraph/>
+        <Paragraph/>
+        <Paragraph/>
+        <Paragraph TextAlignment="Center" FontFamily="Arial" FontSize="24" FontWeight="Bold">
+            تهیه کنندگان
+        </Paragraph>
+        <Paragraph TextAlignment="Center" FontFamily="Arial" FontSize="18">
+                محمدرضا تأثیری - 8812076
+        </Paragraph>
+        <Paragraph TextAlignment="Center" FontFamily="Arial" FontSize="16">
+            و
+        </Paragraph>
+        <Paragraph TextAlignment="Center" FontFamily="Arial" FontSize="18">
+             علی لشگری - 8725717
+        </Paragraph>
+    </Section>
+    <Section Padding="80,10,40,10" FontSize="12" BreakPageBefore="True">
         <Paragraph FontFamily="Segoe UI" FontSize="24" FontWeight="Bold" TextAlignment="Center">
             <xrd:InlineContextValue PropertyName="ReportTitle" />
         </Paragraph>
@@ -326,14 +378,8 @@
                 </TableRowGroup>
             </Table>
         </xrd:SectionDataGroup>
-        
-        <Paragraph>
-            There are
-            <xrd:InlineAggregateValue AggregateGroup="ItemCount" AggregateValueType="Count" EmptyValue="no" FontWeight="Bold" /> item positions.
-        </Paragraph>
         <Section BreakPageBefore="True">
             <Paragraph FontFamily="Segoe UI" FontSize="26" TextAlignment="Center">Charts</Paragraph>
-
             <Paragraph FontFamily="Segoe UI" FontSize="22">LifeSpan Chart</Paragraph>
             <Paragraph FontFamily="Tahoma" FontSize="14" FontWeight="Bold">
                 <crcv:BarChart TableName="BearingsLife3DChart" TableColumns="Bearing,Total LifeSpan" Width="16cm" Height="10cm" Title="Bearings LifeSpan" View3D="True">
@@ -346,11 +392,5 @@
                 </crcv:DoughnutChart>
             </Paragraph>
         </Section>
-        <Paragraph></Paragraph>
-        <Paragraph FontFamily="Arial" FontSize="18" TextAlignment="Right" Foreground="Black">
-
-            محمدرضا تأثیری و علی لشگری
-
-        </Paragraph>
     </Section>
 </FlowDocument>
