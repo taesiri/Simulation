@@ -2,8 +2,9 @@
 using System.ComponentModel;
 using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using AurelienRibon.Ui.SyntaxHighlightBox;
+using System.Xml;
+using ICSharpCode.AvalonEdit.Highlighting;
+using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 
 namespace Problem1.ScriptEditor
 {
@@ -18,7 +19,6 @@ namespace Problem1.ScriptEditor
         public ScriptEditorWindow()
         {
             InitializeComponent();
-            shbox.CurrentHighlighter = HighlighterManager.Instance.Highlighters["VHDL"];
             try
             {
                 if (!File.Exists(@"Scripts\Script.py"))
@@ -32,7 +32,7 @@ namespace Problem1.ScriptEditor
                 _firstScript = reader.ReadToEnd();
                 reader.Close();
 
-                shbox.Text = _firstScript;
+                textEditor.Text = _firstScript;
             }
             catch (Exception exp)
             {
@@ -43,7 +43,7 @@ namespace Problem1.ScriptEditor
 
         private bool IsCodeChanged()
         {
-            if (_firstScript != shbox.Text)
+            if (_firstScript != textEditor.Text)
                 if (!_isSaved)
                     return true;
 
@@ -77,7 +77,7 @@ namespace Problem1.ScriptEditor
             try
             {
                 var writer = new StreamWriter(new FileStream(@"Scripts\Script.py", FileMode.Truncate, FileAccess.Write));
-                writer.Write(shbox.Text);
+                writer.Write(textEditor.Text);
                 writer.Close();
 
                 _isSaved = true;
@@ -101,7 +101,17 @@ namespace Problem1.ScriptEditor
             Close();
         }
 
-        private void ShboxTextChanged(object sender, TextChangedEventArgs e)
+        private void WindowLoaded(object sender, RoutedEventArgs e)
+        {
+            var fileStream = new FileStream(@"Highlighter\Python.xshd", FileMode.Open, FileAccess.Read);
+            using (var reader = new XmlTextReader(fileStream))
+            {
+                textEditor.SyntaxHighlighting = HighlightingLoader.Load(reader, HighlightingManager.Instance);
+            }
+            fileStream.Close();
+        }
+
+        private void TextEditorTextChanged(object sender, EventArgs e)
         {
             _isSaved = false;
         }

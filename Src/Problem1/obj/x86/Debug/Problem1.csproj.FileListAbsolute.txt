@@ -37,3 +37,11 @@ C:\Users\Mreza\documents\visual studio 2010\Projects\Simulation\Binaries\Debug\T
 C:\Users\Mreza\documents\visual studio 2010\Projects\Simulation\Binaries\Debug\Templates\ReportTemplate-Method2.xaml
 C:\Users\Mreza\documents\visual studio 2010\Projects\Simulation\Binaries\Debug\Scripts\Script.rb
 C:\Users\Mreza\documents\visual studio 2010\Projects\Simulation\Binaries\Debug\Templates\aut.jpg
+C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Binaries\Debug\Problem1\Scripts\Script.rb
+C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Binaries\Debug\Problem1\Scripts\Script.py
+C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Binaries\Debug\Problem1\Templates\aut.jpg
+C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Binaries\Debug\Problem1\Templates\ReportTemplate-Method1.xaml
+C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Binaries\Debug\Problem1\Templates\ReportTemplate-Method2.xaml
+C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Binaries\Debug\Problem1\Problem1.exe
+C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Binaries\Debug\Problem1\Problem1.pdb
+C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Binaries\Debug\Problem1\Highlighter\Python.xshd
