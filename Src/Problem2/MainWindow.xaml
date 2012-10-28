@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Problem2.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         
-        Title="Problem 2 [taesiri][lashgari]" Height="417" Width="292"
+        Title="Problem 2 [taesiri][lashgari]" Height="425" Width="292"
         WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="/Problem2;component/Images/about-us-red.ico" Loaded="Window_Loaded">
     <Grid>
 
