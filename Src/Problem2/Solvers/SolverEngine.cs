@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics;
 using Problem2.ScriptReaderEngine;
-using Problem2.TableRows;
+using Problem2.Solvers.Entities;
 
 namespace Problem2.Solvers
 {
@@ -13,9 +13,6 @@ namespace Problem2.Solvers
         public enum ReaderEngine
         {
             Python,
-            CSharp,
-            Ruby,
-            FSharp,
             BuiltIn
         }
 
@@ -26,7 +23,8 @@ namespace Problem2.Solvers
         public enum SolvingMethod
         {
             Method1,
-            Method2
+            Method2,
+            MixedMethod
         }
 
         #endregion
@@ -39,8 +37,13 @@ namespace Problem2.Solvers
         private readonly IScriptReader _scriptReader;
         private readonly SolvingMethod _solverMethod;
 
+        private readonly List<ICustomer> _solvedData;
+        private bool _isCaseSolved = false;
+
         public SolverEngine(ReaderEngine engine, SolvingMethod method, int length)
         {
+            _solvedData = new List<ICustomer>();
+
             _isInitialized = true;
             _readerEngine = engine;
             _solverMethod = method;
@@ -50,90 +53,196 @@ namespace Problem2.Solvers
             {
                 _scriptReader = new PythonScriptReader();
             }
-            else if (_readerEngine == ReaderEngine.CSharp)
+            else if (_readerEngine == ReaderEngine.BuiltIn)
             {
                 _scriptReader = new BuiltInFunctions();
             }
-            else if (_readerEngine == ReaderEngine.FSharp)
-            {
-            }
-            else if (_readerEngine == ReaderEngine.Ruby)
-            {
-            }
-            else if (_readerEngine == ReaderEngine.BuiltIn)
-            {
-            }
         }
 
-        public ReportTableRowList SolveIt()
+        public void SolveIt()
         {
             if (!_isInitialized)
                 throw new Exception("Class is not Initialized yet");
 
-            var returnList = new ReportTableRowList();
-
             switch (_solverMethod)
             {
                 case SolvingMethod.Method1:
-                    returnList = Method1(_caseLength, _scriptReader);
+                    Method1(_caseLength, _scriptReader);
+                    _isCaseSolved = true;
                     break;
                 case SolvingMethod.Method2:
-                    returnList = Method2(_caseLength, _scriptReader);
+                    Method2(_caseLength, _scriptReader);
+                    _isCaseSolved = true;
                     break;
-                default:
+                case SolvingMethod.MixedMethod:
+                    MixedMethod(_caseLength, _scriptReader);
+                    _isCaseSolved = true;
                     break;
             }
-            return returnList;
         }
 
 
-        private ReportTableRowList Method1(int length, IScriptReader scriptReader)
+        private void Method1(int length, IScriptReader scriptReader)
         {
-            var list = new ReportTableRowList();
-            int cumulativeLifeTime = 0;
-            while (length > 0)
+
+            var able = new Able {IsIdle = true};
+            var baker = new Baker { IsIdle = true };
+            var charlie = new Charlie { IsIdle = true };
+
+            var arrivalTimeList = new List<int> {0};
+            var fel = new FutureEventList();
+
+            var customersQueue = new Queue<ICustomer>(length);
+
+            for (var i = 1; i < length; i++)
             {
-                int randomLifeTimeNumber = scriptReader.GenerateNumber(0, 100);
-                int mappedLifeTimeValue = scriptReader.MapLifeTime(randomLifeTimeNumber);
-
-                int randomDelayNumber = scriptReader.GenerateNumber(0, 100);
-                int mappedDelayTimeValue = scriptReader.MapDelayTime(randomDelayNumber);
-
-                cumulativeLifeTime += mappedLifeTimeValue;
-
-                list.PushRow(new ReportTableRowClass(randomLifeTimeNumber, mappedLifeTimeValue,
-                                                     cumulativeLifeTime,
-                                                     randomDelayNumber, mappedDelayTimeValue));
-
-                length--;
+                arrivalTimeList.Add(arrivalTimeList[i - 1] + scriptReader.GenerateNumber(0, 10));
             }
-            return list;
+
+            foreach (var item in arrivalTimeList)
+            {
+                var felItem = new FutureEventListRow
+                                  {
+                                      Time = item,
+                                      Customer = new Customer(item, scriptReader.GenerateNumber(10, 20)),
+                                      EventType = EventType.Arrival
+                                  };
+
+                fel.PushEventRow(felItem);
+            }
+
+            Debug.WriteLine("Done! Generating!");
+
+            while (fel.Length > 0)
+            {
+                var nearestEvent = fel.GetNearestEvent();
+                var currentTime = nearestEvent.Time;
+                if (nearestEvent.EventType == EventType.Arrival)
+                {
+                    if (able.IsIdle)
+                    {
+                        nearestEvent.Customer.ServiceProvider = able;
+                        able.CurrentCustomer = nearestEvent.Customer;
+                        
+                        var felItem = new FutureEventListRow
+                                          {
+                                              Time = nearestEvent.Customer.ServiceTime + currentTime,
+                                              Customer = nearestEvent.Customer,
+                                              EventType = EventType.Departure,
+
+                                          };
+
+                        fel.PushEventRow(felItem);
+
+                        able.IsIdle = false;
+                    }
+                    else if (baker.IsIdle)
+                    {
+                        nearestEvent.Customer.ServiceProvider = baker;
+                        baker.CurrentCustomer = nearestEvent.Customer;
+
+                        var felItem = new FutureEventListRow
+                                          {
+                                              Time = nearestEvent.Customer.ServiceTime + currentTime,
+                                              Customer = nearestEvent.Customer,
+                                              EventType = EventType.Departure
+                                          };
+
+                        fel.PushEventRow(felItem);
+
+                        baker.IsIdle = false;
+                    }
+                    else if (charlie.IsIdle)
+                    {
+                        nearestEvent.Customer.ServiceProvider = charlie;
+                        charlie.CurrentCustomer = nearestEvent.Customer;
+
+                        var felItem = new FutureEventListRow
+                                          {
+                                              Time = nearestEvent.Customer.ServiceTime + currentTime,
+                                              Customer = nearestEvent.Customer,
+                                              EventType = EventType.Departure
+                                          };
+                        fel.PushEventRow(felItem);
+
+                        charlie.IsIdle = false;
+                    }
+                    else
+                    {
+                        customersQueue.Enqueue(nearestEvent.Customer);
+                    }
+                }
+                else if (nearestEvent.EventType == EventType.Departure)
+                {
+                    var enCustomer = new Customer(nearestEvent.Customer.ArrivalTime, nearestEvent.Customer.ServiceTime)
+                                         {
+                                             ServiceProvider = nearestEvent.Customer.ServiceProvider,
+                                             DepartureTime = currentTime
+                                         };
+                    enCustomer.WaitTime = enCustomer.DepartureTime - (enCustomer.ArrivalTime + enCustomer.ServiceTime);
+
+                    _solvedData.Add(enCustomer);
+                    if (customersQueue.Count > 0)
+                    {
+                        var currentCarhop = nearestEvent.Customer.ServiceProvider as ICarhops; // his work is done!
+                        var firstInQueue = customersQueue.Dequeue();
+
+                        firstInQueue.ServiceProvider = currentCarhop;
+
+                        currentCarhop.CurrentCustomer = firstInQueue;
+                        currentCarhop.IsIdle = false;
+
+
+                        var felItem = new FutureEventListRow
+                        {
+                            Time = nearestEvent.Customer.ServiceTime + currentTime,
+                            Customer = firstInQueue,
+                            EventType = EventType.Departure
+                        };
+                        fel.PushEventRow(felItem);
+                    }
+                    else
+                    {
+                        if (nearestEvent.Customer.ServiceProvider is Able)
+                        {
+                            able.IsIdle = true;
+                            able.CurrentCustomer = null;
+                        }
+                        else if (nearestEvent.Customer.ServiceProvider is Baker)
+                        {
+                            baker.IsIdle = true;
+                            baker.CurrentCustomer = null;
+                        }
+                        else if (nearestEvent.Customer.ServiceProvider is Charlie)
+                        {
+                            charlie.IsIdle = true;
+                            charlie.CurrentCustomer = null;
+                        }
+                    }
+                }
+                fel.RemoveFirstElement();
+            }
+            _solvedData.ToString();
         }
 
-        private ReportTableRowList Method2(int length, IScriptReader scriptReader)
+        private void Method2(int length, IScriptReader scriptReader)
         {
-            var list = new ReportTableRowList();
-            int cumulativeLifeTime = 0;
 
-            while (length > 0)
+        }
+        private void MixedMethod(int length, IScriptReader scriptReader)
+        {
+
+        }
+        public List<ICustomer> GetAnswer
+        {
+            get
             {
-                int randomDelayNumber = scriptReader.GenerateNumber(1, 100);
-                int mappedDelayTimeValue = scriptReader.MapDelayTime(randomDelayNumber);
-
-                int life1 = scriptReader.MapLifeTime(scriptReader.GenerateNumber(1, 100));
-                int life2 = scriptReader.MapLifeTime(scriptReader.GenerateNumber(1, 100));
-                int life3 = scriptReader.MapLifeTime(scriptReader.GenerateNumber(1, 100));
-
-                int firstFailure = new List<int> {life1, life2, life3}.Min();
-
-                cumulativeLifeTime += firstFailure;
-
-                list.PushRow(new ReportTableRowClass(life1, life2, life3, firstFailure, cumulativeLifeTime,
-                                                     randomDelayNumber, mappedDelayTimeValue));
-
-                length--;
+                if (_isCaseSolved)
+                    return _solvedData;
+                else
+                    return new List<ICustomer>();
+                    //throw new Exception("Case not Solved yet!");
             }
-            return list;
         }
     }
 }

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Windows;
-using Problem1.Dialog;
+﻿using System.Windows;
 using Problem2.ScriptEditor;
 using Problem2.Solvers;
-using Problem2.TableRows;
 
 namespace Problem2
 {
@@ -20,12 +17,13 @@ namespace Problem2
 
         private void BtnSolve1Click(object sender, RoutedEventArgs e)
         {
-          
+            var engine = new SolverEngine(SolverEngine.ReaderEngine.BuiltIn, SolverEngine.SolvingMethod.Method1, 10);
+            engine.SolveIt();
+
         }
 
         private void BtnSolve2Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void BtnEditScriptClick(object sender, RoutedEventArgs e)
@@ -39,10 +37,9 @@ namespace Problem2
             Application.Current.Shutdown();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void WindowLoaded(object sender, RoutedEventArgs e)
         {
             rBtnBuiltInCSharp.IsChecked = true;
         }
-
     }
 }
