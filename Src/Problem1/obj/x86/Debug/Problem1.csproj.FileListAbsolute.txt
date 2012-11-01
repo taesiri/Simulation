@@ -45,3 +45,4 @@ C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Binaries\Debug\P
 C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Binaries\Debug\Problem1\Problem1.exe
 C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Binaries\Debug\Problem1\Problem1.pdb
 C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Binaries\Debug\Problem1\Highlighter\Python.xshd
+C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Src\Problem1\obj\x86\Debug\App.baml

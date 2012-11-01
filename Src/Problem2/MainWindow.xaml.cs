@@ -1,6 +1,10 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
+using Problem1.Dialog;
 using Problem2.ScriptEditor;
 using Problem2.Solvers;
+using Problem2.Solvers.Entities;
 
 namespace Problem2
 {
@@ -17,14 +21,58 @@ namespace Problem2
 
         private void BtnSolve1Click(object sender, RoutedEventArgs e)
         {
-            var engine = new SolverEngine(SolverEngine.ReaderEngine.BuiltIn, SolverEngine.SolvingMethod.Method1, 10);
-            engine.SolveIt();
+            var numberDialog = new NumberDialog();
+            numberDialog.ShowDialog();
 
+            if (numberDialog.DialogResult.HasValue && numberDialog.DialogResult.Value)
+            {
+                int numb = numberDialog.SelectedInteger;
+
+                try
+                {
+                    MessageBox.Show("Please wait while we processing your request!", "[wait]");
+                    var engine = new SolverEngine(SolverEngine.ReaderEngine.BuiltIn, SolverEngine.SolvingMethod.Method1,
+                                                  numb);
+                    engine.SolveIt();
+                    List<ICustomer> solvedData = engine.GetAnswer;
+                    List<Carhops> carhopses = engine.GetCarhops;
+                    if (solvedData != null && carhopses != null)
+                    {
+                        var output = new Method1Report(solvedData, carhopses);
+                        output.ShowDialog();
+                    }
+                }
+                catch (Exception exp)
+                {
+                    MessageBox.Show("Error! \n" + exp.Message + "\n" + exp.StackTrace, "Error !", MessageBoxButton.OK,
+                                    MessageBoxImage.Error);
+                }
+            }
         }
 
         private void BtnSolve2Click(object sender, RoutedEventArgs e)
         {
+            var numberDialog = new NumberDialog();
+            numberDialog.ShowDialog();
+
+            if (numberDialog.DialogResult.HasValue && numberDialog.DialogResult.Value)
+            {
+                int numb = numberDialog.SelectedInteger;
+
+
+                var engine = new SolverEngine(SolverEngine.ReaderEngine.BuiltIn, SolverEngine.SolvingMethod.Method2,
+                                              numb);
+                engine.SolveIt();
+                List<ICustomer> solvedData = engine.GetAnswer;
+                List<Carhops> carhopses = engine.GetCarhops;
+                if (solvedData != null && carhopses != null)
+                {
+                    var output = new Method2Report(solvedData, carhopses);
+                    output.ShowDialog();
+                }
+            }
         }
+
 
         private void BtnEditScriptClick(object sender, RoutedEventArgs e)
         {

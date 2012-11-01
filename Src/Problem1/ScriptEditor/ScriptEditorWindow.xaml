@@ -13,6 +13,6 @@
         <Button Content="Test" Height="23" HorizontalAlignment="Right" Margin="0,0,153,12" Name="btnTestScript"
                 VerticalAlignment="Bottom" Width="80" IsEnabled="False" />
         <Button Content="Cancel" Height="23" HorizontalAlignment="Left" Margin="9,0,0,12" Name="btnCancel"
-                VerticalAlignment="Bottom" Width="80" />
+                VerticalAlignment="Bottom" Width="80" Click="BtnCancelClick" />
     </Grid>
 </Window>

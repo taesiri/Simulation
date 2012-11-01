@@ -115,5 +115,10 @@ namespace Problem1.ScriptEditor
         {
             _isSaved = false;
         }
+
+        private void BtnCancelClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

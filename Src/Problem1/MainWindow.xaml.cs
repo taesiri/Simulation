@@ -34,7 +34,7 @@ namespace Problem1
                     if (rBtnBuiltInCSharp.IsChecked == true)
                     {
                         solverEngine = new SolverEngine(SolverEngine.ReaderEngine.CSharp,
-                                                       SolverEngine.SolvingMethod.Method1, numb);
+                                                        SolverEngine.SolvingMethod.Method1, numb);
                     }
                     else if (rBtnIronPython.IsChecked == true)
                     {
@@ -45,7 +45,7 @@ namespace Problem1
                     {
                         //Default Set to CSharp Built-In
                         solverEngine = new SolverEngine(SolverEngine.ReaderEngine.CSharp,
-                                                        SolverEngine.SolvingMethod.Method1, numb); 
+                                                        SolverEngine.SolvingMethod.Method1, numb);
                     }
 
                     ReportTableRowList bearing1 = solverEngine.SolveIt();
@@ -87,7 +87,7 @@ namespace Problem1
                     if (rBtnBuiltInCSharp.IsChecked == true)
                     {
                         solverEngine = new SolverEngine(SolverEngine.ReaderEngine.CSharp,
-                                                       SolverEngine.SolvingMethod.Method2, numb);
+                                                        SolverEngine.SolvingMethod.Method2, numb);
                     }
                     else if (rBtnIronPython.IsChecked == true)
                     {

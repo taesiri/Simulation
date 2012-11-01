@@ -37,17 +37,17 @@ namespace Problem1
             int counter = 1;
             int totalLife = 0;
             int totalWaste = 0;
-            foreach (ReportTableRowClass elemet in tempList)
+            foreach (ReportTableRowClass element in tempList)
             {
                 // Add Element To the Table
                 table.Rows.Add(new object[]
                                    {
-                                       counter, elemet.Column1, elemet.Column2,
-                                       elemet.Column3, elemet.Column4, elemet.Column5
+                                       counter, element.Column1, element.Column2,
+                                       element.Column3, element.Column4, element.Column5
                                    });
                 counter++;
-                totalLife += elemet.Column2;
-                totalWaste += elemet.Column5;
+                totalLife += element.Column2;
+                totalWaste += element.Column5;
             }
             table.Rows.Add(new object[] {"Total", "---","---", totalLife, "---", totalWaste});
             tLife = totalLife;

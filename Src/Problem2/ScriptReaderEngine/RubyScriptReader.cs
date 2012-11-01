@@ -33,6 +33,11 @@ namespace Problem2.ScriptReaderEngine
             throw new NotImplementedException();
         }
 
+        public int GetNormal(double mean, double standardDeviation)
+        {
+            throw new NotImplementedException();
+        }
+
         public int UseDefinedMethod(int t1)
         {
             throw new NotImplementedException();

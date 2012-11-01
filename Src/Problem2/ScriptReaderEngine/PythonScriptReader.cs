@@ -55,6 +55,11 @@ namespace Problem2.ScriptReaderEngine
             return _randomGenerator(t1, t2);
         }
 
+        public int GetNormal(double mean, double standardDeviation)
+        {
+            throw new NotImplementedException();
+        }
+
         public int UseDefinedMethod(int t1)
         {
             return _userDefinedMethod(t1);

@@ -11,7 +11,7 @@ namespace Problem2.Solvers.Entities
 
         public State()
         {
-            _c1 = false;
+            _c1 = false; //True : Busy | False = Idle
             _c2 = false;
             _c3 = false;
         }
@@ -35,6 +35,17 @@ namespace Problem2.Solvers.Entities
             _c3 = c3;
         }
 
+        public bool IsAllAvailable()
+        {
+            if (_c1 == false && _c2 == false && _c2 == false)
+                return true;
+            return false;
+        }
+        public bool IsAnyAvailable()
+        {
+            return !(_c1 && _c2 && _c3);
+        }
+
         public bool GetFirstStatus()
         {
             return _c1;
@@ -52,10 +63,27 @@ namespace Problem2.Solvers.Entities
             return _c3;
 
         }
+        private string BoolToString(bool val)
+        {
+            if (val == true)
+                return "1";
+            else
+            {
+                return "0";
+            }
+        }
 
         public static bool IsAllBusy(State state)
         {
             return false;
         }
+        
+        public override string ToString()
+        {
+
+            return string.Format("({0},{1},{2})", BoolToString(_c1), BoolToString(_c2), BoolToString(_c3));
+        }
+
+       
     }
 }

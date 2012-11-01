@@ -384,6 +384,7 @@
             <Paragraph FontFamily="Tahoma" FontSize="14" FontWeight="Bold">
                 <crcv:BarChart TableName="BearingsLife3DChart" TableColumns="Bearing,Total LifeSpan" Width="16cm" Height="10cm" Title="Bearings LifeSpan" View3D="True">
                 </crcv:BarChart>
+               
             </Paragraph>
             <Paragraph/>
             <Paragraph FontFamily="Segoe UI" FontSize="22">Wasted Time Chart</Paragraph>

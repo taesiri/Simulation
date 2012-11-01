@@ -39,7 +39,7 @@
              گزارش 
         </Paragraph>
         <Paragraph TextAlignment="Center" FontFamily="Arial" FontSize="24">
-            حل با استفاده از روش اول
+            حل  با استفاده از روش اول
         </Paragraph>
         <Paragraph/>
         <Paragraph/>
@@ -63,17 +63,16 @@
         <Paragraph FontFamily="Segoe UI" FontSize="24" FontWeight="Bold" TextAlignment="Center">
             <xrd:InlineContextValue PropertyName="ReportTitle" />
         </Paragraph>
-        <Paragraph FontFamily="Segoe UI" FontSize="26" >First Approach</Paragraph>
-        <!-- First Table -->
+        <Paragraph FontFamily="Segoe UI" FontSize="26" >Solving case with Preferences between carhops</Paragraph>
+        <!-- Table -->
         <xrd:SectionDataGroup DataGroupName="ItemList">
-            <Paragraph FontFamily="Segoe UI" FontSize="16" FontWeight="Bold">1st Bearing</Paragraph>
             <Table CellSpacing="0" BorderBrush="White" BorderThickness="0.02cm" FontFamily="Segoe UI">
                 <Table.Resources>
                     <!-- Style for header/footer rows. -->
                     <Style x:Key="headerFooterRowStyle" TargetType="{x:Type TableRowGroup}">
                         <Setter Property="FontWeight" Value="Normal"/>
                         <Setter Property="FontSize" Value="12"/>
-                        <Setter Property="Background" Value="#D700FE"/>
+                        <Setter Property="Background" Value="Azure"/>
                     </Style>
 
                     <!-- Style for data rows. -->
@@ -90,10 +89,13 @@
                 </Table.Resources>
 
                 <Table.Columns>
-                    <TableColumn Width="0.12*" />
-                    <TableColumn Width="0.35*" />
-                    <TableColumn Width="0.5*" />
-                    <TableColumn Width="0.5*" />
+                    <TableColumn Width="0.13*" />
+                    <TableColumn Width="0.25*" />
+                    <TableColumn Width="0.25*" />
+                    <TableColumn Width="0.19*" />
+                    <TableColumn Width="0.19*" />
+                    <TableColumn Width="0.25*" />
+                    <TableColumn Width="0.25*" />
                     <TableColumn Width="0.25*" />
                     <TableColumn Width="0.25*" />
                 </Table.Columns>
@@ -106,33 +108,50 @@
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <Bold>Random Number</Bold>
+                                <Bold>Arrival Time</Bold>
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <Bold>Lifetime</Bold>
+                                <Bold>r. Number</Bold>
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <Bold>Cumulative lifetime</Bold>
+                                <Bold>Service Time</Bold>
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <Bold>Random Number</Bold>
+                                <Bold>Queue Time</Bold>
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <Bold>Suspension Time</Bold>
+                                <Bold>Service Provider</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Departure Time</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>State</Bold>
+                                <Italic>(On Arrival)</Italic>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>  State  </Bold>
+                                <Italic>(After Departure)</Italic>
                             </Paragraph>
                         </TableCell>
                     </TableRow>
                 </TableRowGroup>
                 <TableRowGroup Style="{StaticResource dataRowStyle}">
-                    <xrd:TableRowForDataTable TableName="Bearing1Table">
+                    <xrd:TableRowForDataTable TableName="CustomersTable">
                         <TableCell>
                             <Paragraph>
                                 <xrd:InlineTableCellValue PropertyName="no" AggregateGroup="ItemCount"/>
@@ -140,132 +159,42 @@
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <xrd:InlineTableCellValue PropertyName="RandomNumber1" />
+                                <xrd:InlineTableCellValue PropertyName="ArrivalTime" />
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <xrd:InlineTableCellValue PropertyName="LifeTime" />
+                                <xrd:InlineTableCellValue PropertyName="rArrivalNumber" />
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <xrd:InlineTableCellValue PropertyName="CumulativeLifetime"/>
+                                <xrd:InlineTableCellValue PropertyName="ServiceTime" />
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <xrd:InlineTableCellValue PropertyName="RandomNumber2" />
+                                <xrd:InlineTableCellValue PropertyName="WaitTime"/>
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <xrd:InlineTableCellValue PropertyName="SuspensionTime" />
-                            </Paragraph>
-                        </TableCell>
-                    </xrd:TableRowForDataTable>
-                </TableRowGroup>
-            </Table>
-        </xrd:SectionDataGroup>
-        
-        <!-- Second Table -->
-        <Section BreakPageBefore="True"/>
-        <xrd:SectionDataGroup DataGroupName="ItemList">
-            <Paragraph FontSize="16" FontWeight="Bold" FontFamily="Segoe UI">2nd Bearing</Paragraph>
-            <Table CellSpacing="0" BorderBrush="White" BorderThickness="0.02cm" FontFamily="Segoe UI">
-                <Table.Resources>
-                    <!-- Style for header/footer rows. -->
-                    <Style x:Key="headerFooterRowStyle" TargetType="{x:Type TableRowGroup}">
-                        <Setter Property="FontWeight" Value="Normal"/>
-                        <Setter Property="FontSize" Value="12"/>
-                        <Setter Property="Background" Value="#FEA700"/>
-                    </Style>
-
-                    <!-- Style for data rows. -->
-                    <Style x:Key="dataRowStyle" TargetType="{x:Type TableRowGroup}">
-                        <Setter Property="FontSize" Value="12"/>
-                    </Style>
-
-                    <!-- Style for data cells. -->
-                    <Style TargetType="{x:Type TableCell}">
-                        <Setter Property="Padding" Value="0.1cm"/>
-                        <Setter Property="BorderBrush" Value="Black"/>
-                        <Setter Property="BorderThickness" Value="0.02cm"/>
-                    </Style>
-                </Table.Resources>
-
-                <Table.Columns>
-                    <TableColumn Width="0.12*" />
-                    <TableColumn Width="0.35*" />
-                    <TableColumn Width="0.5*" />
-                    <TableColumn Width="0.5*" />
-                    <TableColumn Width="0.25*" />
-                    <TableColumn Width="0.25*" />
-                </Table.Columns>
-                <TableRowGroup Style="{StaticResource headerFooterRowStyle}">
-                    <TableRow>
-                        <TableCell>
-                            <Paragraph TextAlignment="Center">
-                                <Bold>No.</Bold>
+                                <xrd:InlineTableCellValue PropertyName="ServiceProvider" />
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <Bold>Random Number</Bold>
+                                <xrd:InlineTableCellValue PropertyName="DepartureTime" />
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <Bold>Lifetime</Bold>
+                                <xrd:InlineTableCellValue PropertyName="AState" />
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <Bold>Cumulative lifetime</Bold>
-                            </Paragraph>
-                        </TableCell>
-                        <TableCell>
-                            <Paragraph TextAlignment="Center">
-                                <Bold>Random Number</Bold>
-                            </Paragraph>
-                        </TableCell>
-                        <TableCell>
-                            <Paragraph TextAlignment="Center">
-                                <Bold>Suspension Time</Bold>
-                            </Paragraph>
-                        </TableCell>
-                    </TableRow>
-                </TableRowGroup>
-                <TableRowGroup Style="{StaticResource dataRowStyle}">
-                    <xrd:TableRowForDataTable TableName="Bearing2Table">
-                        <TableCell>
-                            <Paragraph>
-                                <xrd:InlineTableCellValue PropertyName="no" AggregateGroup="ItemCount"/>
-                            </Paragraph>
-                        </TableCell>
-                        <TableCell>
-                            <Paragraph TextAlignment="Center">
-                                <xrd:InlineTableCellValue PropertyName="RandomNumber1" />
-                            </Paragraph>
-                        </TableCell>
-                        <TableCell>
-                            <Paragraph TextAlignment="Center">
-                                <xrd:InlineTableCellValue PropertyName="LifeTime" />
-                            </Paragraph>
-                        </TableCell>
-                        <TableCell>
-                            <Paragraph TextAlignment="Center">
-                                <xrd:InlineTableCellValue PropertyName="CumulativeLifetime"/>
-                            </Paragraph>
-                        </TableCell>
-                        <TableCell>
-                            <Paragraph TextAlignment="Center">
-                                <xrd:InlineTableCellValue PropertyName="RandomNumber2" />
-                            </Paragraph>
-                        </TableCell>
-                        <TableCell>
-                            <Paragraph TextAlignment="Center">
-                                <xrd:InlineTableCellValue PropertyName="SuspensionTime" />
+                                <xrd:InlineTableCellValue PropertyName="DState" />
                             </Paragraph>
                         </TableCell>
                     </xrd:TableRowForDataTable>
@@ -274,17 +203,18 @@
         </xrd:SectionDataGroup>
         
         
-        <!-- Third Table -->
-        <Section BreakPageBefore="True"/>
+        <!-- Table Names -->
+        <Section BreakPageBefore="true"/>
+        <Paragraph FontFamily="Segoe UI" FontSize="26" >Our Customers</Paragraph>
+        <Paragraph/>
         <xrd:SectionDataGroup DataGroupName="ItemList">
-            <Paragraph FontSize="16" FontWeight="Bold" FontFamily="Segoe UI">3rd Bearing</Paragraph>
             <Table CellSpacing="0" BorderBrush="White" BorderThickness="0.02cm" FontFamily="Segoe UI">
                 <Table.Resources>
                     <!-- Style for header/footer rows. -->
                     <Style x:Key="headerFooterRowStyle" TargetType="{x:Type TableRowGroup}">
                         <Setter Property="FontWeight" Value="Normal"/>
                         <Setter Property="FontSize" Value="12"/>
-                        <Setter Property="Background" Value="#0084EA"/>
+                        <Setter Property="Background" Value="Azure"/>
                     </Style>
 
                     <!-- Style for data rows. -->
@@ -301,12 +231,14 @@
                 </Table.Resources>
 
                 <Table.Columns>
-                    <TableColumn Width="0.12*" />
-                    <TableColumn Width="0.35*" />
-                    <TableColumn Width="0.5*" />
-                    <TableColumn Width="0.5*" />
+                    <TableColumn Width="0.15*" />
+                    <TableColumn Width="0.3*" />
+                    <TableColumn Width="0.3*" />
                     <TableColumn Width="0.25*" />
                     <TableColumn Width="0.25*" />
+                    <TableColumn Width="0.25*" />
+                    <TableColumn Width="0.25*" />
+                    <TableColumn Width="0.3*" />
                 </Table.Columns>
                 <TableRowGroup Style="{StaticResource headerFooterRowStyle}">
                     <TableRow>
@@ -317,33 +249,43 @@
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <Bold>Random Number</Bold>
+                                <Bold>First Name</Bold>
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <Bold>Lifetime</Bold>
+                                <Bold>Last Name</Bold>
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <Bold>Cumulative lifetime</Bold>
+                                <Bold>Arrival Time</Bold>
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <Bold>Random Number</Bold>
+                                <Bold>Service Time</Bold>
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <Bold>Suspension Time</Bold>
+                                <Bold>Queue Time</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Departure Time</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Service Provider</Bold>
                             </Paragraph>
                         </TableCell>
                     </TableRow>
                 </TableRowGroup>
                 <TableRowGroup Style="{StaticResource dataRowStyle}">
-                    <xrd:TableRowForDataTable TableName="Bearing3Table">
+                    <xrd:TableRowForDataTable TableName="CustomersTableNL">
                         <TableCell>
                             <Paragraph>
                                 <xrd:InlineTableCellValue PropertyName="no" AggregateGroup="ItemCount"/>
@@ -351,27 +293,37 @@
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <xrd:InlineTableCellValue PropertyName="RandomNumber1" />
+                                <xrd:InlineTableCellValue PropertyName="FirstName" />
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <xrd:InlineTableCellValue PropertyName="LifeTime" />
+                                <xrd:InlineTableCellValue PropertyName="LastName" />
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <xrd:InlineTableCellValue PropertyName="CumulativeLifetime"/>
+                                <xrd:InlineTableCellValue PropertyName="ArrivalTime" />
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <xrd:InlineTableCellValue PropertyName="RandomNumber2" />
+                                <xrd:InlineTableCellValue PropertyName="ServiceTime" />
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <xrd:InlineTableCellValue PropertyName="SuspensionTime" />
+                                <xrd:InlineTableCellValue PropertyName="WaitTime"/>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="DepartureTime" />
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="ServiceProvider" />
                             </Paragraph>
                         </TableCell>
                     </xrd:TableRowForDataTable>
@@ -379,16 +331,112 @@
             </Table>
         </xrd:SectionDataGroup>
         <Section BreakPageBefore="True">
-            <Paragraph FontFamily="Segoe UI" FontSize="26" TextAlignment="Center">Charts</Paragraph>
-            <Paragraph FontFamily="Segoe UI" FontSize="22">LifeSpan Chart</Paragraph>
+            <Paragraph/>
+            <Paragraph FontFamily="Segoe UI" FontSize="26" >Carhops Activities</Paragraph>
+            <Paragraph/>
+            <xrd:SectionDataGroup DataGroupName="ItemList">
+                <Table CellSpacing="0" BorderBrush="White" BorderThickness="0.02cm" FontFamily="Segoe UI">
+                    <Table.Resources>
+                        <!-- Style for header/footer rows. -->
+                        <Style x:Key="headerFooterRowStyle" TargetType="{x:Type TableRowGroup}">
+                            <Setter Property="FontWeight" Value="Normal"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="Background" Value="Silver"/>
+                        </Style>
+
+                        <!-- Style for data rows. -->
+                        <Style x:Key="dataRowStyle" TargetType="{x:Type TableRowGroup}">
+                            <Setter Property="FontSize" Value="12"/>
+                        </Style>
+
+                        <!-- Style for data cells. -->
+                        <Style TargetType="{x:Type TableCell}">
+                            <Setter Property="Padding" Value="0.1cm"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            <Setter Property="BorderThickness" Value="0.02cm"/>
+                        </Style>
+                    </Table.Resources>
+                    <Table.Columns>
+                        <TableColumn Width="0.9*" />
+                        <TableColumn Width="0.4*" />
+                        <TableColumn Width="0.4*" />
+                        <TableColumn Width="0.4*" />
+                    </Table.Columns>
+                    <TableRowGroup Style="{StaticResource headerFooterRowStyle}">
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph TextAlignment="Center">
+                                    <Bold> </Bold>
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph TextAlignment="Center">
+                                    <Bold>Able</Bold>
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph TextAlignment="Center">
+                                    <Bold>Baker</Bold>
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph TextAlignment="Center">
+                                    <Bold>Charlie</Bold>
+                                </Paragraph>
+                            </TableCell>
+                        </TableRow>
+                    </TableRowGroup>
+                    <TableRowGroup Style="{StaticResource dataRowStyle}">
+                        <xrd:TableRowForDataTable TableName="CarhopsTable">
+                            <TableCell>
+                                <Paragraph TextAlignment="Center">
+                                    <xrd:InlineTableCellValue PropertyName="objective" AggregateGroup="ItemCount"/>
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph TextAlignment="Center">
+                                    <xrd:InlineTableCellValue PropertyName="able" AggregateGroup="ItemCount"/>
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph TextAlignment="Center">
+                                    <xrd:InlineTableCellValue PropertyName="baker" />
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph TextAlignment="Center">
+                                    <xrd:InlineTableCellValue PropertyName="charlie" />
+                                </Paragraph>
+                            </TableCell>
+                        </xrd:TableRowForDataTable>
+                    </TableRowGroup>
+                </Table>
+            </xrd:SectionDataGroup>
+        </Section>
+        <Section BreakPageBefore="True">
+            <Paragraph/>
+            <Paragraph FontFamily="Segoe UI" FontSize="22">Utilization Charts</Paragraph>
             <Paragraph FontFamily="Tahoma" FontSize="14" FontWeight="Bold">
-                <crcv:BarChart TableName="BearingsLife3DChart" TableColumns="Bearing,Total LifeSpan" Width="16cm" Height="10cm" Title="Bearings LifeSpan" View3D="True">
-                </crcv:BarChart>
+                <crcv:ColumnChart TableName="CUtilizationTable" TableColumns="Carhop,Utilization Time" Width="16cm" Height="10cm" Title="Utilization" View3D="True">
+                </crcv:ColumnChart>
             </Paragraph>
             <Paragraph/>
-            <Paragraph FontFamily="Segoe UI" FontSize="22">Wasted Time Chart</Paragraph>
+            <Paragraph/>
             <Paragraph FontFamily="Tahoma" FontSize="14" FontWeight="Bold">
-                <crcv:DoughnutChart TableName="BearingsWastes3DChart" TableColumns="Bearing,Waste Time" Width="16cm" Height="10cm" Title="Wasted Time" View3D="True">
+                <crcv:DoughnutChart TableName="CUtilizationTableP" TableColumns="Carhop,Utilization Time" Width="16cm" Height="10cm" Title="Utilization Percentage" View3D="True">
+                </crcv:DoughnutChart>
+            </Paragraph>
+        </Section>
+        <Section BreakPageBefore="True">
+            <Paragraph/>
+            <Paragraph FontFamily="Tahoma" FontSize="14" FontWeight="Bold">
+                <crcv:ColumnChart TableName="CUtilizationCNTable" TableColumns="Carhop,Total Number of Customers" Width="16cm" Height="10cm" Title="Number of Customers" View3D="True">
+                </crcv:ColumnChart>
+            </Paragraph>
+            <Paragraph/>
+            <Paragraph/>
+            <Paragraph FontFamily="Tahoma" FontSize="14" FontWeight="Bold">
+                <crcv:DoughnutChart TableName="CUtilizationCNTableP" TableColumns="Carhop,Total Number of Customers" Width="16cm" Height="10cm" Title="Number of Customers (Percentage)" View3D="True">
                 </crcv:DoughnutChart>
             </Paragraph>
         </Section>
