@@ -22,3 +22,4 @@ C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Src\Simulation\o
 C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Src\Simulation\obj\x86\Debug\Simulation.pdb
 C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Binaries\Debug\Simulation.exe
 C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Binaries\Debug\Simulation.pdb
+C:\Users\Mreza\Documents\Visual Studio 2010\Projects\Simulation\Src\Simulation\obj\x86\Debug\App.baml

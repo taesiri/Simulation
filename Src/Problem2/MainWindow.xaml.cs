@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
-using Problem1.Dialog;
+using Problem2.Dialog;
+using Problem2.GraphicalOutput;
 using Problem2.ScriptEditor;
 using Problem2.Solvers;
 using Problem2.Solvers.Entities;
@@ -17,7 +18,6 @@ namespace Problem2
         {
             InitializeComponent();
         }
-
 
         private void BtnSolve1Click(object sender, RoutedEventArgs e)
         {
@@ -36,10 +36,20 @@ namespace Problem2
                     engine.SolveIt();
                     List<ICustomer> solvedData = engine.GetAnswer;
                     List<Carhops> carhopses = engine.GetCarhops;
+                    //var globalList = engine.GetGlobalList;
+
                     if (solvedData != null && carhopses != null)
                     {
-                        var output = new Method1Report(solvedData, carhopses);
-                        output.ShowDialog();
+                        if (numberDialog.IsTimelineSelected)
+                        {
+                            var timeline = new Timeline(solvedData);
+                            timeline.Show();
+                        }
+                        if (numberDialog.IsPrintableOutputSelected)
+                        {
+                            var output = new Method1Report(solvedData, carhopses);
+                            output.Show();
+                        }
                     }
                 }
                 catch (Exception exp)
@@ -67,8 +77,16 @@ namespace Problem2
                 List<Carhops> carhopses = engine.GetCarhops;
                 if (solvedData != null && carhopses != null)
                 {
-                    var output = new Method2Report(solvedData, carhopses);
-                    output.ShowDialog();
+                    if (numberDialog.IsTimelineSelected)
+                    {
+                        var timeline = new Timeline(solvedData);
+                        timeline.Show();
+                    }
+                    if (numberDialog.IsPrintableOutputSelected)
+                    {
+                        var output = new Method2Report(solvedData, carhopses);
+                        output.Show();
+                    }
                 }
             }
         }

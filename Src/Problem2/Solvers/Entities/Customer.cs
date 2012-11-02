@@ -29,12 +29,19 @@ namespace Problem2.Solvers.Entities
         public int DepartureTime { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string GetFullName { get { return FirstName + " " + LastName; } }
         public int WaitTime { get;  set; }
         public Carhops ServiceProvider { get; set; }
         public State OnArrivalSystemState { get; set; }
         public State AfterDepartureState { get; set; }
 
-
+        public override string ToString()
+        {
+            return
+                String.Format(
+                    "Customer Name : {0} {1}; Service Provider : {2}; Srevice Duration {3}; Waiting Time :{4}; Departure Time :{5}",
+                    FirstName, LastName, ServiceProvider, ServiceTime, WaitTime, DepartureTime);
+        }
         public int CompareTo(object obj)
         {
             var otherObject = obj as Customer;

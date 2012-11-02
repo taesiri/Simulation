@@ -43,6 +43,8 @@ namespace Problem2.Solvers
         private readonly List<ICustomer> _solvedData;
         private readonly SolvingMethod _solverMethod;
 
+        private readonly FutureEventList _globalList;
+
         private bool _isCaseSolved;
 
         public SolverEngine(ReaderEngine engine, SolvingMethod method, int length)
@@ -50,6 +52,7 @@ namespace Problem2.Solvers
             _randomGenerator = new Random(DateTime.Now.Millisecond);
             _solvedData = new List<ICustomer>();
             _carhopses = new List<Carhops>();
+            _globalList = new FutureEventList();
 
             _isInitialized = true;
             _readerEngine = engine;
@@ -86,6 +89,17 @@ namespace Problem2.Solvers
                     return _carhopses;
                 else
                     return new List<Carhops>();
+                //throw new Exception("Case not Solved yet!");
+            }
+        }
+        public FutureEventList GetGlobalList
+        {
+            get
+            {
+                if (_isCaseSolved)
+                    return _globalList;
+                else
+                    return new FutureEventList();
                 //throw new Exception("Case not Solved yet!");
             }
         }
@@ -145,6 +159,7 @@ namespace Problem2.Solvers
                                   };
 
                 fel.PushEventRow(felItem);
+                _globalList .PushEventRow(felItem);
             }
 
             while (fel.Length > 0)
@@ -169,6 +184,7 @@ namespace Problem2.Solvers
                                           };
 
                         fel.PushEventRow(felItem);
+                        _globalList.PushEventRow(felItem);
 
                         able.IsIdle = false;
                     }
@@ -185,7 +201,7 @@ namespace Problem2.Solvers
                                           };
 
                         fel.PushEventRow(felItem);
-
+                        _globalList.PushEventRow(felItem);
                         baker.IsIdle = false;
                     }
                     else if (charlie.IsIdle)
@@ -200,7 +216,7 @@ namespace Problem2.Solvers
                                               EventType = EventType.Departure
                                           };
                         fel.PushEventRow(felItem);
-
+                        _globalList.PushEventRow(felItem);
                         charlie.IsIdle = false;
                     }
                     else
@@ -249,6 +265,7 @@ namespace Problem2.Solvers
                                               EventType = EventType.Departure
                                           };
                         fel.PushEventRow(felItem);
+                        _globalList.PushEventRow(felItem);
                     }
                     else
                     {
@@ -305,6 +322,7 @@ namespace Problem2.Solvers
                                   };
 
                 fel.PushEventRow(felItem);
+                _globalList.PushEventRow(felItem);
             }
 
             while (fel.Length > 0)
@@ -367,7 +385,7 @@ namespace Problem2.Solvers
                                               };
 
                             fel.PushEventRow(felItem);
-
+                            _globalList.PushEventRow(felItem);
                             selectedCarhops.IsIdle = false;
                         }
                         else
@@ -421,6 +439,7 @@ namespace Problem2.Solvers
                                               EventType = EventType.Departure
                                           };
                         fel.PushEventRow(felItem);
+                        _globalList.PushEventRow(felItem);
                     }
                     else
                     {

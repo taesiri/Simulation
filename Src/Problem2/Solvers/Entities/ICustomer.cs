@@ -10,11 +10,13 @@ namespace Problem2.Solvers.Entities
         int DepartureTime { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
+        string GetFullName { get; }
         int WaitTime { get; set; }
 
         Carhops ServiceProvider { get; set; }
 
         State OnArrivalSystemState { get; set; }
         State AfterDepartureState { get; set; }
+
     }
 }

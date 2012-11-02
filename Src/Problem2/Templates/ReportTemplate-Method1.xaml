@@ -7,6 +7,9 @@
         <xrd:ReportProperties.ReportName>Generated Report</xrd:ReportProperties.ReportName>
         <xrd:ReportProperties.ReportTitle>Generated Report</xrd:ReportProperties.ReportTitle>
     </xrd:ReportProperties>
+
+
+
     <xrd:SectionReportFooter PageFooterHeight="2" Padding="10,0,10,10" FontSize="12">
         <Table CellSpacing="0">
             <Table.Columns>

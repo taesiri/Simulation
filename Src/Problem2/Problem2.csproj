@@ -79,6 +79,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GraphicalOutput\TimeBar.xaml.cs">
+      <DependentUpon>TimeBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicalOutput\TimeBarItem.cs" />
     <Compile Include="GraphicalOutput\Timeline.xaml.cs">
       <DependentUpon>Timeline.xaml</DependentUpon>
     </Compile>
@@ -112,6 +116,10 @@
     <Page Include="Dialog\NumberDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GraphicalOutput\TimeBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GraphicalOutput\Timeline.xaml">
       <SubType>Designer</SubType>

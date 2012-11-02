@@ -1,4 +1,6 @@
-﻿namespace Simulation
+﻿using System.Windows;
+
+namespace Simulation
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -9,5 +11,14 @@
         {
             InitializeComponent();
         }
+
+        private void BtnExitClick(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown(0);
+        }
+
+      
+
+      
     }
 }

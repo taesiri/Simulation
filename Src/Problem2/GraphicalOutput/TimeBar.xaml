@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="Problem2.GraphicalOutput.TimeBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="16" d:DesignWidth="94" Name="TimeBarControl">
+    <Grid>
+        <Rectangle Margin="0,0,0,0" Name="rect1" RadiusX="4" RadiusY="4">
+            <Rectangle.Fill>
+                <SolidColorBrush x:Name="MyAnimatedBrush" Color="#FFFFE700" />
+            </Rectangle.Fill>
+            <Rectangle.Triggers>
+                <EventTrigger RoutedEvent="Ellipse.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation
+                               Storyboard.TargetName="MyAnimatedBrush"
+                               Storyboard.TargetProperty="Color"
+                               To="Orange" Duration="0:0:1" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Ellipse.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation
+                               Storyboard.TargetName="MyAnimatedBrush"
+                               Storyboard.TargetProperty="Color"
+                               To="#FFFFE700" Duration="0:0:1" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Rectangle.Triggers>
+        </Rectangle>
+    </Grid>
+</UserControl>

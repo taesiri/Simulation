@@ -78,6 +78,11 @@ namespace Problem2.Solvers.Entities
         {
             return _listOfEvents[id];
         }
+
+        public IEnumerable<FutureEventListRow> GetElementByTime(int time)
+        {
+            return _listOfEvents.Where(element => element.Time == time).ToList();
+        }
     }
 
     public class FutureEventListRow : IComparable

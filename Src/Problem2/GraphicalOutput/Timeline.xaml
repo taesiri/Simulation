@@ -1,8 +1,34 @@
-﻿<Window x:Class="Problem2.GraphicalOutput.Timeline"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Window x:Class="Problem2.GraphicalOutput.Timeline" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Timeline" Height="300" Width="300">
-    <Grid>
-        
+        xmlns:GraphicalOutput="clr-namespace:Problem2.GraphicalOutput" Title="Timeline" Height="486" Width="1089"
+        WindowStyle="ThreeDBorderWindow" WindowStartupLocation="CenterScreen" ResizeMode="CanResize"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid >
+        <ListView Name="listView1" SelectionMode="Single" ItemsSource="{Binding ListOfData}" Style="{Binding}">
+            <ListView.View >
+                <GridView >
+                    <GridViewColumn Width="35" Header="# " DisplayMemberBinding="{Binding Number}" />
+                    <GridViewColumn Width="140" Header="Customer Name" DisplayMemberBinding="{Binding FullCustomerName}" />
+                    <GridViewColumn Width="500" Header="Timeline"
+                        x:Name="timelineColumn" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate DataType="{x:Type GraphicalOutput:TimeBarItem}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Separator  Width="{Binding Left}"/>
+                                    <GraphicalOutput:TimeBar Width="{Binding Length}"  Height="10" />
+                                    <Separator  Width="{Binding Right}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+            <ListView.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#FF464648" Offset="0" />
+                    <GradientStop Color="#FF00010D" Offset="1" />
+                </LinearGradientBrush>
+            </ListView.Background>
+        </ListView>
     </Grid>
 </Window>
