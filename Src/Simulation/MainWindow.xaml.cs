@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 
 namespace Simulation
 {
@@ -15,6 +16,16 @@ namespace Simulation
         private void BtnExitClick(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown(0);
+        }
+
+        private void BtnProblem1Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(@"Problem1\Problem1.exe");
+        }
+
+        private void BtnProblem2Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(@"Problem2\Problem2.exe");
         }
 
       

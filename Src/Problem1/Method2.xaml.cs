@@ -76,7 +76,7 @@ namespace Problem1
                 var data = new ReportData();
                 data.ReportDocumentValues.Add("PrintDate", DateTime.Now); // print date is now
 
-                var table = new DataTable("Bearing1Table");
+                var table = new DataTable("BearingsTable");
 
                 int totalLife, totalWasted;
                 FillDataTable(ref table, 0, out totalLife, out totalWasted);
@@ -95,6 +95,14 @@ namespace Problem1
                 mtable.Columns.Add("Waste Time", typeof(int));
                 mtable.Rows.Add(new object[] { "Total", totalWasted });
                 data.DataTables.Add(mtable);
+
+
+                table = new DataTable("fCumulativeLifetime");
+                table.Columns.Add("no", typeof(string));
+                table.Columns.Add("CumulativeLifetime", typeof(string));
+                table.Columns.Add("WastedTime", typeof(string));
+                table.Rows.Add(new object[] { "Total", totalLife, totalWasted });
+                data.DataTables.Add(table);
 
                 DateTime dateTimeStart = DateTime.Now; // start time measure here
 

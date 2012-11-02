@@ -143,7 +143,7 @@
                     </TableRow>
                 </TableRowGroup>
                 <TableRowGroup Style="{StaticResource dataRowStyle}">
-                    <xrd:TableRowForDataTable TableName="Bearing1Table">
+                    <xrd:TableRowForDataTable TableName="BearingsTable">
                         <TableCell>
                             <Paragraph>
                                 <xrd:InlineTableCellValue PropertyName="no" AggregateGroup="ItemCount"/>
@@ -201,7 +201,77 @@
             <Paragraph FontFamily="Tahoma" FontSize="14" FontWeight="Bold">
                 <crcv:ColumnChart TableName="BearingsWastes3DChart" TableColumns="Bearing,Waste Time" Width="16cm" Height="10cm" Title="Wasted Time" View3D="True" >
                 </crcv:ColumnChart>
-            </Paragraph>
+            </Paragraph> 
+            <Section BreakPageBefore="True"/>
+            <xrd:SectionDataGroup DataGroupName="ItemList">
+                <Paragraph FontSize="17" FontWeight="Normal" FontFamily="Segoe UI">Conclusion</Paragraph>
+                <Table CellSpacing="0" BorderBrush="White" BorderThickness="0.02cm" FontFamily="Segoe UI">
+                    <Table.Resources>
+                        <!-- Style for header/footer rows. -->
+                        <Style x:Key="headerFooterRowStyle" TargetType="{x:Type TableRowGroup}">
+                            <Setter Property="FontWeight" Value="Normal"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="Background" Value="#0084EA"/>
+                        </Style>
+
+                        <!-- Style for data rows. -->
+                        <Style x:Key="dataRowStyle" TargetType="{x:Type TableRowGroup}">
+                            <Setter Property="FontSize" Value="12"/>
+                        </Style>
+
+                        <!-- Style for data cells. -->
+                        <Style TargetType="{x:Type TableCell}">
+                            <Setter Property="Padding" Value="0.1cm"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            <Setter Property="BorderThickness" Value="0.02cm"/>
+                        </Style>
+                    </Table.Resources>
+
+                    <Table.Columns>
+                        <TableColumn Width="0.2*" />
+                        <TableColumn Width="0.5*" />
+                        <TableColumn Width="0.5*" />
+                    </Table.Columns>
+                    <TableRowGroup Style="{StaticResource headerFooterRowStyle}">
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph TextAlignment="Center">
+                                    <Bold></Bold>
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph TextAlignment="Center">
+                                    <Bold>Cumulative Life time</Bold>
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph TextAlignment="Center">
+                                    <Bold>Wasted Time</Bold>
+                                </Paragraph>
+                            </TableCell>
+                        </TableRow>
+                    </TableRowGroup>
+                    <TableRowGroup Style="{StaticResource dataRowStyle}">
+                        <xrd:TableRowForDataTable TableName="fCumulativeLifetime">
+                            <TableCell>
+                                <Paragraph>
+                                    <xrd:InlineTableCellValue PropertyName="no" AggregateGroup="ItemCount"/>
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph TextAlignment="Center">
+                                    <xrd:InlineTableCellValue PropertyName="CumulativeLifetime"/>
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph TextAlignment="Center">
+                                    <xrd:InlineTableCellValue PropertyName="WastedTime"/>
+                                </Paragraph>
+                            </TableCell>
+                        </xrd:TableRowForDataTable>
+                    </TableRowGroup>
+                </Table>
+            </xrd:SectionDataGroup>
         </Section>
     </Section>
 </FlowDocument>

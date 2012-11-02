@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using Problem2.Dialog;
 using Problem2.Solvers.Entities;
 
 namespace Problem2.GraphicalOutput
@@ -15,12 +16,12 @@ namespace Problem2.GraphicalOutput
         private readonly ObservableCollection<TimeBarItem> _listOfData =
             new ObservableCollection<TimeBarItem>();
 
+        private List<ICustomer> _customerData;
         public Timeline(List<ICustomer> customers)
         {
-
             InitializeComponent();
-            
             customers.BubbleSort();
+            _customerData = new List<ICustomer>(customers);
 
             var simulationLen = customers[customers.Count-1].DepartureTime+10;
             timelineColumn.Width = simulationLen + 10;
@@ -51,6 +52,19 @@ namespace Problem2.GraphicalOutput
         public ObservableCollection<TimeBarItem> ListOfData
         {
             get { return _listOfData; }
+        }
+
+        private void LstvTimeLineMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (lstvTimeLine.SelectedIndex != -1)
+            {
+                var item = lstvTimeLine.SelectedItem as TimeBarItem;
+                if (item != null)
+                {
+                    var customerForm = new CustomerInDetails(_customerData[item.Number-1]);
+                    customerForm.ShowDialog();
+                }
+            }
         }
     }
 

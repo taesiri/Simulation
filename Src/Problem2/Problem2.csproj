@@ -79,6 +79,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Dialog\CustomerInDetails.xaml.cs">
+      <DependentUpon>CustomerInDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GraphicalOutput\TimeBar.xaml.cs">
       <DependentUpon>TimeBar.xaml</DependentUpon>
     </Compile>
@@ -113,6 +116,10 @@
     <Compile Include="Solvers\Entities\ICustomer.cs" />
     <Compile Include="Solvers\Entities\State.cs" />
     <Compile Include="Solvers\SolverEngine.cs" />
+    <Page Include="Dialog\CustomerInDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialog\NumberDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -83,16 +83,18 @@ namespace Problem1
 
                 var table = new DataTable("Bearing1Table");
                 FillDataTable(ref table, 0, out bearing1Life, out bearing1Waste);
-                var table2 = new DataTable("Bearing2Table");
-                FillDataTable(ref table2, 1, out bearing2Life, out bearing2Waste);
-                var table3 = new DataTable("Bearing3Table");
-                FillDataTable(ref table3, 2, out bearing3Life, out bearing3Waste);
 
                 data.DataTables.Add(table);
-                data.DataTables.Add(table2);
-                data.DataTables.Add(table3);
+                table = new DataTable("Bearing2Table");
+                FillDataTable(ref table, 1, out bearing2Life, out bearing2Waste);
+                data.DataTables.Add(table);
 
+                table = new DataTable("Bearing3Table");
+                FillDataTable(ref table, 2, out bearing3Life, out bearing3Waste);
+                data.DataTables.Add(table);
+              
 
+                //fCumulativeLifetime
 
                 var mtable = new DataTable("BearingsLife3DChart");
                 mtable.Columns.Add("Bearing", typeof(string));
@@ -101,6 +103,20 @@ namespace Problem1
                 mtable.Rows.Add(new object[] { "Bearing 2", bearing2Life });
                 mtable.Rows.Add(new object[] { "Bearing 3", bearing3Life });
                 data.DataTables.Add(mtable);
+
+
+                data.DataTables.Add(table);
+                table = new DataTable("fCumulativeLifetime");
+                table.Columns.Add("no", typeof(string));
+                table.Columns.Add("CumulativeLifetime", typeof (string));
+                table.Columns.Add("WastedTime", typeof (string));
+                table.Rows.Add(new object[] { "Bearing 1", bearing1Life, bearing1Waste });
+                table.Rows.Add(new object[] { "Bearing 2", bearing2Life, bearing2Waste });
+                table.Rows.Add(new object[] { "Bearing 3", bearing3Life, bearing3Waste });
+
+
+                data.DataTables.Add(table);
+
 
                 mtable = new DataTable("BearingsWastes3DChart");
                 mtable.Columns.Add("Bearing", typeof(string));

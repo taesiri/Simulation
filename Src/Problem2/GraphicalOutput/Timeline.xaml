@@ -4,7 +4,7 @@
         WindowStyle="ThreeDBorderWindow" WindowStartupLocation="CenterScreen" ResizeMode="CanResize"
         DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Grid >
-        <ListView Name="listView1" SelectionMode="Single" ItemsSource="{Binding ListOfData}" Style="{Binding}">
+        <ListView Name="lstvTimeLine" SelectionMode="Single" ItemsSource="{Binding ListOfData}" Style="{Binding}" MouseDoubleClick="LstvTimeLineMouseDoubleClick">
             <ListView.View >
                 <GridView >
                     <GridViewColumn Width="35" Header="# " DisplayMemberBinding="{Binding Number}" />
