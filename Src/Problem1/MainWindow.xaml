@@ -20,8 +20,8 @@
             <Label Content="Choose Solver Engine" Height="28" HorizontalAlignment="Left" Margin="6,3,0,0" Name="label1" VerticalAlignment="Top" />
             <Border Margin="6,28,6,6" Name="border1" BorderThickness="1" BorderBrush="#BF9A9A9A">
                 <StackPanel Name="stackPanel1" Height="104" Width="206">
-                    <RadioButton Content="Built-In CSharp Function" Height="20" Name="rBtnBuiltInCSharp" VerticalContentAlignment="Center" Foreground="Black" Style="{Binding}"/>
-                    <RadioButton Content="IronPython Engine" Height="20" Name="rBtnIronPython" VerticalContentAlignment="Center" IsChecked="True"  Foreground="Black" Style="{Binding}"/>
+                    <RadioButton Content="Built-In CSharp Function" Height="20" Name="rBtnBuiltInCSharp" IsChecked="True" VerticalContentAlignment="Center" Foreground="Black" Style="{Binding}"/>
+                    <RadioButton Content="IronPython Engine" Height="20" Name="rBtnIronPython" VerticalContentAlignment="Center"   Foreground="Black" Style="{Binding}"/>
                     <RadioButton Content="IronRuby Engine" Height="20" Name="radioButton3" VerticalContentAlignment="Center" IsEnabled="False"  Foreground="Black"/>
                     <RadioButton Content="FSharp - Dynamic Library Invoker" Height="20" Name="radioButton4" VerticalContentAlignment="Center" IsEnabled="False"  Foreground="Black" Style="{Binding}"/>
                     <RadioButton Content="CSharp - Dynamic Library Invoker " Height="20" Name="radioButton5" VerticalContentAlignment="Center" IsEnabled="False"  Foreground="Black" Style="{Binding}"/>

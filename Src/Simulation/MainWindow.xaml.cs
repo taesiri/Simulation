@@ -20,12 +20,13 @@ namespace Simulation
 
         private void BtnProblem1Click(object sender, RoutedEventArgs e)
         {
-            Process.Start(@"Problem1\Problem1.exe");
+
+            Process.Start(@"Problem1\");
         }
 
         private void BtnProblem2Click(object sender, RoutedEventArgs e)
         {
-            Process.Start(@"Problem2\Problem2.exe");
+            Process.Start(@"Problem2\");
         }
 
       

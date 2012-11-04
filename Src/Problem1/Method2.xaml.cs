@@ -69,9 +69,13 @@ namespace Problem1
                 var reader =
                     new StreamReader(new FileStream(@"Templates\ReportTemplate-Method2.xaml", FileMode.Open,
                                                     FileAccess.Read));
+
                 reportDocument.XamlData = reader.ReadToEnd();
                 reportDocument.XamlImagePath = Path.Combine(Environment.CurrentDirectory, @"Templates\");
                 reader.Close();
+
+
+
 
                 var data = new ReportData();
                 data.ReportDocumentValues.Add("PrintDate", DateTime.Now); // print date is now
