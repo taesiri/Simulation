@@ -39,7 +39,7 @@
     <StartupObject>Problem1.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>about-us-red.ico</ApplicationIcon>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CodeReason.Reports, Version=0.5.0.0, Culture=neutral, PublicKeyToken=74fc60a060db7911, processorArchitecture=MSIL">
@@ -120,10 +120,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Resource Include="Copyright.txt" />
     <Resource Include="Images\news-blue.ico" />
     <Resource Include="Images\about-us-red.ico" />
-    <Resource Include="about-us-red.ico" />
+    <Resource Include="icon.ico" />
     <Content Include="Scripts\Script.rb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

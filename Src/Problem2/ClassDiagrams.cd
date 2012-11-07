@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Problem2.Solvers.Entities.Carhops">
+    <Position X="1.75" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAQABAAAAIAAgAAAAAA=</HashCode>
+      <FileName>Solvers\Entities\ICarhops.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Problem2.Solvers.Entities.Able">
+    <Position X="1.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Solvers\Entities\Able.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Problem2.Solvers.Entities.Baker">
+    <Position X="3" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Solvers\Entities\Baker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Problem2.Solvers.Entities.Charlie">
+    <Position X="4.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Solvers\Entities\Charlie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Problem2.Solvers.Entities.Customer">
+    <Position X="6" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEEAAAAAAIYEgAAAEAAAEAAABAAIAQAAAAAAAAg=</HashCode>
+      <FileName>Solvers\Entities\Customer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.1" />
+  </Class>
+  <Class Name="Problem2.Solvers.SolverEngine">
+    <Position X="11.25" Y="0.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Problem2.Solvers.SolverEngine.ReaderEngine">
+        <TypeIdentifier>
+          <NewMemberFileName>Solvers\SolverEngine.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="Problem2.Solvers.SolverEngine.SolvingMethod">
+        <TypeIdentifier>
+          <NewMemberFileName>Solvers\SolverEngine.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AggCABEQABAAAAAAAAAAkAggAABAAACwACAAAAAAAEA=</HashCode>
+      <FileName>Solvers\SolverEngine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Problem2.ScriptReaderEngine.BuiltInFunctions">
+    <Position X="8.5" Y="5.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAQAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ScriptReaderEngine\BuiltInFunctions.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.131" />
+  </Class>
+  <Class Name="Problem2.ScriptReaderEngine.SimpleRng">
+    <Position X="8.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>gFAABAAAAQAAABCAAAACBQAAQAIAAEAAAAAoAAAAAAQ=</HashCode>
+      <FileName>ScriptReaderEngine\SimpleRNG.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

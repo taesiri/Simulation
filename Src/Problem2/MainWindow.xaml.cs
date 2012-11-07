@@ -43,6 +43,8 @@ namespace Problem2
                         if (numberDialog.IsTimelineSelected)
                         {
                             var timeline = new Timeline(solvedData);
+                            timeline.Title += " Method 1 - With total of " + solvedData.Count + " Customers";
+                            timeline.WindowState = WindowState.Maximized;
                             timeline.Show();
                         }
                         if (numberDialog.IsPrintableOutputSelected)
@@ -80,6 +82,8 @@ namespace Problem2
                     if (numberDialog.IsTimelineSelected)
                     {
                         var timeline = new Timeline(solvedData);
+                        timeline.Title += " Method 2 - With total of " + solvedData.Count + " Customers";
+                        timeline.WindowState = WindowState.Maximized;
                         timeline.Show();
                     }
                     if (numberDialog.IsPrintableOutputSelected)
@@ -101,11 +105,6 @@ namespace Problem2
         private void BtnExitClick(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
-        }
-
-        private void WindowLoaded(object sender, RoutedEventArgs e)
-        {
-            rBtnBuiltInCSharp.IsChecked = true;
         }
     }
 }

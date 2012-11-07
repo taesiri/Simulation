@@ -43,8 +43,9 @@ namespace Problem2.GraphicalOutput
                     left *= 8;
                     right *= 8;
                 }
+               
 
-                _listOfData.Add(new TimeBarItem(customer.GetFullName, len, left, right, counter));
+                _listOfData.Add(new TimeBarItem(customer.GetFullName,customer.OnArrivalSystemState.ToString(), len, left, right, counter));
                 counter++;
             }
         }

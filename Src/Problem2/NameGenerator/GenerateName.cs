@@ -20,8 +20,9 @@ namespace Problem2.NameGenerator
             try
             {
                 var reader =
-                    new StreamReader(new FileStream(@"Names\nameDataBase.csv", FileMode.Open,
-                                                    FileAccess.Read));
+                    new StreamReader(new FileStream(@"Names\nameDataBase.csv",
+                        FileMode.Open,FileAccess.Read));
+
                 string fileSt = reader.ReadToEnd();
                 fileSt = fileSt.Replace("\r\n", ";");
                 String[] values = fileSt.Split(';');

@@ -7,13 +7,14 @@ namespace Problem2.GraphicalOutput
 
         }
 
-        public TimeBarItem(string fullname, int len, int left, int right, int numb)
+        public TimeBarItem(string fullname,string statestr, int len, int left, int right, int numb)
         {
             FullCustomerName = fullname;
             Length = len;
             Left = left;
             Right = right;
             Number = numb;
+            StateStr = statestr;
         }
 
         public string FullCustomerName { get; set; }
@@ -21,6 +22,7 @@ namespace Problem2.GraphicalOutput
         public int Length { get; set; }
         public int Left { get; set; }
         public int Right { get; set; }
+        public string StateStr { get; set; }
 
     }
 }

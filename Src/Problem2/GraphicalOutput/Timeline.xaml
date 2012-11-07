@@ -9,8 +9,8 @@
                 <GridView >
                     <GridViewColumn Width="35" Header="# " DisplayMemberBinding="{Binding Number}" />
                     <GridViewColumn Width="140" Header="Customer Name" DisplayMemberBinding="{Binding FullCustomerName}" />
-                    <GridViewColumn Width="500" Header="Timeline"
-                        x:Name="timelineColumn" >
+                    <GridViewColumn Width="60" Header="State" DisplayMemberBinding="{Binding StateStr}" />
+                    <GridViewColumn Width="500" Header="Timeline" x:Name="timelineColumn" >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate DataType="{x:Type GraphicalOutput:TimeBarItem}">
                                 <StackPanel Orientation="Horizontal">
