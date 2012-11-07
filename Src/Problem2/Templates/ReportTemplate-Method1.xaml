@@ -7,9 +7,6 @@
         <xrd:ReportProperties.ReportName>Generated Report</xrd:ReportProperties.ReportName>
         <xrd:ReportProperties.ReportTitle>Generated Report</xrd:ReportProperties.ReportTitle>
     </xrd:ReportProperties>
-
-
-
     <xrd:SectionReportFooter PageFooterHeight="2" Padding="10,0,10,10" FontSize="12">
         <Table CellSpacing="0">
             <Table.Columns>
@@ -38,11 +35,14 @@
         <Paragraph TextAlignment="Center">
             <Image Tag="aut.jpg" Width="8cm"  />
         </Paragraph>
-        <Paragraph TextAlignment="Center"  FontFamily="Arial" FontSize="48" FontWeight="Bold">
-             گزارش 
+        <Paragraph TextAlignment="Center"  FontFamily="Segoe UI" FontSize="38" FontWeight="Bold">
+            Report
         </Paragraph>
-        <Paragraph TextAlignment="Center" FontFamily="Arial" FontSize="24">
-            حل  با استفاده از روش اول
+        <Paragraph TextAlignment="Center"  FontFamily="Segoe UI" FontSize="46" FontWeight="Bold">
+            Sonic Drive-In’s Customers!
+        </Paragraph>
+        <Paragraph TextAlignment="Center" FontFamily="Segoe UI" FontSize="16">
+            Case Study 1: Customers Prefer Able over Baker and Baker over Charlie
         </Paragraph>
         <Paragraph/>
         <Paragraph/>
@@ -53,13 +53,19 @@
             تهیه کنندگان
         </Paragraph>
         <Paragraph TextAlignment="Center" FontFamily="Arial" FontSize="18">
-                محمدرضا تأثیری - 8812076
-        </Paragraph>
-        <Paragraph TextAlignment="Center" FontFamily="Arial" FontSize="16">
-            و
+            فاطمه نيک خواه - 8828096
         </Paragraph>
         <Paragraph TextAlignment="Center" FontFamily="Arial" FontSize="18">
-             علی لشگری - 8725717
+            محمدرضا تأثیری - 8812076
+        </Paragraph>
+        <Paragraph TextAlignment="Center" FontFamily="Arial" FontSize="18">
+            علی لشگری - 8725717
+        </Paragraph>
+    </Section>
+    <Section BreakPageBefore="True">
+        <Paragraph/>
+        <Paragraph FontFamily="Segoe UI" FontSize="14" FontStyle="Italic"  TextAlignment="Center">
+            [This Page Intentionally Left Blank]
         </Paragraph>
     </Section>
     <Section Padding="80,10,40,10" FontSize="12" BreakPageBefore="True">

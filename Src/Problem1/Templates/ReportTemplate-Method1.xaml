@@ -35,11 +35,14 @@
         <Paragraph TextAlignment="Center">
             <Image Tag="aut.jpg" Width="8cm"  />
         </Paragraph>
-        <Paragraph TextAlignment="Center"  FontFamily="Arial" FontSize="48" FontWeight="Bold">
-             گزارش 
+        <Paragraph TextAlignment="Center"  FontFamily="Arial" FontSize="50" FontWeight="Bold">
+            گزارش  
+        </Paragraph>
+        <Paragraph TextAlignment="Center"  FontFamily="Arial" FontSize="46" FontWeight="Bold">
+            خرابی برینگ ها
         </Paragraph>
         <Paragraph TextAlignment="Center" FontFamily="Arial" FontSize="24">
-            حل با استفاده از روش اول
+            روش اول -  تعویض های جداگانه هر برینگ
         </Paragraph>
         <Paragraph/>
         <Paragraph/>
@@ -50,10 +53,10 @@
             تهیه کنندگان
         </Paragraph>
         <Paragraph TextAlignment="Center" FontFamily="Arial" FontSize="18">
-                محمدرضا تأثیری - 8812076
+            فاطمه نيک خواه - 8828096
         </Paragraph>
-        <Paragraph TextAlignment="Center" FontFamily="Arial" FontSize="16">
-            و
+        <Paragraph TextAlignment="Center" FontFamily="Arial" FontSize="18">
+                محمدرضا تأثیری - 8812076
         </Paragraph>
         <Paragraph TextAlignment="Center" FontFamily="Arial" FontSize="18">
              علی لشگری - 8725717

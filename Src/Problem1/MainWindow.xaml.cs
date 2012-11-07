@@ -53,8 +53,6 @@ namespace Problem1
                     ReportTableRowList bearing3 = solverEngine.SolveIt();
 
                     var totalTime = DateTime.Now.Subtract(timer);
-                    MessageBox.Show("Please wait while we Generating your Report",
-                                    "[done processing] - " + totalTime.ToString());
 
                     var method = new Method1(bearing1, bearing2, bearing3, totalTime);
                     method.Show();
@@ -102,9 +100,6 @@ namespace Problem1
                     }
 
                     ReportTableRowList data = solverEngine.SolveIt();
-
-                    MessageBox.Show("Please wait while we Generating your Report",
-                                    "[done processing] - " + DateTime.Now.Subtract(timer).ToString());
 
                     var method = new Method2(data);
                     method.Show();
