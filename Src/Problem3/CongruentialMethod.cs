@@ -1,30 +1,32 @@
 ﻿using System.Collections.Generic;
+using Microsoft.Scripting.Math;
+using Problem3.Helper;
 
 namespace Problem3
 {
     public static class CongruentialMethod
     {
-        public static List<float> MixedCongruential(int modulus, int seed, int multiplier, int increment)
+        public static ReportList MixedCongruential(int modulus, int seed, int multiplier, int increment)
         {
-            var randomNumbers = new List<float> ();
+            var randomNumbers = new List<float>();
 
-            long numb = (multiplier * seed) + increment;
-            randomNumbers.Add(((numb) % modulus) / (float)modulus);
+            BigInteger numb = (multiplier*seed) + increment;
+            randomNumbers.Add(((float) (numb%modulus)/modulus));
 
             do
             {
-                numb = (multiplier*numb) + increment;
-                randomNumbers.Add(((numb)%modulus)/(float) modulus);
-
-            } while (randomNumbers[0] != randomNumbers[randomNumbers.Count - 1]);
-
-
-            return randomNumbers;
+                numb = ((multiplier*numb) + increment);
+                float newNubmer = (float) ((numb)%modulus)/modulus;
+                if (randomNumbers.Contains(newNubmer))
+                    break;
+                randomNumbers.Add(newNubmer);
+            } while (true);
+            return new ReportList(randomNumbers, modulus, seed, multiplier, increment);
         }
-        public static List<float> MultiplicativeCongruential(int modulus, int seed, int multiplier)
-        {
 
-            return new List<float>();
+        public static ReportList MultiplicativeCongruential(int modulus, int seed, int multiplier)
+        {
+            return MixedCongruential(modulus, seed, multiplier, 0);
         }
     }
 }
