@@ -10,9 +10,9 @@
         <TextBox Height="23" Margin="104,16,12,0" Name="txtMod" VerticalAlignment="Top" Text="1000" TextAlignment="Center" VerticalContentAlignment="Center" />
         <TextBox Height="23" Margin="104,50,12,0" Name="txtMultiplier" VerticalAlignment="Top" Text="11" TextAlignment="Center" VerticalContentAlignment="Center" />
         <TextBox Height="23" Margin="104,84,12,0" Name="txtIncrement" VerticalAlignment="Top" Text="3" TextAlignment="Center" VerticalContentAlignment="Center" />
-        <Button Content="Begin" Height="23" Margin="12,0,12,70" Name="button1" VerticalAlignment="Bottom" Click="Button1Click" />
-        <Button Content="Show Help" Height="23" Margin="12,0,12,41" Name="button2" VerticalAlignment="Bottom" />
-        <Button Content="Exit" Height="23" Margin="12,0,12,12" Name="button3" VerticalAlignment="Bottom" />
+        <Button Content="Begin" Height="23" Margin="12,0,12,70" Name="BtnStart" VerticalAlignment="Bottom" Click="BtnStartClick" />
+        <Button Content="Show Help" Height="23" Margin="12,0,12,41" Name="BtnShowHelp" VerticalAlignment="Bottom" />
+        <Button Content="Exit" Height="23" Margin="12,0,12,12" Name="BtnExit" VerticalAlignment="Bottom" Click="BtnExitEClick" />
         <Label Content="Start Value :" Height="28" HorizontalAlignment="Left" Margin="15,114,0,0" Name="label4" VerticalAlignment="Top" />
         <TextBox Height="23" Margin="104,118,12,0" Name="txtSeed" VerticalAlignment="Top" Text="1" TextAlignment="Center" VerticalContentAlignment="Center" />
     </Grid>

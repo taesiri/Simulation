@@ -123,20 +123,51 @@ namespace Problem3.Reporter
                                        });
                 }
 
-                table.Rows.Add(new object[] { "Max", "--", "--", "--", maxDPlus, maxDNegetive });
+                table.Rows.Add(new object[] {"Max", "--", "--", "--", maxDPlus, maxDNegetive});
 
                 data.DataTables.Add(table);
 
 
                 result = UniformityTests.IsUniformWithKS(kStestTable)
-                                   ? "There isn't enough evidence to rejecting the hypothesis!"
-                                   : "The hypothesis is rejected!";
+                             ? "There isn't enough evidence to rejecting the hypothesis!"
+                             : "The hypothesis is rejected!";
                 data.ReportDocumentValues.Add("KSResult",
                                               String.Format("KS Test Result : Max[D+,D-] = {0}\n{1}",
                                                             Math.Max(maxDPlus, maxDNegetive), result));
 
                 //END TEST
 
+
+                // POKER
+
+                var pokertestTable = IndependentTest.PokerTest(_reportList);
+
+                table = new DataTable("Table4");
+                table.Columns.Add("c1", typeof (string));
+                table.Columns.Add("c2", typeof (string));
+                table.Columns.Add("c3", typeof (string));
+                table.Columns.Add("c4", typeof (string));
+
+                int sumA = 0;
+                int sumB = 0;
+                float sumC = 0;
+                foreach (var tuple in pokertestTable)
+                {
+                    sumA += tuple.Item2;
+                    sumB += tuple.Item3;
+                    sumC += tuple.Item4;
+
+                    table.Rows.Add(new object[]
+                                       {
+                                           tuple.Item1, tuple.Item2, tuple.Item3, tuple.Item4
+                                       });
+                }
+
+                table.Rows.Add(new object[] {"Total", sumA, sumB, sumC});
+
+                data.DataTables.Add(table);
+
+                //END POKER
                 var mtable = new DataTable("Chart1");
                 mtable.Columns.Add("Multiplier", typeof (string));
                 mtable.Columns.Add("Length of Sequence", typeof (int));

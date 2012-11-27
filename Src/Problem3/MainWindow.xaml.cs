@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Windows;
 using Problem3.Helper;
 using Problem3.Reporter;
@@ -20,7 +19,7 @@ namespace Problem3
             //home.ShowDialog();
         }
 
-        private void Button1Click(object sender, RoutedEventArgs e)
+        private void BtnStartClick(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -30,10 +29,6 @@ namespace Problem3
                 int inc = Convert.ToInt32(txtIncrement.Text);
 
                 ReportList a = CongruentialMethod.MixedCongruential(mod, seed, mul, inc);
-
-
-                var t = Tests.IndependentTest.PokerTest(a);
-                t.ToString();
 
                 if (a.GetLength < 20)
                 {
@@ -83,9 +78,14 @@ namespace Problem3
 
             catch (Exception)
             {
-                MessageBox.Show("Error!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Something went Wrong!!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 throw;
             }
+        }
+
+        private void BtnExitEClick(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown(0);
         }
     }
 }

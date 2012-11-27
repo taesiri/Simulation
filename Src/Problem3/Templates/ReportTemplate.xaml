@@ -282,6 +282,7 @@
         </Paragraph>
         <Paragraph/>
         <Paragraph/>
+        <Section BreakPageBefore="True"/>
         <Paragraph FontFamily="Segoe UI" FontSize="26">Kolmogorov–Smirnov Uniformity Test</Paragraph>
         <!-- Table -->
         <xrd:SectionDataGroup DataGroupName="ItemList">
@@ -390,4 +391,102 @@
             <xrd:InlineDocumentValue PropertyName="KSResult"/>
         </Paragraph>
     </Section>
+
+
+
+
+
+
+    <Section Padding="80,10,40,10" FontSize="12" BreakPageBefore="True">
+        <Paragraph FontFamily="Segoe UI" FontSize="22" TextAlignment="Center">
+            Independency Tests
+        </Paragraph>
+        <Paragraph FontFamily="Segoe UI" FontSize="26" >Poker Test</Paragraph>
+        <!-- Table -->
+        <xrd:SectionDataGroup DataGroupName="ItemList">
+            <Table CellSpacing="0" BorderBrush="White" BorderThickness="0.02cm" FontFamily="Segoe UI">
+                <Table.Resources>
+                    <!-- Style for header/footer rows. -->
+                    <Style x:Key="headerFooterRowStyle" TargetType="{x:Type TableRowGroup}">
+                        <Setter Property="FontWeight" Value="Normal"/>
+                        <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="Background" Value="LightSkyBlue"/>
+                    </Style>
+
+                    <!-- Style for data rows. -->
+                    <Style x:Key="dataRowStyle" TargetType="{x:Type TableRowGroup}">
+                        <Setter Property="FontSize" Value="12"/>
+                    </Style>
+
+                    <!-- Style for data cells. -->
+                    <Style TargetType="{x:Type TableCell}">
+                        <Setter Property="Padding" Value="0.1cm"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="BorderThickness" Value="0.02cm"/>
+                    </Style>
+                </Table.Resources>
+                <Table.Columns>
+                    <TableColumn Width="0.25*" />
+                    <TableColumn Width="0.4*" />
+                    <TableColumn Width="0.4*" />
+                    <TableColumn Width="0.4*" />
+                </Table.Columns>
+                <TableRowGroup Style="{StaticResource headerFooterRowStyle}">
+                    <TableRow>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Combination</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Observation</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Expectation</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>(O - E)^2 / E</Bold>
+                            </Paragraph>
+                        </TableCell>
+                    </TableRow>
+                </TableRowGroup>
+                <TableRowGroup Style="{StaticResource dataRowStyle}">
+                    <xrd:TableRowForDataTable TableName="Table4">
+                        <TableCell>
+                            <Paragraph TextAlignment="Left">
+                                <xrd:InlineTableCellValue PropertyName="c1"/>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="c2" />
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="c3" />
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="c4" />
+                            </Paragraph>
+                        </TableCell>
+                    </xrd:TableRowForDataTable>
+                </TableRowGroup>
+            </Table>
+        </xrd:SectionDataGroup>
+        <Paragraph/>
+        <Paragraph FontSize="14" FontFamily="Segoe UI">
+            <xrd:InlineDocumentValue PropertyName="PokerResult"/>
+        </Paragraph>
+        <Paragraph/>
+        
+    </Section>
+    
 </FlowDocument>
