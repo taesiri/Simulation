@@ -91,7 +91,7 @@ namespace Problem3.Reporter
 
                 data.DataTables.Add(table);
                 string result = UniformityTests.IsUniformWithChiSquare(testTable)
-                                    ? "There isn't enough evidence to rejecting the hypothesis!"
+                                    ? "There isn't enough evidence to reject the hypothesis!"
                                     : "The hypothesis is rejected!";
                 data.ReportDocumentValues.Add("ChiSquareResult", String.Format("Chi-Square Test Result : {0}", result));
 
@@ -129,7 +129,7 @@ namespace Problem3.Reporter
 
 
                 result = UniformityTests.IsUniformWithKS(kStestTable)
-                             ? "There isn't enough evidence to rejecting the hypothesis!"
+                             ? "There isn't enough evidence to reject the hypothesis!"
                              : "The hypothesis is rejected!";
                 data.ReportDocumentValues.Add("KSResult",
                                               String.Format("KS Test Result : Max[D+,D-] = {0}\n{1}",
@@ -140,7 +140,7 @@ namespace Problem3.Reporter
 
                 // POKER
 
-                var pokertestTable = IndependentTest.PokerTest(_reportList);
+                List<Tuple<int, int, int, float>> pokertestTable = IndependentTest.PokerTest(_reportList);
 
                 table = new DataTable("Table4");
                 table.Columns.Add("c1", typeof (string));
