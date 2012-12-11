@@ -52,7 +52,7 @@ namespace Problem4
 
         private void BtnCs2Click(object sender, RoutedEventArgs e)
         {
-            var sl = new Solver(2000);
+            var sl = new Solver(5000);
             sl.SolveIt();
 
             var highway = new HighwayReportWindow(sl.SolvedData);

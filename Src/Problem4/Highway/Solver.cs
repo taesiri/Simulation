@@ -41,20 +41,19 @@ namespace Problem4.Highway
                 _isSolved = true;
 
                 int remains = _totalCars;
-                int clock = 0;
+                var clock = new DateTime(2012, 12, 11, 8, 0, 0);
                 while (remains >= 0)
-                {
-                    int iAt = _generator.Pick(19, 10);
-                    int duration = _generator.Pick(60, 15);
-                    clock += iAt;
+                { 
+                    double iAt = _generator.Pick(19, 10);
 
-
+                    double duration = _generator.Pick(60, 15);
+                    clock = clock.AddSeconds(iAt);
+                    
                     CarType carType = _generator.PickCarType();
                     string carName = carType == CarType.C40
                                          ? _nameGenerator.GenerateBusName()
                                          : _nameGenerator.GenerateCarName();
-                    _solvedData.Add(new CarDetailsRow(carName, clock, duration, iAt, carType));
-
+                    _solvedData.Add(new CarDetailsRow(carName, clock, (int)duration, (int) iAt, carType));
 
                     remains -= Helper.CarCapacity(carType);
                 }

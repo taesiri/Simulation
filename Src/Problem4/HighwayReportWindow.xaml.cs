@@ -62,8 +62,8 @@ namespace Problem4
                     // Add Element To the Table
                     table.Rows.Add(new object[]
                                        {
-                                           counter, element.CarName, element.TripStartTime, element.TripDuration,
-                                           element.TripEndTime,
+                                           counter, element.CarName, element.TripStartTime.ToString("T"), element.TripDuration +" Min",
+                                           element.TripEndTime.ToString("T"),
                                            Helper.CarCapacity(element.CarType).ToString(CultureInfo.InvariantCulture)
                                        });
                     counter++;

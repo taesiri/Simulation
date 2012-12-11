@@ -1,10 +1,11 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace Problem4.Highway
 {
     public class CarDetailsRow
     {
-        public CarDetailsRow(string name, int start, int duration, int interArrivalTime, CarType type)
+        public CarDetailsRow(string name, DateTime start, int duration, int interArrivalTime, CarType type)
         {
             CarName = name;
             TripStartTime = start;
@@ -15,13 +16,13 @@ namespace Problem4.Highway
         }
 
         public string CarName { get; set; }
-        public int TripStartTime { get; set; }
+        public DateTime TripStartTime { get; set; }
         public int InterArrivalTime { get; set; } // the Difference time between this Trip and last Trip
         public int TripDuration { get; set; }
 
-        public int TripEndTime
+        public DateTime TripEndTime
         {
-            get { return TripStartTime + TripDuration; }
+            get { return TripStartTime.AddMinutes(TripDuration); }
         }
 
         public CarType CarType { get; set; }

@@ -81,7 +81,7 @@
                     <Style x:Key="headerFooterRowStyle" TargetType="{x:Type TableRowGroup}">
                         <Setter Property="FontWeight" Value="Normal"/>
                         <Setter Property="FontSize" Value="12"/>
-                        <Setter Property="Background" Value="Azure"/>
+                        <Setter Property="Background" Value="DodgerBlue"/>
                     </Style>
 
                     <!-- Style for data rows. -->
@@ -103,7 +103,7 @@
                     <TableColumn Width="0.25*" />
                     <TableColumn Width="0.2*" />
                     <TableColumn Width="0.2*" />
-                    <TableColumn Width="0.3*" />
+                    <TableColumn Width="0.12*" />
                 </Table.Columns>
                 <TableRowGroup Style="{StaticResource headerFooterRowStyle}">
                     <TableRow>
@@ -134,7 +134,7 @@
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <Bold>Car Capacity</Bold>
+                                <Bold>Capacity</Bold>
                             </Paragraph>
                         </TableCell>
                     </TableRow>
@@ -147,7 +147,7 @@
                             </Paragraph>
                         </TableCell>
                         <TableCell>
-                            <Paragraph TextAlignment="Center"  FontFamily="Arial" FontWeight="Bold">
+                            <Paragraph TextAlignment="Center"  FontFamily="Arial">
                                 <xrd:InlineTableCellValue PropertyName="carModel" />
                             </Paragraph>
                         </TableCell>
