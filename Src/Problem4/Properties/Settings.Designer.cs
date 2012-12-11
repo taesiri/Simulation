@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Problem_4.Properties
+namespace Problem4.Properties
 {
 
 

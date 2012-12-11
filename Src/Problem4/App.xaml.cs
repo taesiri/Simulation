@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 
-namespace Problem_4
+namespace Problem4
 {
     /// <summary>
     /// Interaction logic for App.xaml
