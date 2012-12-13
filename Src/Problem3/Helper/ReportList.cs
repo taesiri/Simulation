@@ -114,8 +114,8 @@ namespace Problem3.Helper
             {
                 try
                 {
-                    var maxND = StringHelper.MaximumNumberOfDuplication(item.ToString().Replace("0.", string.Empty));
-                    if (maxND == numberOfOccurrences)
+                    var maxNd = StringHelper.MaximumNumberOfDuplication(item.ToString().Replace("0.", string.Empty));
+                    if (maxNd == numberOfOccurrences)
                     {
                         number++;
                     }

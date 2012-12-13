@@ -9,7 +9,6 @@ namespace Problem4.Generator
         private readonly Random _rnd;
         public List<float> Numbers;
         private int _pickCarPtr = 1;
-        private int _rndPickPtr = 1;
 
         public RandomGen()
         {
@@ -33,16 +32,6 @@ namespace Problem4.Generator
             return rValue;
         }
 
-        //public double Pick(int mean, int deviation)
-        //{
-        //    double rValue = Math.Abs(SimpleRng.GetNormal(mean, deviation));
-
-        //    if (rValue < mean - deviation)
-        //        return mean - deviation;
-        //    else if (rValue > mean + deviation)
-        //        return mean + deviation;
-        //    return rValue;
-        //}
 
         public double Pick(int mean, int deviation)
         {
@@ -94,7 +83,7 @@ namespace Problem4.Generator
         public Tuple<double, double> DirectTransformation(float r1, float r2)
         {
             double z1 = Math.Sqrt(-2*Math.Log(r1, Math.E))*Math.Cos(2*Math.PI*r2);
-            double z2 = Math.Sqrt(-2*Math.Log(r2, Math.E))*Math.Sin(2*Math.PI*r1);
+            double z2 = Math.Sqrt(-2*Math.Log(r1, Math.E))*Math.Sin(2*Math.PI*r2);
 
             return new Tuple<double, double>(z1, z2);
         }

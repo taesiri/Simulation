@@ -1,6 +1,10 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Problem4.Dialog;
+using Problem4.Generator;
 using Problem4.Highway;
 
 namespace Problem4
@@ -10,9 +14,9 @@ namespace Problem4
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const string Cs1Details = "Case Study 1";
-        private const string Cs2Details = "Case Study 2";
-        private const string Cs3Details = "Case Study 3";
+        private const string Cs1Details = "A Simple and Handy Question about Chapter 9";
+        private const string Cs2Details = "A Question Related to \"Direct Transformation for the Normal Distribution\"";
+        private const string Cs3Details = "Optional Question";
 
         private const string TextDefaults = "\\\\ Question Preview";
 
@@ -52,11 +56,50 @@ namespace Problem4
 
         private void BtnCs2Click(object sender, RoutedEventArgs e)
         {
-            var sl = new Solver(5000);
-            sl.SolveIt();
+            var dialog = new NumberDialog();
 
-            var highway = new HighwayReportWindow(sl.SolvedData);
-            highway.Show();
+         
+            dialog.ShowDialog();
+
+            if (dialog.DialogResult.HasValue && dialog.DialogResult.Value)
+            {
+                int numb = dialog.SelectedInteger;
+
+                var sl = new Solver(numb);
+                sl.SolveIt();
+                var solvedData = sl.SolvedData;
+
+                var accidents = (int)(0.012 * solvedData.Count);
+                // Make sure we have 1 Accident at Least!
+                if (accidents == 0) accidents = 1;
+
+                var randomAccidentsList = new List<int>();
+                var rnd = new Random(DateTime.Now.Millisecond);
+
+                while (accidents > 0)
+                {
+                    var randomNumber = rnd.Next(1, solvedData.Count);
+                    if (solvedData[randomNumber].CarType != CarType.C40)
+                    {
+                        randomAccidentsList.Add(randomNumber);
+                        accidents--;
+                    }
+                }
+
+                foreach (var randomAccident in randomAccidentsList)
+                {
+                    solvedData[randomAccident].TripStatus = "Encountered Road Accident";
+                    solvedData[randomAccident].TripDuration = rnd.Next(1, solvedData[randomAccident].TripDuration - 1);
+                }
+
+                var highway = new HighwayReportWindow(solvedData,randomAccidentsList);
+                highway.Show();
+            }
+        }
+
+        private void BtnCs1Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("This Problem Solved with empty Hand! Please refer to Documentation for the Answer");
         }
     }
 }

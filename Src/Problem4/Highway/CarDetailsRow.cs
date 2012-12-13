@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using Problem4.Generator;
 
 namespace Problem4.Highway
 {
@@ -13,21 +14,27 @@ namespace Problem4.Highway
             InterArrivalTime = interArrivalTime;
 
             CarType = type;
+            TripStatus = "Safe Travel";
         }
 
         public string CarName { get; set; }
         public DateTime TripStartTime { get; set; }
         public int InterArrivalTime { get; set; } // the Difference time between this Trip and last Trip
         public int TripDuration { get; set; }
+        public string TripStatus { get; set; }
+
 
         public DateTime TripEndTime
         {
             get { return TripStartTime.AddMinutes(TripDuration); }
         }
 
-        public CarType CarType { get; set; }
+        public int GetPassengers
+        {
+            get { return Helper.CarCapacity(CarType); }
+        }
 
-        
+        public CarType CarType { get; set; }
     }
 
     public enum CarType

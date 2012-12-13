@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CodeReason.Reports">
       <HintPath>..\..\Binaries\lib\CodeReason.Reports.dll</HintPath>
@@ -62,6 +65,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Dialog\NumberDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="HighwayReportWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -73,6 +80,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dialog\NumberDialog.xaml.cs">
+      <DependentUpon>NumberDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Generator\Helper.cs" />
     <Compile Include="HighwayReportWindow.xaml.cs">
@@ -88,6 +98,8 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Resource Include="Images\icon.ico" />
+    <Resource Include="icon.ico" />
     <Content Include="Templates\HighwayReportTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

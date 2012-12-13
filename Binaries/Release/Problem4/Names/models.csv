@@ -1,0 +1,381 @@
+1,MDX
+1,RDX
+1,RL
+1,TL
+1,TSX 
+2,DB9 
+3,A3
+3,A4
+3,A5
+3,A6
+3,A8
+3,Q7
+3,R8
+3,RS 4
+3,S4
+3,S5
+3,S6
+3,S8
+3,TT 
+4,128
+4,135
+4,328
+4,335
+4,528
+4,535
+4,550
+4,650
+4,750
+4,760
+4,Alpina B7
+4,M3
+4,M5
+4,M6
+4,X3
+4,X5
+4,X6
+4,Z4
+4,Z4 M 
+5,Enclave
+5,LaCrosse
+5,Lucerne
+6,CTS
+6,DTS
+6,Escalade
+6,Escalade ESV
+6,Escalade EXT
+6,SRX
+6,STS
+6,XLR 
+7,Avalanche
+7,Aveo
+7,Cobalt
+7,Colorado Crew Cab
+7,Colorado Extended Cab
+7,Colorado Regular Cab
+7,Corvette
+7,Equinox
+7,Express 1500 Cargo
+7,Express 1500 Passenger
+7,Express 2500 Cargo
+7,Express 2500 Passenger
+7,Express 3500 Cargo
+7,Express 3500 Passenger
+7,HHR
+7,Impala
+7,Malibu
+7,Malibu (Classic)
+7,Silverado 1500 Crew Cab
+7,Silverado 1500 Extended Cab
+7,Silverado 1500 Regular Cab
+7,Silverado 2500 HD Crew Cab
+7,Silverado 2500 HD Extended Cab
+7,Silverado 2500 HD Regular Cab
+7,Silverado 3500 HD Crew Cab
+7,Silverado 3500 HD Extended Cab
+7,Silverado 3500 HD Regular Cab
+7,Suburban 1500
+7,Suburban 2500
+7,Tahoe
+7,TrailBlazer
+7,Traverse
+7,Uplander Cargo
+7,Uplander Passenger
+8,10 68|300
+8,spen
+8,Crossfire
+8,Pacifica
+8,PT Cruiser
+8,Sebring
+8,Town & Country 
+9,Avenger
+9,Caliber
+9,Caravan Grand Cargo
+9,Caravan Grand Passenger
+9,Challenger
+9,Charger
+9,Dakota Crew Cab
+9,Dakota Extended Cab
+9,Durango
+9,Journey
+9,Magnum
+9,Nitro
+9,Ram 1500 Crew Cab
+9,Ram 1500 Mega Cab
+9,Ram 1500 Quad Cab
+9,Ram 1500 Regular Cab
+9,Ram 2500 Mega Cab
+9,Ram 2500 Quad Cab
+9,Ram 2500 Regular Cab
+9,Ram 3500 Mega Cab
+9,Ram 3500 Quad Cab
+9,Ram 3500 Regular Cab
+9,Sprinter 2500 Cargo
+9,Sprinter 2500 Passenger
+9,Sprinter 3500 Cargo
+9,Viper
+10,430 Scuderia
+10,599 GTB Fiorano
+10,612 Scaglietti
+10,F430 
+11,E150 Cargo
+11,E150 Super Duty Passenger
+11,E250 Cargo
+11,E350 Super Duty Cargo
+11,E350 Super Duty Passenger
+11,Edge
+11,Escape
+11,Expedition
+11,Expedition EL
+11,Explorer
+11,Explorer Sport Trac
+11,F150 Regular Cab
+11,F150 Super Cab
+11,F150 SuperCrew Cab
+11,F250 Super Duty Crew Cab
+11,F250 Super Duty Regular Cab
+11,F250 Super Duty Super Cab
+11,F350 Super Duty Crew Cab
+11,F350 Super Duty Regular Cab
+11,F350 Super Duty Super Cab
+11,F450 Super Duty Crew Cab
+11,Flex
+11,Focus
+11,Fusion
+11,Mustang
+11,Ranger Regular Cab
+11,Ranger Super Cab
+11,Taurus
+11,Taurus X 
+12,Acadia
+12,Canyon Crew Cab
+12,Canyon Extended Cab
+12,Canyon Regular Cab
+12,Envoy
+12,Savana 1500 Cargo
+12,Savana 1500 Passenger
+12,Savana 2500 Cargo
+12,Savana 2500 Passenger
+12,Savana 3500 Cargo
+12,Savana 3500 Passenger
+12,Sierra 1500 Crew Cab
+12,Sierra 1500 Extended Cab
+12,Sierra 1500 Regular Cab
+12,Sierra 2500 HD Crew Cab
+12,Sierra 2500 HD Extended Cab
+12,Sierra 2500 HD Regular Cab
+12,Sierra 3500 HD Crew Cab
+12,Sierra 3500 HD Extended Cab
+12,Sierra 3500 HD Regular Cab
+12,Yukon
+12,Yukon XL 1500
+12,Yukon XL 2500
+13,Accord
+13,Civic
+13,CR-V
+13,Element
+13,Fit
+13,Odyssey
+13,Pilot
+13,Ridgeline
+13,S2000
+14,H2
+14,H3
+15,Accent
+15,Azera
+15,Elantra
+15,Entourage
+15,Genesis
+15,Santa Fe
+15,Sonata
+15,Tiburon
+15,Tucson
+15,Veracruz
+16,EX35
+16,FX35
+16,FX45
+16,FX50
+16,G35
+16,G37
+16,M35
+16,M45
+16,QX56
+17,Ascender
+17,i-290 Extended Cab
+17,i-370 Crew Cab
+17,i-370 Extended Cab
+18,S-Type
+18,X-Type
+18,XF
+18,XJ Series
+18,XK Series 
+19,Commander
+19,Compass
+19,Grand Cherokee
+19,Liberty
+19,Patriot
+19,Wrangler 
+20,Amanti
+20,Borrego
+20,Optima
+20,Rio
+20,Rondo
+20,Sedona
+20,Sorento
+20,Spectra
+20,Sportage 
+21,LR2
+21,LR3
+21,Range Rover
+21,Range Rover Sport 
+22,ES 350
+22,GS 350
+22,GS 450h
+22,GS 460
+22,GX 470
+22,IS 250
+22,IS 350
+22,IS F
+22,LS 460
+22,LS 600h
+22,LX 570
+22,RX 350
+22,RX 400h
+22,SC 430 
+23,Mark LT
+23,MKS
+23,MKX
+23,MKZ
+23,Navigator
+23,Navigator L
+23,Town Car 
+24,Elise
+24,Exige S 
+25,GranTurismo
+25,Quattroporte 
+26,B-Series Extended Cab
+26,B-Series Regular Cab
+26,CX-7
+26,CX-9
+26,MAZDA3
+26,MAZDA5
+26,MAZDA6
+26,Miata MX-5
+26,RX-8
+26,Tribute 
+27,C-Class
+27,CL-Class
+27,CLK-Class
+27,CLS-Class
+27,E-Class
+27,G-Class
+27,GL-Class
+27,ML-Class
+27,R-Class
+27,S-Class
+27,SL-Class
+27,SLK-Class
+27,SLR McLaren 
+28,Grand Marquis
+28,Mariner
+28,Milan
+28,Mountaineer
+28,Sable 
+29,Cooper 
+30,Eclipse
+30,Endeavor
+30,Galant
+30,Lancer
+30,Outlander
+30,Raider Double Cab
+30,Raider Extended Cab 
+31,350Z
+31,Altima
+31,Armada
+31,Frontier Crew Cab
+31,Frontier King Cab
+31,GT-R
+31,Maxima
+31,Murano
+31,Pathfinder
+31,Quest
+31,Rogue
+31,Sentra
+31,Titan Crew Cab
+31,Titan King Cab
+31,Versa
+31,Xterra 
+32,G5
+32,G6
+32,G8
+32,Grand Prix
+32,Solstice
+32,Torrent
+32,Vibe 
+33,911
+33,Boxster
+33,Cayenne
+33,Cayman 
+34,Phantom 
+35,9-7X 
+36,Astra
+36,Aura
+36,Outlook
+36,SKY
+36,VUE 
+37,tC
+37,xB
+37,xD 
+38,fortwo 
+39,Forester
+39,Impreza
+39,Legacy
+39,Outback
+39,Tribeca 
+40,Forenza
+40,Grand Vitara
+40,Reno
+40,SX4
+40,XL7 
+41,4Runner
+41,Avalon
+41,Camry
+41,Corolla
+41,FJ Cruiser
+41,Highlander
+41,Land Cruiser
+41,Matrix
+41,Prius
+41,RAV4
+41,Sequoia
+41,Sienna
+41,Solara
+41,Tacoma Access Cab
+41,Tacoma Double Cab
+41,Tacoma Regular Cab
+41,Tundra CrewMax
+41,Tundra Double Cab
+41,Tundra Regular Cab
+41,Yaris 
+42,CC
+42,Eos
+42,GLI
+42,GTI
+42,Jetta
+42,New Beetle
+42,Passat
+42,R32
+42,Rabbit
+42,Routan
+42,Tiguan
+42,Touareg
+42,Touareg 2 
+43,C30
+43,C70
+43,S40
+43,S60
+43,S80
+43,V50
+43,V70
+43,XC70
+43,XC90 

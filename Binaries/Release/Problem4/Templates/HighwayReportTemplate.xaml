@@ -68,22 +68,6 @@
             [This Page Intentionally Left Blank]
         </Paragraph>
     </Section>
-    <Section Padding="80,40,40,30" BreakPageBefore="True">
-        <Paragraph TextAlignment="Left" FontFamily="Segoe UI" FontSize="20">
-            Report Summery
-        </Paragraph>
-        <Paragraph/>
-        <Paragraph FontSize="14" FontFamily="Segoe UI">
-            <xrd:InlineDocumentValue PropertyName="ReportSummary" />
-        </Paragraph>
-        <Paragraph/>
-        <Paragraph TextAlignment="Left" FontSize="16" FontFamily="Segoe UI">
-            Accidents
-        </Paragraph>
-        <Paragraph FontSize="14" FontFamily="Segoe UI">
-            <xrd:InlineDocumentValue PropertyName="Accidents" />
-        </Paragraph>
-    </Section>
     <Section Padding="80,10,40,10" FontSize="12" BreakPageBefore="True">
         <Paragraph FontFamily="Segoe UI" FontSize="24" FontWeight="Bold" TextAlignment="Center">
             <xrd:InlineContextValue PropertyName="ReportTitle" />
@@ -155,7 +139,7 @@
                             </Paragraph>
                         </TableCell>
                         <TableCell>
-                            <Paragraph TextAlignment="Center" FontFamily="10">
+                            <Paragraph TextAlignment="Center">
                                 <Bold>Passengers</Bold>
                             </Paragraph>
                         </TableCell>
