@@ -54,7 +54,7 @@ namespace Problem4
 
 
                 string reportSum = string.Format(
-                    "There was {0} cars in the road with total of {1} Passengers.\nUnfortunately there was {2} accident in the road with {3} casualties",
+                    "There were {0} cars in the road with total of {1} Passengers.\nUnfortunately there was {2} accident in the road with {3} casualties",
                     numbOfCars, passengers, _accidentdata.Count - 1, casualties) + Environment.NewLine;
 
                 string accident = "";
