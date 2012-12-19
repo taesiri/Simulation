@@ -7,13 +7,16 @@ namespace Problem4.BOX
     public class BoxSolver
     {
         private readonly RandomGen _randomGen;
-        public FutureEventList FutureEventList;
 
+
+        private readonly List<BoxItem> _solvedData;
+        public FutureEventList FutureEventList;
         private bool _isSolved;
 
         public BoxSolver(TimeSpan totalTime)
         {
             _randomGen = new RandomGen();
+            _solvedData = new List<BoxItem>();
 
             FutureEventList = new FutureEventList();
             var currentArrival = new DateTime(2012, 12, 19, 8, 0, 0, 0);
@@ -31,7 +34,14 @@ namespace Problem4.BOX
 
                 var currentBox = new BoxItem(currentArrival + arrivalTime, Priority.High, serviceTime);
 
-                FutureEventList.PushEvent(new EventListItem(EventType.Arrival, currentBox, currentArrival));
+
+                Guid g = Guid.NewGuid();
+                string guidString = Convert.ToBase64String(g.ToByteArray());
+                guidString = guidString.Replace("=", "");
+                guidString = guidString.Replace("+", "");
+                currentBox.Identifier = guidString;
+
+                FutureEventList.PushEvent(new EventListItem(EventType.Arrival, currentBox, currentArrival + arrivalTime));
                 totalTime = totalTime.Subtract(serviceTime);
                 counter++;
             }
@@ -43,6 +53,13 @@ namespace Problem4.BOX
 
                 currentArrival += TimeSpan.FromMinutes(arriveTime);
                 var currentBox = new BoxItem(currentArrival, Priority.Normal, serviceTime);
+
+                Guid g = Guid.NewGuid();
+                string guidString = Convert.ToBase64String(g.ToByteArray());
+                guidString = guidString.Replace("=", "");
+                guidString = guidString.Replace("+", "");
+                currentBox.Identifier = guidString;
+
 
                 FutureEventList.PushEvent(new EventListItem(EventType.Arrival, currentBox, currentArrival));
 
@@ -56,9 +73,11 @@ namespace Problem4.BOX
         {
             _isSolved = true;
 
-            var smartQueue = new Queue<EventListItem>();
-            bool unfinishedJob = false;
-            EventListItem onHold = null;
+            bool isIdle = true;
+
+            var boxQueue = new Queue<BoxItem>();
+            var resumeQueue = new Queue<BoxItem>();
+
             BoxItem currentBox = null;
 
             while (FutureEventList.GetLen > 0)
@@ -67,59 +86,101 @@ namespace Problem4.BOX
 
                 if (currentEvent.EventType == EventType.Arrival)
                 {
-                    if (smartQueue.Count == 0)
+                    if (isIdle)
                     {
                         // Worker is FREE!
+                        currentBox = currentEvent.Box;
 
+                        currentBox.ServiceStartDate = currentEvent.Time;
                         DateTime departureDate = currentEvent.Box.ArrivalDate + currentEvent.Box.TotalServiceTime;
 
-                        var departureEvent = new EventListItem(EventType.Departure, currentEvent.Box, departureDate);
-                        currentBox = currentEvent.Box;
+
+                        var departureEvent = new EventListItem(EventType.Departure, currentBox, departureDate);
+
                         FutureEventList.PushEvent(departureEvent);
+                        isIdle = false;
                     }
-                    else if (smartQueue.Count != 0)
+                    else
                     {
                         if (currentEvent.Box.Priority == Priority.High)
                         {
-                            // Special BOX!
+                            currentEvent.Box.ServiceStartDate = currentEvent.Box.ArrivalDate;
+                            DateTime departureDate = currentEvent.Box.ArrivalDate + currentEvent.Box.TotalServiceTime;
+                            var departureEvent = new EventListItem(EventType.Departure, currentEvent.Box, departureDate);
 
+                            if (currentBox != null) // ALWAYS TRUE
+                            {
+                                currentBox.ServiceInterruptTime = currentEvent.Time;
 
+                                DateTime resumeDate = departureDate;
+                                var resumeEvent = new EventListItem(EventType.Resume, currentBox, resumeDate);
 
-                            unfinishedJob = true;
-                            onHold = new EventListItem(EventType.Resume, currentBox, new DateTime());
+                                if (!FutureEventList.RemoveEvent(currentBox, EventType.Departure))
+                                {
+                                    throw new Exception("Error!");
+                                }
+
+                                FutureEventList.PushEvent(resumeEvent);
+                            }
+                            FutureEventList.PushEvent(departureEvent);
+                            currentBox = currentEvent.Box;
                         }
                         else if (currentEvent.Box.Priority == Priority.Normal)
                         {
                             // Normal BOX!
-                            smartQueue.Enqueue(currentEvent);
+                            boxQueue.Enqueue(currentEvent.Box);
                         }
                     }
                 }
                 else if (currentEvent.EventType == EventType.Departure)
                 {
-                    if (currentEvent.Box.Priority == Priority.High)
+                    BoxItem solvedBox = currentEvent.Box;
+                    solvedBox.DepartureTime = currentEvent.Time;
+                    _solvedData.Add(solvedBox);
+
+                    if (resumeQueue.Count > 0 && currentEvent.Box.Priority == Priority.High)
                     {
-                        if (unfinishedJob)
+                        //Resume
+                        BoxItem b = resumeQueue.Dequeue();
+                        DateTime currentDate = currentEvent.Time;
+
+                        TimeSpan remainingWorkTime = b.TotalServiceTime - (b.ServiceInterruptTime - b.ServiceStartDate);
+
+                        DateTime departureDate = currentDate + remainingWorkTime;
+
+                        var departureEvent = new EventListItem(EventType.Departure, b, departureDate);
+                        FutureEventList.PushEvent(departureEvent);
+                    }
+                    else
+                    {
+                        if (boxQueue.Count > 0)
                         {
-                            //Resume
+                            currentBox = boxQueue.Dequeue();
+                            currentBox.ServiceStartDate = currentEvent.Time;
+                            DateTime departureDate = currentBox.ServiceStartDate + currentBox.TotalServiceTime;
+                            var departureEvent = new EventListItem(EventType.Departure, currentBox, departureDate);
+                            FutureEventList.PushEvent(departureEvent);
                         }
                         else
                         {
+                            isIdle = true;
+                            currentBox = null;
                         }
                     }
-                    else if (currentEvent.Box.Priority == Priority.High)
-                    {
-                    }
+                }
+                else if (currentEvent.EventType == EventType.Resume)
+                {
+                    resumeQueue.Enqueue(currentEvent.Box);
                 }
             }
         }
 
-        public string GetAnswer()
+        public List<BoxItem> GetAnswer()
         {
             if (!_isSolved)
                 throw new Exception("The Case isn't Solved!");
 
-            return "ANSWER!";
+            return _solvedData;
         }
     }
 }

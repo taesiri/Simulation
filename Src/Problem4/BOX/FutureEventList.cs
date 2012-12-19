@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Problem4.BOX
 {
@@ -50,6 +51,17 @@ namespace Problem4.BOX
             EventListItem rItem = DataList[0];
             DataList.Remove(rItem);
             return rItem;
+        }
+
+        public bool RemoveEvent(BoxItem box, EventType eventType)
+        {
+            EventListItem delItem = DataList.FirstOrDefault(eventListItem => eventListItem.Box.Identifier == box.Identifier && eventListItem.EventType == eventType);
+            if (delItem != null)
+            {
+                DataList.Remove(delItem);
+                return true;
+            }
+            return false;
         }
     }
 }

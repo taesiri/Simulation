@@ -103,7 +103,8 @@ namespace Problem4
         private void BtnCs3Click(object sender, RoutedEventArgs e)
         {
             var solver = new BoxSolver(TimeSpan.FromHours(40));
-            solver.ToString();
+            solver.TrySolve();
+            List<BoxItem> answer = solver.GetAnswer();
         }
 
         private void BtnExitClick(object sender, RoutedEventArgs e)

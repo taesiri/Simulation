@@ -13,10 +13,19 @@ namespace Problem4.BOX
         }
 
         public DateTime ArrivalDate { get; set; }
+        public DateTime ServiceStartDate { get; set; }
         public DateTime DepartureTime { get; set; }
         public Priority Priority { get; set; }
 
+
+        public DateTime ServiceInterruptTime { get; set; }
+
+
         public TimeSpan TotalServiceTime { get; set; }
         public List<TimeRange> ServiceTimeScale { get; set; }
+
+        public bool Dummy { get; set; }
+
+        public string Identifier { get; set; }
     }
 }
