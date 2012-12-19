@@ -65,6 +65,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ListExtension.cs" />
+    <Compile Include="WorkerReportWindow.xaml.cs">
+      <DependentUpon>WorkerReportWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Dialog\NumberDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -81,6 +85,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BOX\BoxItem.cs" />
+    <Compile Include="BOX\BoxSolver.cs" />
+    <Compile Include="BOX\EventListItem.cs" />
+    <Compile Include="BOX\FutureEventList.cs" />
+    <Compile Include="BOX\Priority.cs" />
+    <Compile Include="BOX\TimeRange.cs" />
     <Compile Include="Dialog\NumberDialog.xaml.cs">
       <DependentUpon>NumberDialog.xaml</DependentUpon>
     </Compile>
@@ -93,11 +103,20 @@
     <Compile Include="Generator\RandomGen.cs" />
     <Compile Include="Generator\Range.cs" />
     <Compile Include="Generator\ReportList.cs" />
-    <Compile Include="Highway\Solver.cs" />
+    <Compile Include="Highway\HighwaySolver.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Content Include="Templates\WorkerReportTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Page Include="WorkerReportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Resource Include="Images\icon.ico" />
     <Resource Include="icon.ico" />
     <Content Include="Templates\HighwayReportTemplate.xaml">
@@ -142,7 +161,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Problem2\Problem2.csproj">
+      <Project>{31C48841-6D9F-4900-B1A1-16E4D6DCC6B8}</Project>
+      <Name>Problem2</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

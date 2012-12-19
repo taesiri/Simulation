@@ -7,7 +7,7 @@
         <Button Name="BtnCS2" Content="Case Study 2 - (Problem 2)" Height="25" Margin="10,40,10,0"
                 VerticalAlignment="Top" Cursor="Hand" MouseEnter="BtnsMouseEnter" MouseLeave="BtnsMouseLeave" Click="BtnCs2Click" />
         <Button Name="BtnCS3" Content="Case Study 3 - (Problem 3)" Height="25" Margin="10,70,10,0"
-                VerticalAlignment="Top" Cursor="Hand" MouseEnter="BtnsMouseEnter" MouseLeave="BtnsMouseLeave" IsEnabled="False" />
+                VerticalAlignment="Top" Cursor="Hand" MouseEnter="BtnsMouseEnter" MouseLeave="BtnsMouseLeave" Click="BtnCs3Click" />
         <Button Name="BtnExit" Content="Exit" Margin="10,0,10,10" Height="22" VerticalAlignment="Bottom" Cursor="Hand"
                 Click="BtnExitClick" />
         <TextBox x:Name="txtQuestionPreview" Margin="10,107,10,37" TextWrapping="Wrap" Text="// Question Preview"

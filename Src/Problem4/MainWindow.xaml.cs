@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Problem4.BOX;
 using Problem4.Dialog;
-using Problem4.Generator;
 using Problem4.Highway;
 
 namespace Problem4
@@ -16,7 +16,7 @@ namespace Problem4
     {
         private const string Cs1Details = "A Simple and Handy Question about Chapter 9";
         private const string Cs2Details = "A Question Related to \"Direct Transformation for the Normal Distribution\"";
-        private const string Cs3Details = "Optional Question";
+        private const string Cs3Details = "Hardest Question! but not that HARD! :]";
 
         private const string TextDefaults = "\\\\ Question Preview";
 
@@ -49,27 +49,29 @@ namespace Problem4
             txtQuestionPreview.Text = TextDefaults;
         }
 
-        private void BtnExitClick(object sender, RoutedEventArgs e)
+
+        private void BtnCs1Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown(0);
+            MessageBox.Show("This Problem Solved with empty Hand! Please refer to Documentation for the Answer");
         }
+
 
         private void BtnCs2Click(object sender, RoutedEventArgs e)
         {
             var dialog = new NumberDialog();
 
-         
+
             dialog.ShowDialog();
 
             if (dialog.DialogResult.HasValue && dialog.DialogResult.Value)
             {
                 int numb = dialog.SelectedInteger;
 
-                var sl = new Solver(numb);
+                var sl = new HighwaySolver(numb);
                 sl.SolveIt();
-                var solvedData = sl.SolvedData;
+                List<CarDetailsRow> solvedData = sl.SolvedData;
 
-                var accidents = (int)(0.012 * solvedData.Count);
+                var accidents = (int) (0.012*solvedData.Count);
                 // Make sure we have 1 Accident at Least!
                 if (accidents == 0) accidents = 1;
 
@@ -78,7 +80,7 @@ namespace Problem4
 
                 while (accidents > 0)
                 {
-                    var randomNumber = rnd.Next(1, solvedData.Count);
+                    int randomNumber = rnd.Next(1, solvedData.Count);
                     if (solvedData[randomNumber].CarType != CarType.C40)
                     {
                         randomAccidentsList.Add(randomNumber);
@@ -86,20 +88,27 @@ namespace Problem4
                     }
                 }
 
-                foreach (var randomAccident in randomAccidentsList)
+                foreach (int randomAccident in randomAccidentsList)
                 {
                     solvedData[randomAccident].TripStatus = "Encountered Road Accident";
                     solvedData[randomAccident].TripDuration = rnd.Next(1, solvedData[randomAccident].TripDuration - 1);
                 }
 
-                var highway = new HighwayReportWindow(solvedData,randomAccidentsList);
+                var highway = new HighwayReportWindow(solvedData, randomAccidentsList);
                 highway.Show();
             }
         }
 
-        private void BtnCs1Click(object sender, RoutedEventArgs e)
+
+        private void BtnCs3Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("This Problem Solved with empty Hand! Please refer to Documentation for the Answer");
+            var solver = new BoxSolver(TimeSpan.FromHours(40));
+            solver.ToString();
+        }
+
+        private void BtnExitClick(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown(0);
         }
     }
 }
