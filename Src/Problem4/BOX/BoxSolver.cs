@@ -30,7 +30,7 @@ namespace Problem4.BOX
             // First Box
 
 
-            TimeSpan firstServiceTime = TimeSpan.FromMinutes((int) SimpleRng.GetNormal(16, 3));
+            TimeSpan firstServiceTime = TimeSpan.FromMinutes((int) SimpleRng.GetNormal(9, 2));
             var firstbox = new BoxItem(currentArrival, Priority.Normal, firstServiceTime);
 
 
