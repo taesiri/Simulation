@@ -65,6 +65,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BOX\QueueState.cs" />
+    <Compile Include="BOX\SolvedData.cs" />
+    <Compile Include="Generator\SimpleRNG.cs" />
     <Compile Include="ListExtension.cs" />
     <Compile Include="WorkerReportWindow.xaml.cs">
       <DependentUpon>WorkerReportWindow.xaml</DependentUpon>
@@ -160,12 +163,6 @@
     <Content Include="Templates\aut.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Problem2\Problem2.csproj">
-      <Project>{31C48841-6D9F-4900-B1A1-16E4D6DCC6B8}</Project>
-      <Name>Problem2</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -39,7 +39,7 @@
             Report
         </Paragraph>
         <Paragraph TextAlignment="Center"  FontFamily="Segoe UI" FontSize="46" FontWeight="Bold">
-           Highway
+           Worker! [BOX]
         </Paragraph>
         <Paragraph TextAlignment="Center" FontFamily="Segoe UI" FontSize="16">
             Homework 3
@@ -68,27 +68,11 @@
             [This Page Intentionally Left Blank]
         </Paragraph>
     </Section>
-    <Section Padding="80,40,40,30" BreakPageBefore="True">
-        <Paragraph TextAlignment="Left" FontFamily="Segoe UI" FontSize="20">
-            Report Summery
-        </Paragraph>
-        <Paragraph/>
-        <Paragraph FontSize="14" FontFamily="Segoe UI">
-            <xrd:InlineDocumentValue PropertyName="ReportSummary" />
-        </Paragraph>
-        <Paragraph/>
-        <Paragraph TextAlignment="Left" FontSize="16" FontFamily="Segoe UI">
-            Accidents
-        </Paragraph>
-        <Paragraph FontSize="14" FontFamily="Segoe UI">
-            <xrd:InlineDocumentValue PropertyName="Accidents" />
-        </Paragraph>
-    </Section>
     <Section Padding="80,10,40,10" FontSize="12" BreakPageBefore="True">
         <Paragraph FontFamily="Segoe UI" FontSize="24" FontWeight="Bold" TextAlignment="Center">
             <xrd:InlineContextValue PropertyName="ReportTitle" />
         </Paragraph>
-        <Paragraph FontFamily="Segoe UI" FontSize="26"> Highway</Paragraph>
+        <Paragraph FontFamily="Segoe UI" FontSize="26">BOX</Paragraph>
         <!-- Table -->
         <xrd:SectionDataGroup DataGroupName="ItemList">
             <Table CellSpacing="0" BorderBrush="White" BorderThickness="0.02cm" FontFamily="Segoe UI">
@@ -114,13 +98,13 @@
                 </Table.Resources>
 
                 <Table.Columns>
-                    <TableColumn Width="0.09*" />
-                    <TableColumn Width="0.4*" />
-                    <TableColumn Width="0.25*" />
-                    <TableColumn Width="0.2*" />
-                    <TableColumn Width="0.2*" />
-                    <TableColumn Width="0.2*" />
-                    <TableColumn Width="0.14*" />
+                    <TableColumn Width="0.11*" />
+                    <TableColumn Width="0.3*" />
+                    <TableColumn Width="0.3*" />
+                    <TableColumn Width="0.3*" />
+                    <TableColumn Width="0.19*" />
+                    <TableColumn Width="0.18*" />
+                    <TableColumn Width="0.3*" />
                 </Table.Columns>
                 <TableRowGroup Style="{StaticResource headerFooterRowStyle}">
                     <TableRow>
@@ -131,38 +115,38 @@
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <Bold>Car Model</Bold>
+                                <Bold>Arrive</Bold>
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <Bold>Start Time</Bold>
+                                <Bold>Service Start</Bold>
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <Bold>Duration</Bold>
+                                <Bold>Service Duration</Bold>
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <Bold>End Time</Bold>
+                                <Bold>Awaiting</Bold>
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <Bold>Status</Bold>
+                                <Bold>Priority</Bold>
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center" FontFamily="10">
-                                <Bold>Passengers</Bold>
+                                <Bold>Departure</Bold>
                             </Paragraph>
                         </TableCell>
                     </TableRow>
                 </TableRowGroup>
                 <TableRowGroup Style="{StaticResource dataRowStyle}">
-                    <xrd:TableRowForDataTable TableName="HighwayTable">
+                    <xrd:TableRowForDataTable TableName="BoxesTable">
                         <TableCell>
                             <Paragraph>
                                 <xrd:InlineTableCellValue PropertyName="no" AggregateGroup="ItemCount"/>
@@ -170,32 +154,32 @@
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center"  FontFamily="Arial">
-                                <xrd:InlineTableCellValue PropertyName="carModel" />
+                                <xrd:InlineTableCellValue PropertyName="Arrive" />
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <xrd:InlineTableCellValue PropertyName="tripStartTime" />
+                                <xrd:InlineTableCellValue PropertyName="ServiceStart" />
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <xrd:InlineTableCellValue PropertyName="tripDuration" />
+                                <xrd:InlineTableCellValue PropertyName="ServiceDuration" />
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <xrd:InlineTableCellValue PropertyName="tripEndTime" />
+                                <xrd:InlineTableCellValue PropertyName="WaitingTime" />
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <xrd:InlineTableCellValue PropertyName="tripStatus" />
+                                <xrd:InlineTableCellValue PropertyName="Priority" />
                             </Paragraph>
                         </TableCell>
                         <TableCell>
                             <Paragraph TextAlignment="Center">
-                                <xrd:InlineTableCellValue PropertyName="carCapacity"/>
+                                <xrd:InlineTableCellValue PropertyName="Departure"/>
                             </Paragraph>
                         </TableCell>
                         
@@ -205,14 +189,14 @@
         </xrd:SectionDataGroup>
         
     </Section>
-    <Section Padding="80,10,40,10" FontSize="12" BreakPageBefore="True" FontFamily="Segoe UI">
+    <Section Padding="60,10,40,10" FontSize="12" BreakPageBefore="True" FontFamily="Segoe UI">
         <Paragraph  FontFamily="Segoe UI" FontSize="14">
             Charts
         </Paragraph>
-
-        <Paragraph FontFamily="Segoe UI" FontSize="14" FontWeight="Normal" FlowDirection="RightToLeft">
-            <crcv:BarChart TableName="CarsChart" TableColumns="Number of Cars,Passengers" Width="16cm" Height="10cm" Title="Cars Chart" View3D="True" FlowDirection="RightToLeft">
-            </crcv:BarChart>
+        
+        <Paragraph FontFamily="Segoe UI" FontSize="10" >
+            <crcv:ColumnChart TableName="QueueStateTable" TableColumns="DateTime,InQueueBoxes" Width="18cm" Height="12cm" Title="Queue State / Time" View3D="True">
+            </crcv:ColumnChart>
         </Paragraph>
     </Section>
 </FlowDocument>

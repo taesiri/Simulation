@@ -12,7 +12,7 @@ namespace Problem4.Generator
 
         public RandomGen()
         {
-            ReportList data = CongruentialMethod.MixedCongruential(1024, 1, 13, 11);
+            ReportList data = CongruentialMethod.MixedCongruential(768, 1, 13, 11);
             Numbers = new List<float>(data.InnerData);
             _rnd = new Random(DateTime.Now.Millisecond);
         }

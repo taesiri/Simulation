@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Problem4.BOX
 {
-    public class BoxItem
+    public class BoxItem : IComparable
     {
         public BoxItem(DateTime arrivalDate, Priority priority, TimeSpan totalServiceTime)
         {
@@ -27,5 +27,19 @@ namespace Problem4.BOX
         public bool Dummy { get; set; }
 
         public string Identifier { get; set; }
+
+        #region IComparable Members
+
+        public int CompareTo(object obj)
+        {
+            var otherObj = obj as BoxItem;
+            if (otherObj == null)
+            {
+                throw new Exception("the Other Object is not BoxItem");
+            }
+            return ArrivalDate.CompareTo(otherObj.ArrivalDate);
+        }
+
+        #endregion
     }
 }

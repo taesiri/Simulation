@@ -104,7 +104,10 @@ namespace Problem4
         {
             var solver = new BoxSolver(TimeSpan.FromHours(40));
             solver.TrySolve();
-            List<BoxItem> answer = solver.GetAnswer();
+            SolvedData answer = solver.GetSolution();
+
+            var workerReportWindow = new WorkerReportWindow(answer);
+            workerReportWindow.Show();
         }
 
         private void BtnExitClick(object sender, RoutedEventArgs e)

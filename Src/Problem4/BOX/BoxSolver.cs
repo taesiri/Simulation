@@ -6,56 +6,76 @@ namespace Problem4.BOX
 {
     public class BoxSolver
     {
-        private readonly RandomGen _randomGen;
+        private readonly List<BoxItem> _boxStates;
 
-
-        private readonly List<BoxItem> _solvedData;
         public FutureEventList FutureEventList;
         private bool _isSolved;
+        private List<QueueState> _queueStates;
+        private TimeSpan _totalTime;
 
         public BoxSolver(TimeSpan totalTime)
         {
-            _randomGen = new RandomGen();
-            _solvedData = new List<BoxItem>();
+            _boxStates = new List<BoxItem>();
+            _totalTime = totalTime;
+        }
 
+        public void GettingThingsReady()
+        {
             FutureEventList = new FutureEventList();
             var currentArrival = new DateTime(2012, 12, 19, 8, 0, 0, 0);
 
             // Future Event List! All Arrivals!
+            // First Box
+
+
+            TimeSpan firstServiceTime = TimeSpan.FromMinutes((int) SimpleRng.GetNormal(16, 3));
+            var firstbox = new BoxItem(currentArrival, Priority.Normal, firstServiceTime);
+
+
+            Guid g = Guid.NewGuid();
+            string guidString = Convert.ToBase64String(g.ToByteArray());
+            guidString = guidString.Replace("=", "");
+            guidString = guidString.Replace("+", "");
+            firstbox.Identifier = guidString;
+
+            FutureEventList.PushEvent(new EventListItem(EventType.Arrival, firstbox, currentArrival));
+
 
             // Special Boxes
             // Special Boxes Arrives every hour
-            double allSpecialBoxes = totalTime.TotalMinutes/60;
+            double allSpecialBoxes = _totalTime.TotalMinutes/60;
             int counter = 1;
             while (counter <= allSpecialBoxes)
             {
                 TimeSpan arrivalTime = TimeSpan.FromMinutes(counter*60);
-                TimeSpan serviceTime = TimeSpan.FromMinutes((int) _randomGen.Pick(16, 3));
+
+                TimeSpan serviceTime = TimeSpan.FromMinutes((int) SimpleRng.GetNormal(16, 3));
+
 
                 var currentBox = new BoxItem(currentArrival + arrivalTime, Priority.High, serviceTime);
 
 
-                Guid g = Guid.NewGuid();
-                string guidString = Convert.ToBase64String(g.ToByteArray());
+                g = Guid.NewGuid();
+                guidString = Convert.ToBase64String(g.ToByteArray());
                 guidString = guidString.Replace("=", "");
                 guidString = guidString.Replace("+", "");
                 currentBox.Identifier = guidString;
 
                 FutureEventList.PushEvent(new EventListItem(EventType.Arrival, currentBox, currentArrival + arrivalTime));
-                totalTime = totalTime.Subtract(serviceTime);
+                _totalTime = _totalTime.Subtract(serviceTime);
                 counter++;
             }
             // Normal Priority Boxes!  |  All Arrivals!
-            while (totalTime.TotalMinutes > 0)
+            while (_totalTime.TotalMinutes > 0)
             {
-                var arriveTime = (int) _randomGen.Pick(14, 4);
-                TimeSpan serviceTime = TimeSpan.FromMinutes((int) _randomGen.Pick(9, 2));
+                var arriveTime = (int) SimpleRng.GetNormal(14, 4);
+                TimeSpan serviceTime = TimeSpan.FromMinutes((int) SimpleRng.GetNormal(9, 2));
 
                 currentArrival += TimeSpan.FromMinutes(arriveTime);
                 var currentBox = new BoxItem(currentArrival, Priority.Normal, serviceTime);
 
-                Guid g = Guid.NewGuid();
-                string guidString = Convert.ToBase64String(g.ToByteArray());
+                g = Guid.NewGuid();
+                guidString = Convert.ToBase64String(g.ToByteArray());
                 guidString = guidString.Replace("=", "");
                 guidString = guidString.Replace("+", "");
                 currentBox.Identifier = guidString;
@@ -63,7 +83,7 @@ namespace Problem4.BOX
 
                 FutureEventList.PushEvent(new EventListItem(EventType.Arrival, currentBox, currentArrival));
 
-                totalTime = totalTime.Subtract(serviceTime);
+                _totalTime = _totalTime.Subtract(serviceTime);
                 //counter = counter.Add(serviceTime);
             }
         }
@@ -71,7 +91,8 @@ namespace Problem4.BOX
 
         public void TrySolve()
         {
-            _isSolved = true;
+            GettingThingsReady();
+            _queueStates = new List<QueueState>();
 
             bool isIdle = true;
 
@@ -80,9 +101,20 @@ namespace Problem4.BOX
 
             BoxItem currentBox = null;
 
+            var lLock = new Queue<BoxItem>();
+
             while (FutureEventList.GetLen > 0)
             {
                 EventListItem currentEvent = FutureEventList.PopEvent();
+
+                if (boxQueue.Count > 0)
+                {
+                    if (lLock.Count != boxQueue.Count)
+                    {
+                        _queueStates.Add(new QueueState(currentEvent.Time, boxQueue));
+                        lLock = new Queue<BoxItem>(boxQueue);
+                    }
+                }
 
                 if (currentEvent.EventType == EventType.Arrival)
                 {
@@ -136,7 +168,7 @@ namespace Problem4.BOX
                 {
                     BoxItem solvedBox = currentEvent.Box;
                     solvedBox.DepartureTime = currentEvent.Time;
-                    _solvedData.Add(solvedBox);
+                    _boxStates.Add(solvedBox);
 
                     if (resumeQueue.Count > 0 && currentEvent.Box.Priority == Priority.High)
                     {
@@ -173,14 +205,17 @@ namespace Problem4.BOX
                     resumeQueue.Enqueue(currentEvent.Box);
                 }
             }
+            
+            _queueStates.BubbleSort();
+            _isSolved = true;
         }
 
-        public List<BoxItem> GetAnswer()
+        public SolvedData GetSolution()
         {
             if (!_isSolved)
                 throw new Exception("The Case isn't Solved!");
 
-            return _solvedData;
+            return new SolvedData(_boxStates, _queueStates);
         }
     }
 }
