@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Windows.Xps.Packaging;
@@ -65,7 +66,9 @@ namespace Problem4
                                        {
                                            counter, element.ArrivalDate.ToString("T"),
                                            element.ServiceStartDate.ToString("T"),
-                                           element.TotalServiceTime, 0.ToString(), element.Priority,
+                                           element.TotalServiceTime,
+                                           element.InQueuetime.TotalMinutes.ToString() + " Min",
+                                           element.Priority,
                                            element.DepartureTime.ToString("T")
                                        });
                     counter++;
@@ -88,8 +91,32 @@ namespace Problem4
                 foreach (QueueState item in _data.QueueStates)
                 {
                     mtable.Rows.Add(new object[] {item.Time.ToString("T"), item.InQueues.Count});
-
                 }
+
+                data.DataTables.Add(mtable);
+                
+                mtable = new DataTable("AwaitingChart");
+                mtable.Columns.Add("Box in Queue", typeof (string));
+                mtable.Columns.Add("Total Minutes", typeof (int));
+
+                mtable.Rows.Add(new object[] {"More than 1 Box", _data.AwaitingBoxMoreThan1.TotalMinutes.ToString()});
+                mtable.Rows.Add(new object[] {"More than 2 Boxes", _data.AwaitingBoxMoreThan2.TotalMinutes.ToString()});
+
+                double p1 = (float) _data.AwaitingBoxMoreThan1.TotalMinutes/totalServices.TotalMinutes;
+                double p2 = (float) _data.AwaitingBoxMoreThan2.TotalMinutes/totalServices.TotalMinutes;
+
+                string strReportSum =
+                    string.Format(
+                        "Total Simulation time : {0}\nTotal time; More than 1 Box in queue {1} - % {2}\nTotal time; More than 2 Boxes in queue {3} - % {4}.",
+                        TimeSpanInWords(totalServices), _data.AwaitingBoxMoreThan1.ToString("T"), p1,
+                        _data.AwaitingBoxMoreThan2.ToString(),
+                        p2);
+
+                strReportSum += Environment.NewLine;
+
+                data.ReportDocumentValues.Add("AwaitingChartReportSummary", strReportSum); // print date is now
+
+
                 data.DataTables.Add(mtable);
 
 
@@ -104,6 +131,33 @@ namespace Problem4
             catch (Exception exp)
             {
             }
+        }
+
+        public static string Pluralize(int n, string unit)
+        {
+            if (string.IsNullOrEmpty(unit)) return string.Empty;
+
+            n = Math.Abs(n); // -1 should be singular, too
+
+            return unit + (n == 1 ? string.Empty : "s");
+        }
+
+        public static string TimeSpanInWords(TimeSpan aTimeSpan)
+        {
+            var timeStrings = new List<string>();
+
+            var timeParts = new[] {aTimeSpan.Days, aTimeSpan.Hours, aTimeSpan.Minutes, aTimeSpan.Seconds};
+            var timeUnits = new[] {"day", "hour", "minute", "second"};
+
+            for (int i = 0; i < timeParts.Length; i++)
+            {
+                if (timeParts[i] > 0)
+                {
+                    timeStrings.Add(string.Format("{0} {1}", timeParts[i], Pluralize(timeParts[i], timeUnits[i])));
+                }
+            }
+
+            return timeStrings.Count != 0 ? string.Join(", ", timeStrings.ToArray()) : "0 seconds";
         }
     }
 }

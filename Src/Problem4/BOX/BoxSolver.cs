@@ -7,6 +7,8 @@ namespace Problem4.BOX
     public class BoxSolver
     {
         private readonly List<BoxItem> _boxStates;
+        private TimeSpan AwaitingBoxMoreThan1;
+        private TimeSpan AwaitingBoxMoreThan2;
 
         public FutureEventList FutureEventList;
         private bool _isSolved;
@@ -93,6 +95,7 @@ namespace Problem4.BOX
         {
             GettingThingsReady();
             _queueStates = new List<QueueState>();
+            var allQueue = new List<QueueState>();
 
             bool isIdle = true;
 
@@ -204,9 +207,35 @@ namespace Problem4.BOX
                 {
                     resumeQueue.Enqueue(currentEvent.Box);
                 }
+
+                allQueue.Add(new QueueState(currentEvent.Time, boxQueue));
             }
-            
+
             _queueStates.BubbleSort();
+            allQueue.BubbleSort();
+
+            var timeSpan = new TimeSpan();
+
+            for (int i = 0; i < allQueue.Count; i++)
+            {
+                if (allQueue[i].InQueues.Count >= 2)
+                {
+                    timeSpan += allQueue[i + 1].Time - allQueue[i].Time;
+                }
+            }
+            AwaitingBoxMoreThan2 = timeSpan;
+
+            timeSpan = new TimeSpan();
+
+            for (int i = 0; i < allQueue.Count; i++)
+            {
+                if (allQueue[i].InQueues.Count >= 1)
+                {
+                    timeSpan += allQueue[i + 1].Time - allQueue[i].Time;
+                }
+            }
+            AwaitingBoxMoreThan1 = timeSpan;
+
             _isSolved = true;
         }
 
@@ -215,7 +244,8 @@ namespace Problem4.BOX
             if (!_isSolved)
                 throw new Exception("The Case isn't Solved!");
 
-            return new SolvedData(_boxStates, _queueStates);
+            return new SolvedData(_boxStates, _queueStates)
+                       {AwaitingBoxMoreThan1 = AwaitingBoxMoreThan1, AwaitingBoxMoreThan2 = AwaitingBoxMoreThan2};
         }
     }
 }

@@ -198,5 +198,15 @@
             <crcv:ColumnChart TableName="QueueStateTable" TableColumns="DateTime,InQueueBoxes" Width="18cm" Height="12cm" Title="Queue State / Time" View3D="True">
             </crcv:ColumnChart>
         </Paragraph>
+
+        <Paragraph/>
+        <Paragraph FontFamily="Segoe UI" FontSize="10" >
+            <crcv:ColumnChart TableName="AwaitingChart" TableColumns="Box in Queue,Total Minutes" Width="18cm" Height="9cm" Title="BOXES in QUEUE" View3D="True">
+            </crcv:ColumnChart>
+        </Paragraph>
+        <Paragraph/>
+        <Paragraph FontSize="14" FontFamily="Segoe UI">
+            <xrd:InlineDocumentValue PropertyName="AwaitingChartReportSummary" />
+        </Paragraph>
     </Section>
 </FlowDocument>

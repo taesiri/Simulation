@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Problem4.BOX
 {
@@ -12,7 +13,8 @@ namespace Problem4.BOX
 
         public List<BoxItem> BoxItems { get; set; }
         public List<QueueState> QueueStates { get; set; }
-
+        public TimeSpan AwaitingBoxMoreThan1 { get; set; }
+        public TimeSpan AwaitingBoxMoreThan2 { get; set; }
         public void Sort()
         {
             BoxItems.BubbleSort();

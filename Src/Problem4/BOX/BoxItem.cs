@@ -17,14 +17,22 @@ namespace Problem4.BOX
         public DateTime DepartureTime { get; set; }
         public Priority Priority { get; set; }
 
-
         public DateTime ServiceInterruptTime { get; set; }
-
 
         public TimeSpan TotalServiceTime { get; set; }
         public List<TimeRange> ServiceTimeScale { get; set; }
 
-        public bool Dummy { get; set; }
+        public int OnArrivalQueueCount { get; set; }
+        public int OnDepartureQueueCount { get; set; }
+
+        public TimeSpan InQueuetime
+        {
+            get
+            {
+                TimeSpan time = DepartureTime.Subtract(ArrivalDate);
+                return time - TotalServiceTime;
+            }
+        }
 
         public string Identifier { get; set; }
 
