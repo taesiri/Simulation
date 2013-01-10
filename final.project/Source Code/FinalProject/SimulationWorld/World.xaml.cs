@@ -11,7 +11,7 @@ namespace FinalProject.SimulationWorld
     /// </summary>
     public partial class World
     {
-        private ServiceBoxElement _boxE;
+        private ServicePlatformElement _platformElem;
 
         public World()
         {
@@ -20,23 +20,23 @@ namespace FinalProject.SimulationWorld
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            //var box = new ServiceBoxElement(new Point3D(1, 2, 3));
+            var platformElement = new ServicePlatformElement();
 
-            //Mother.Children.Add(box);
+            Mother.Children.Add(platformElement);
 
-            //_boxE = box;
+            _platformElem = platformElement;
         }
 
         private void BtnMoveIt_OnClick(object sender, RoutedEventArgs e)
         {
-            //var da = new DoubleAnimation();
-            //da.From = 0;
-            //da.To = 100f;
-            //da.Duration = new Duration(TimeSpan.FromSeconds(10));
+    
+            var da = new DoubleAnimation();
+            da.From = 0;
+            da.To = 100f;
+            da.Duration = new Duration(TimeSpan.FromSeconds(10));
 
 
-            //_boxE.Tranformer.BeginAnimation(TranslateTransform3D.OffsetXProperty, da);
+            _platformElem.Tranformer.BeginAnimation(TranslateTransform3D.OffsetXProperty, da);
         }
-
     }
 }

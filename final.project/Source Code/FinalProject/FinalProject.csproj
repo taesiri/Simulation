@@ -63,6 +63,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="SimulationElements\ServiceBoxElement.cs" />
+    <Compile Include="SimulationElements\ServicePlatformElement.cs" />
     <Compile Include="SimulationElements\StaticElement.cs" />
     <Compile Include="SimulationWorld\World.xaml.cs">
       <DependentUpon>World.xaml</DependentUpon>
