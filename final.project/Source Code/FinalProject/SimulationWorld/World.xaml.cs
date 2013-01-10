@@ -11,16 +11,18 @@ namespace FinalProject.SimulationWorld
     /// </summary>
     public partial class World
     {
-        private ServicePlatformElement _platformElem;
+        private ServiceEntranceStation _platformElem;
+
+
 
         public World()
         {
             InitializeComponent();
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void BtnDeployOnClick(object sender, RoutedEventArgs e)
         {
-            var platformElement = new ServicePlatformElement();
+            var platformElement = new ServiceEntranceStation();
 
             Mother.Children.Add(platformElement);
 
@@ -29,14 +31,15 @@ namespace FinalProject.SimulationWorld
 
         private void BtnMoveIt_OnClick(object sender, RoutedEventArgs e)
         {
-    
-            var da = new DoubleAnimation();
-            da.From = 0;
-            da.To = 100f;
-            da.Duration = new Duration(TimeSpan.FromSeconds(10));
-
-
+            var da = new DoubleAnimation {From = -10, To = 10f, Duration = new Duration(TimeSpan.FromSeconds(2))};
             _platformElem.Tranformer.BeginAnimation(TranslateTransform3D.OffsetXProperty, da);
         }
+
+
+        public void CreateScene()
+        {
+
+
+        }   
     }
 }
