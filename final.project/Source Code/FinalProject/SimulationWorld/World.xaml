@@ -30,7 +30,7 @@
                                   ShowFieldOfView="{Binding IsChecked, ElementName=MenuItemShowFieldOfView}"
                                   ShowFrameRate="{Binding IsChecked, ElementName=MenuItemShowFrameRate}">
             <helixKit:SunLight />
-            <helixKit:GridLinesVisual3D Thickness="0.01" Width="8" Length="8" MinorDistance="1" MajorDistance="1" />
+            <helixKit:GridLinesVisual3D Thickness="0.01" Width="32" Length="32" MinorDistance="1" MajorDistance="1" />
           
             
         </helixKit:HelixViewport3D>

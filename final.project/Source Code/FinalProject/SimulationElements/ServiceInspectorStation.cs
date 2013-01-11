@@ -2,36 +2,41 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Media3D;
+using FinalProject.SimulationElements.Enums;
 using HelixToolkit.Wpf;
 
 namespace FinalProject.SimulationElements
 {
-    public class ServiceEntranceStation : UIElement3D
+    public class ServiceInspectorStation : UIElement3D
     {
+        public Queue<ServiceBoxElement> InspectorQueue;
         public TranslateTransform3D Tranformer;
-        public Queue<ServiceBoxElement> EntranceQueue;
-        
 
-        public ServiceEntranceStation()
+        public ServiceInspectorStation()
         {
             // Default Box
-            CreateStation(new Point3D(0, 0, 0), @"Textures\box2.jpg");
+            CreateStation(new Point3D(0, 0, 0), @"Textures\box1.jpg");
         }
 
-        public ServiceEntranceStation(string textureUri)
+        public ServiceInspectorStation(string textureUri)
         {
             CreateStation(new Point3D(0, 0, 0), textureUri);
         }
 
-        public ServiceEntranceStation(Point3D location)
+        public ServiceInspectorStation(Point3D location)
         {
-            CreateStation(location, @"Textures\box2.jpg");
+            CreateStation(location, @"Textures\box1.jpg");
         }
 
-        public ServiceEntranceStation(Point3D location, string textureUri)
+        public ServiceInspectorStation(Point3D location, string textureUri)
         {
             CreateStation(location, textureUri);
         }
+
+        public WorkerStatus Inspector1Status { get; set; }
+        public WorkerStatus Inspector2Status { get; set; }
+
+        public string ServiceProviderName { get; set; }
 
         public void CreateStation(Point3D location, string textureUri)
         {
@@ -39,12 +44,14 @@ namespace FinalProject.SimulationElements
 
             var meshBuilder = new MeshBuilder();
 
-            meshBuilder.AddBox(new Point3D(location.X, location.Y, location.Z), 18, 4,0.35);
+            meshBuilder.AddBox(new Point3D(location.X - 2, location.Y - 3, location.Z), 4, 4, 0.35); //Inspector1
+            meshBuilder.AddBox(new Point3D(location.X - 2, location.Y + 3, location.Z), 4, 4, 0.35); //Inspector2
+            meshBuilder.AddBox(new Point3D(location.X - 2, location.Y + 20, location.Z), 5, 25, 0.35); // Queue
 
             geometryModel.Geometry = meshBuilder.ToMesh();
             //geometryModel.Material = MaterialHelper.CreateImageMaterial(textureUri);
+            geometryModel.Material = Materials.Brown;
 
-            geometryModel.Material = Materials.Blue;
             Visual3DModel = geometryModel;
 
 

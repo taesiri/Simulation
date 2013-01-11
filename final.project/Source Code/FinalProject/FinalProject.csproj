@@ -62,9 +62,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="SimulationElements\FutureEventList\FutureEventList.cs" />
+    <Compile Include="SimulationElements\FutureEventList\SystemImage.cs" />
+    <Compile Include="SimulationElements\Robot.cs" />
     <Compile Include="SimulationElements\ServiceBoxElement.cs" />
     <Compile Include="SimulationElements\ServiceEntranceStation.cs" />
+    <Compile Include="SimulationElements\ServiceInspectorStation.cs" />
     <Compile Include="SimulationElements\ServicePlatformElement.cs" />
+    <Compile Include="SimulationElements\Enums\SimulationEnums.cs" />
     <Compile Include="SimulationElements\StaticElement.cs" />
     <Compile Include="SimulationWorld\World.xaml.cs">
       <DependentUpon>World.xaml</DependentUpon>
@@ -111,7 +116,16 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Textures\box1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\box2.JPG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\boxDefault.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\postBox.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

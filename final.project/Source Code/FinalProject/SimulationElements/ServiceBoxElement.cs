@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Media3D;
 using HelixToolkit.Wpf;
@@ -8,7 +9,6 @@ namespace FinalProject.SimulationElements
     public class ServiceBoxElement : UIElement3D
     {
         public TranslateTransform3D Tranformer;
-
 
         public ServiceBoxElement()
         {
@@ -37,6 +37,36 @@ namespace FinalProject.SimulationElements
             CreateBox(location, xLen, yLen, zLen, textureUri);
         }
 
+
+        public DateTime ArrivalTime { get; set; } // Entered to the System
+        public DateTime DepartureTime { get; set; } // Left the System
+
+        public DateTime MoveToStationAStartTime { get; set; } // Start Time - Moving Box to Station A
+        public DateTime StationAServiceStartTime { get; set; } // Service Start Time on Station A
+        public TimeSpan StationAServiceDuration { get; set; } // Service Duration on This Station
+
+        public DateTime MoveToStationBStartTime { get; set; } // Start Time - Moving Box to Station B
+        public DateTime StationBServiceStartTime { get; set; } // Service Start Time on Station B
+        public TimeSpan StationBServiceDuration { get; set; } // Service Duration on This Station
+
+        public DateTime MoveToStationCStartTime { get; set; } // Start Time - Moving Box to Station C
+        public DateTime StationCServiceStartTime { get; set; } // Service Start Time on Station C
+        public TimeSpan StationCServiceDuration { get; set; } // Service Duration on This Station
+
+        public DateTime MoveToInspector { get; set; } // Moved into Inspector
+        public DateTime InspectorServiceStartTime { get; set; } // Inspector Start Time
+        public DateTime InspectorQueueTime { get; set; } // Inspector Queue Time
+        public TimeSpan InspectorDuration { get; set; } //Inspector Service Duration
+
+        public ServicePlatformElement CurrentServiceStation { get; set; } // Pretty Useless!
+
+
+        public TimeSpan GetTotalServiceTime // Total Time of 'Service' (on Each Station)
+        {
+            get { return StationAServiceDuration + StationAServiceDuration + StationCServiceDuration; }
+        }
+
+
         public void CreateBox(Point3D location, double xLen, double yLen, double zLen, string textureUri)
         {
             var geometryModel = new GeometryModel3D();
@@ -59,8 +89,14 @@ namespace FinalProject.SimulationElements
             Transform = Tranformer;
         }
 
+
+        public void ShowDetailedInformation()
+        {
+        }
+
         protected override void OnMouseDown(MouseButtonEventArgs e)
         {
+            ShowDetailedInformation();
             base.OnMouseDown(e);
         }
     }

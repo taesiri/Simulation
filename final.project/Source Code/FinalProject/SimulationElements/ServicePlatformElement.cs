@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Media3D;
+using FinalProject.SimulationElements.Enums;
 using HelixToolkit.Wpf;
 
 namespace FinalProject.SimulationElements
@@ -8,7 +9,6 @@ namespace FinalProject.SimulationElements
     public class ServicePlatformElement : UIElement3D
     {
         public TranslateTransform3D Tranformer;
-
 
         public ServicePlatformElement()
         {
@@ -32,6 +32,11 @@ namespace FinalProject.SimulationElements
         {
             CreatePlatform(location, textureUri);
         }
+
+        public ServiceBoxElement InnerElement { get; set; }
+        public StationStatus Status { get; set; }
+        public int TotalServiceTime { get; set; }
+
 
         public void CreatePlatform(Point3D location, string textureUri)
         {
@@ -60,6 +65,11 @@ namespace FinalProject.SimulationElements
         protected override void OnMouseDown(MouseButtonEventArgs e)
         {
             base.OnMouseDown(e);
+        }
+
+        public void MoveInnerBoxToNextSpot()
+        {
+            // THIS PLACE is a 'Place Holder'! - Actual transformation will not done here! robot will handle all movements!
         }
     }
 }
