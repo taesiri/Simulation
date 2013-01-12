@@ -37,6 +37,24 @@ namespace FinalProject.SimulationElements
         public StationStatus Status { get; set; }
         public int TotalServiceTime { get; set; }
 
+        public bool IsEmpty
+        {
+            get
+            {
+                if (Status == StationStatus.Empty) return true;
+                return false;
+            }
+        }
+
+        public bool IsAwaiting
+        {
+            get
+            {
+                if (Status == StationStatus.BlockedOrAwaiting) return true;
+                return false;
+            }
+        }
+
 
         public void CreatePlatform(Point3D location, string textureUri)
         {

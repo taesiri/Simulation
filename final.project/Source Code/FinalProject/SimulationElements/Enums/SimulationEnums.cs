@@ -13,6 +13,7 @@
         MovingToStationC,
         ServiceStartedOnStationC,
         ServiceEndedOnStationC,
+        RobotJobFinished,
         Departure,
         EndOfSimulation
     }

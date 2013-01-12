@@ -13,8 +13,18 @@ namespace FinalProject.SimulationWorld
     /// </summary>
     public partial class World
     {
+        private readonly FutureEventList _fel = new FutureEventList();
+
+
+        private ServiceEntranceStation _entranceStation;
+        private ServiceInspectorStation _exitStationA;
+
+        private ServicePlatformElement _platformA;
+        private ServicePlatformElement _platformB;
+        private ServicePlatformElement _platformC;
         private ServiceEntranceStation _platformElem;
 
+        private Robot _robot;
 
         public World()
         {
@@ -40,24 +50,23 @@ namespace FinalProject.SimulationWorld
 
         public void CreateScene()
         {
-            var entranceStation = new ServiceEntranceStation(new Point3D(-22, 0, 0.5f));
+            _entranceStation = new ServiceEntranceStation(new Point3D(-22, 0, 0.5f));
 
-            var platformA = new ServicePlatformElement(new Point3D(-7.5, 0, -4.5));
-            var platformB = new ServicePlatformElement(new Point3D(0, 0, -4.5));
-            var platformC = new ServicePlatformElement(new Point3D(7.5, 0, -4.5));
+            _platformA = new ServicePlatformElement(new Point3D(-7.5, 0, -4.5));
+            _platformB = new ServicePlatformElement(new Point3D(0, 0, -4.5));
+            _platformC = new ServicePlatformElement(new Point3D(7.5, 0, -4.5));
 
-            var exitStationA = new ServiceInspectorStation(new Point3D(18, 0, 0.5f));
-            //var exitStationB = new ServiceInspectorStation(new Point3D(18, -3, 0.5f));
+            _exitStationA = new ServiceInspectorStation(new Point3D(18, 0, 0.5f));
 
+            _robot = new Robot();
 
             var sampleBox = new ServiceBoxElement(new Point3D(0, 0, 2.1), 2.5, 2.5, 2.5, @"Textures\postBox.jpg");
 
-            Mother.Children.Add(platformA);
-            Mother.Children.Add(platformB);
-            Mother.Children.Add(platformC);
-            Mother.Children.Add(entranceStation);
-            Mother.Children.Add(exitStationA);
-            // Mother.Children.Add(exitStationB);
+            Mother.Children.Add(_platformA);
+            Mother.Children.Add(_platformB);
+            Mother.Children.Add(_platformC);
+            Mother.Children.Add(_entranceStation);
+            Mother.Children.Add(_exitStationA);
 
             Mother.Children.Add(sampleBox);
         }
@@ -66,36 +75,99 @@ namespace FinalProject.SimulationWorld
         public void Simulator()
         {
             bool running = true;
-            var fel = new FutureEventList();
             while (running)
             {
-                Events imminentEvent = fel.GetImminentEvent();
+                Events imminentEvent = _fel.GetImminentEvent();
                 switch (imminentEvent)
                 {
                     case Events.Arrival:
+                        if (_robot.IsIdle)
+                        {
+                            _robot.MoveIt();
+                            _robot.Status = RobotStatus.Busy;
+                        }
+                        else
+                        {
+                            // Q++;
+                        }
                         break;
                     case Events.Departure:
+                        // Place Holder
                         break;
 
                     case Events.ServiceEndedOnStationA:
+                        if (_platformB.IsEmpty && _robot.IsIdle)
+                        {
+                        }
+                        else
+                        {
+                            _platformA.Status = StationStatus.BlockedOrAwaiting;
+                        }
+
                         break;
                     case Events.ServiceEndedOnStationB:
+                        if (_platformC.IsEmpty && _robot.IsIdle)
+                        {
+                        }
+                        else
+                        {
+                            _platformB.Status = StationStatus.BlockedOrAwaiting;
+                        }
+
                         break;
                     case Events.ServiceEndedOnStationC:
+                        if (_robot.IsIdle)
+                        {
+                        }
+                        else
+                        {
+                            _platformC.Status = StationStatus.BlockedOrAwaiting;
+                        }
+
                         break;
 
+
+                    case Events.RobotJobFinished:
+
+                        if (_platformC.IsAwaiting)
+                        {
+                        }
+                        else if (_platformB.IsAwaiting)
+                        {
+                        }
+                        else if (_platformA.IsAwaiting)
+                        {
+                        }
+                        else if (_entranceStation.GetQueueLen > 0 )
+                        {
+                        }
+                        else
+                        {
+                            _robot.Status = RobotStatus.Idle;
+                        }
+
+
+                        break;
+
+
                     case Events.ServiceStartedOnStationA:
+                        // Place Holder!
                         break;
                     case Events.ServiceStartedOnStationB:
+                        // Place Holder!
                         break;
                     case Events.ServiceStartedOnStationC:
+                        // Place Holder!
                         break;
 
                     case Events.MovingToStationA:
+                        // Place Holder!
                         break;
                     case Events.MovingToStationB:
+                        // Place Holder!
                         break;
                     case Events.MovingToStationC:
+                        // Place Holder!
                         break;
 
                     case Events.EndOfSimulation:
@@ -113,6 +185,14 @@ namespace FinalProject.SimulationWorld
 
 
             //END OF Simulation
+        }
+
+        public void OnArrival()
+        {
+        }
+
+        public void OnDeparture()
+        {
         }
     }
 }
