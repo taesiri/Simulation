@@ -16,9 +16,24 @@ namespace FinalProject.SimulationElements
             }
         }
 
-        public void MoveIt()
+        public void MoveIt(ServiceBoxElement box, ServicePlatformElement platformElement)
         {
             // Place Holder
+        }
+
+        public void MoveIt(ServiceBoxElement box, ServiceEntranceStation entranceStation)
+        {
+            // Handle the Rendering!
+        }
+
+        public void MoveIt(ServiceBoxElement box, ServiceInspectorStation inspectorStation)
+        {
+            // 
+        }
+
+        internal void MoveIt(ServiceEntranceStation entranceStation)
+        {
+            // Move the box - Queue
         }
     }
 }

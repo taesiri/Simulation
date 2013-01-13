@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Media.Animation;
+﻿using System.Windows;
 using System.Windows.Media.Media3D;
 using FinalProject.SimulationElements;
 using FinalProject.SimulationElements.Enums;
@@ -13,22 +11,26 @@ namespace FinalProject.SimulationWorld
     /// </summary>
     public partial class World
     {
+        public static World Instance;
         private readonly FutureEventList _fel = new FutureEventList();
 
 
         private ServiceEntranceStation _entranceStation;
-        private ServiceInspectorStation _exitStationA;
+        private ServiceInspectorStation _inspectorStation;
 
         private ServicePlatformElement _platformA;
         private ServicePlatformElement _platformB;
         private ServicePlatformElement _platformC;
-        private ServiceEntranceStation _platformElem;
+
+
+        //private ServiceEntranceStation _platformElem;
 
         private Robot _robot;
 
         public World()
         {
             InitializeComponent();
+            Instance = this;
             CreateScene();
         }
 
@@ -38,13 +40,13 @@ namespace FinalProject.SimulationWorld
 
             Mother.Children.Add(platformElement);
 
-            _platformElem = platformElement;
+            //_platformElem = platformElement;
         }
 
         private void BtnMoveIt_OnClick(object sender, RoutedEventArgs e)
         {
-            var da = new DoubleAnimation {From = -10, To = 10f, Duration = new Duration(TimeSpan.FromSeconds(2))};
-            _platformElem.Tranformer.BeginAnimation(TranslateTransform3D.OffsetXProperty, da);
+            //var da = new DoubleAnimation {From = -10, To = 10f, Duration = new Duration(TimeSpan.FromSeconds(2))};
+            //_platformElem.Tranformer.BeginAnimation(TranslateTransform3D.OffsetXProperty, da);
         }
 
 
@@ -56,7 +58,7 @@ namespace FinalProject.SimulationWorld
             _platformB = new ServicePlatformElement(new Point3D(0, 0, -4.5));
             _platformC = new ServicePlatformElement(new Point3D(7.5, 0, -4.5));
 
-            _exitStationA = new ServiceInspectorStation(new Point3D(18, 0, 0.5f));
+            _inspectorStation = new ServiceInspectorStation(new Point3D(18, 0, 0.5f));
 
             _robot = new Robot();
 
@@ -66,7 +68,7 @@ namespace FinalProject.SimulationWorld
             Mother.Children.Add(_platformB);
             Mother.Children.Add(_platformC);
             Mother.Children.Add(_entranceStation);
-            Mother.Children.Add(_exitStationA);
+            Mother.Children.Add(_inspectorStation);
 
             Mother.Children.Add(sampleBox);
         }
@@ -74,82 +76,32 @@ namespace FinalProject.SimulationWorld
 
         public void Simulator()
         {
+            int counter = 0;
             bool running = true;
             while (running)
             {
-                Events imminentEvent = _fel.GetImminentEvent();
-                switch (imminentEvent)
+                counter++;
+                FutureEvent imminentEvent = _fel.GetImminentEvent();
+                switch (imminentEvent.Event)
                 {
                     case Events.Arrival:
-                        if (_robot.IsIdle)
-                        {
-                            _robot.MoveIt();
-                            _robot.Status = RobotStatus.Busy;
-                        }
-                        else
-                        {
-                            // Q++;
-                        }
+                        OnArrival();
                         break;
                     case Events.Departure:
-                        // Place Holder
+                        OnDeparture();
                         break;
-
                     case Events.ServiceEndedOnStationA:
-                        if (_platformB.IsEmpty && _robot.IsIdle)
-                        {
-                        }
-                        else
-                        {
-                            _platformA.Status = StationStatus.BlockedOrAwaiting;
-                        }
-
+                        OnServiceEndedAtStationA();
                         break;
                     case Events.ServiceEndedOnStationB:
-                        if (_platformC.IsEmpty && _robot.IsIdle)
-                        {
-                        }
-                        else
-                        {
-                            _platformB.Status = StationStatus.BlockedOrAwaiting;
-                        }
-
+                        OnServiceEndedAtStationB();
                         break;
                     case Events.ServiceEndedOnStationC:
-                        if (_robot.IsIdle)
-                        {
-                        }
-                        else
-                        {
-                            _platformC.Status = StationStatus.BlockedOrAwaiting;
-                        }
-
+                        OnServiceEndedAtStationC();
                         break;
-
-
                     case Events.RobotJobFinished:
-
-                        if (_platformC.IsAwaiting)
-                        {
-                        }
-                        else if (_platformB.IsAwaiting)
-                        {
-                        }
-                        else if (_platformA.IsAwaiting)
-                        {
-                        }
-                        else if (_entranceStation.GetQueueLen > 0 )
-                        {
-                        }
-                        else
-                        {
-                            _robot.Status = RobotStatus.Idle;
-                        }
-
-
+                        OnRobotJobFinished();
                         break;
-
-
                     case Events.ServiceStartedOnStationA:
                         // Place Holder!
                         break;
@@ -159,7 +111,6 @@ namespace FinalProject.SimulationWorld
                     case Events.ServiceStartedOnStationC:
                         // Place Holder!
                         break;
-
                     case Events.MovingToStationA:
                         // Place Holder!
                         break;
@@ -169,11 +120,9 @@ namespace FinalProject.SimulationWorld
                     case Events.MovingToStationC:
                         // Place Holder!
                         break;
-
                     case Events.EndOfSimulation:
                         running = false;
                         break;
-
                     case Events.BeginingOfSimulation:
                         // Place Holder!
                         break;
@@ -181,14 +130,91 @@ namespace FinalProject.SimulationWorld
                     default:
                         break;
                 }
+                if (counter > 10)
+                {
+                    running = false;
+                }
             }
-
-
             //END OF Simulation
         }
 
         public void OnArrival()
         {
+            var newBox = new ServiceBoxElement();
+
+            if (_robot.IsIdle)
+            {
+                _robot.MoveIt(newBox, _entranceStation);
+                _robot.Status = RobotStatus.Busy;
+            }
+            else
+            {
+                _entranceStation.EntranceQueue.Enqueue(newBox);
+                // Q++; //
+            }
+
+            // Scheduling the next Entrance!
+            _fel.GenerateNextEntrance();
+        }
+
+        public void OnServiceEndedAtStationA()
+        {
+            if (_platformB.IsEmpty && _robot.IsIdle)
+            {
+                _robot.MoveIt(_platformA.ServiceBox, _platformB);
+            }
+            else
+            {
+                _platformA.Status = StationStatus.BlockedOrAwaiting;
+            }
+        }
+
+        public void OnServiceEndedAtStationB()
+        {
+            if (_platformC.IsEmpty && _robot.IsIdle)
+            {
+                _robot.MoveIt(_platformB.ServiceBox, _platformC);
+            }
+            else
+            {
+                _platformB.Status = StationStatus.BlockedOrAwaiting;
+            }
+        }
+
+        public void OnServiceEndedAtStationC()
+        {
+            if (_robot.IsIdle)
+            {
+                _robot.MoveIt(_platformB.ServiceBox, _inspectorStation);
+            }
+            else
+            {
+                _platformC.Status = StationStatus.BlockedOrAwaiting;
+            }
+        }
+
+        public void OnRobotJobFinished()
+        {
+            if (_platformC.IsAwaiting)
+            {
+                _robot.MoveIt(_platformB.ServiceBox, _inspectorStation);
+            }
+            else if (_platformB.IsAwaiting)
+            {
+                _robot.MoveIt(_platformB.ServiceBox, _platformC);
+            }
+            else if (_platformA.IsAwaiting)
+            {
+                _robot.MoveIt(_platformA.ServiceBox, _platformB);
+            }
+            else if (_entranceStation.GetQueueLen > 0)
+            {
+                _robot.MoveIt(_entranceStation);
+            }
+            else
+            {
+                _robot.Status = RobotStatus.Idle;
+            }
         }
 
         public void OnDeparture()

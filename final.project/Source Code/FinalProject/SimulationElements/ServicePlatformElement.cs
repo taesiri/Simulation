@@ -55,6 +55,8 @@ namespace FinalProject.SimulationElements
             }
         }
 
+        public ServiceBoxElement ServiceBox { get; set; }
+
 
         public void CreatePlatform(Point3D location, string textureUri)
         {
