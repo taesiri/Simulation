@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Media3D;
 using FinalProject.SimulationElements;
 using FinalProject.SimulationElements.Enums;
@@ -13,6 +16,7 @@ namespace FinalProject.SimulationWorld
     {
         public static World Instance;
         private readonly FutureEventList _fel = new FutureEventList();
+        private int _arrivalCounter;
 
 
         private ServiceEntranceStation _entranceStation;
@@ -36,33 +40,34 @@ namespace FinalProject.SimulationWorld
 
         private void BtnDeployOnClick(object sender, RoutedEventArgs e)
         {
-            var platformElement = new ServiceEntranceStation();
+            Simulator();
 
-            Mother.Children.Add(platformElement);
-
-            //_platformElem = platformElement;
         }
 
         private void BtnMoveIt_OnClick(object sender, RoutedEventArgs e)
         {
-            //var da = new DoubleAnimation {From = -10, To = 10f, Duration = new Duration(TimeSpan.FromSeconds(2))};
-            //_platformElem.Tranformer.BeginAnimation(TranslateTransform3D.OffsetXProperty, da);
+        
         }
-
-
+        
         public void CreateScene()
         {
-            _entranceStation = new ServiceEntranceStation(new Point3D(-22, 0, 0.5f));
+            _entranceStation = new ServiceEntranceStation(new Point3D(-22, 0, 0.5f)) {Name = "Entrance"};
 
-            _platformA = new ServicePlatformElement(new Point3D(-7.5, 0, -4.5));
-            _platformB = new ServicePlatformElement(new Point3D(0, 0, -4.5));
-            _platformC = new ServicePlatformElement(new Point3D(7.5, 0, -4.5));
+            _platformA = new ServicePlatformElement(new Point3D(-7.5, 0, -4.5)) {Name = "A"};
+            _platformA.PlatformStatusText.Position = new Point3D(-8, 2, -1);
+            _platformA.PlatformStatusText.Text = _platformA.Status.ToString();
+            _platformB = new ServicePlatformElement(new Point3D(0, 0, -4.5)) {Name = "B"};
+            _platformB.PlatformStatusText.Position = new Point3D(0, 2, -1);
+            _platformB.PlatformStatusText.Text = _platformB.Status.ToString();
+            _platformC = new ServicePlatformElement(new Point3D(7.5, 0, -4.5)) {Name = "C"};
+            _platformC.PlatformStatusText.Position = new Point3D(8, 2, -1);
+            _platformC.PlatformStatusText.Text = _platformC.Status.ToString();
 
             _inspectorStation = new ServiceInspectorStation(new Point3D(18, 0, 0.5f));
 
             _robot = new Robot();
 
-            var sampleBox = new ServiceBoxElement(new Point3D(0, 0, 2.1), 2.5, 2.5, 2.5, @"Textures\postBox.jpg");
+            //var sampleBox = new ServiceBoxElement(new Point3D(16, 10, 2.1), 2.5, 2.5, 2.5, @"Textures\postBox.jpg");
 
             Mother.Children.Add(_platformA);
             Mother.Children.Add(_platformB);
@@ -70,48 +75,56 @@ namespace FinalProject.SimulationWorld
             Mother.Children.Add(_entranceStation);
             Mother.Children.Add(_inspectorStation);
 
-            Mother.Children.Add(sampleBox);
+            //Mother.Children.Add(sampleBox);
         }
 
 
         public void Simulator()
         {
+            var allEvents = new List<FutureEvent>();
+            var allImage = new List<SystemImage>();
+            _fel.EventList.Add(new FutureEvent(Events.Arrival, DateTime.Now));
+
             int counter = 0;
             bool running = true;
             while (running)
             {
                 counter++;
                 FutureEvent imminentEvent = _fel.GetImminentEvent();
+                allEvents.Add(imminentEvent);
+
+                Title = string.Format("Event : {0} Time : {1}", imminentEvent.Event.ToString(), imminentEvent.Time.ToString("h:mm:ss"));
+
                 switch (imminentEvent.Event)
                 {
                     case Events.Arrival:
-                        OnArrival();
+                        OnArrival(imminentEvent.Time);
                         break;
                     case Events.Departure:
                         OnDeparture();
                         break;
                     case Events.ServiceEndedOnStationA:
-                        OnServiceEndedAtStationA();
+                        OnServiceEndedAtStationA(imminentEvent.Time);
                         break;
                     case Events.ServiceEndedOnStationB:
-                        OnServiceEndedAtStationB();
+                        OnServiceEndedAtStationB(imminentEvent.Time);
                         break;
                     case Events.ServiceEndedOnStationC:
-                        OnServiceEndedAtStationC();
+                        OnServiceEndedAtStationC(imminentEvent.Time);
                         break;
                     case Events.RobotJobFinished:
-                        OnRobotJobFinished();
+                        OnRobotJobFinished(imminentEvent.Time);
                         break;
-                    case Events.ServiceStartedOnStationA:
-                        // Place Holder!
+                    case Events.ServiceStartedOnStationA: // BOX arrived to the Station A!
+                        OnServiceStartedAtStationA(imminentEvent.Time);
                         break;
-                    case Events.ServiceStartedOnStationB:
-                        // Place Holder!
+                    case Events.ServiceStartedOnStationB: // BOX arrived to the Station B!
+                        OnServiceStartedAtStationB(imminentEvent.Time);
                         break;
-                    case Events.ServiceStartedOnStationC:
-                        // Place Holder!
+                    case Events.ServiceStartedOnStationC: // BOX arrived to the Station C!
+                        OnServiceStartedAtStationC(imminentEvent.Time);
                         break;
-                    case Events.MovingToStationA:
+                    case Events.MovingToStationA: //Start Moving to The Station A (From EntranceStation)
                         // Place Holder!
                         break;
                     case Events.MovingToStationB:
@@ -130,86 +143,197 @@ namespace FinalProject.SimulationWorld
                     default:
                         break;
                 }
-                if (counter > 10)
+                if (counter >= 1)
                 {
                     running = false;
+                    counter = 0;
                 }
+
+                //Create System Image
+                var image = new SystemImage
+                    {
+                        EntranceQueueLen = _entranceStation.GetQueueLen,
+                        StationAStatus = _platformA.Status,
+                        StationBStatus = _platformB.Status,
+                        StationCStatus = _platformC.Status,
+                        Inspector1Status = WorkerStatus.Idle,
+                        Inspector2Status = WorkerStatus.Idle,
+                        CurrentEvent = imminentEvent,
+                        RobotStatus = _robot.Status,
+                        RobotLastActivity = _robot.LastActivity
+                    };
+
+                allImage.Add(image);
             }
             //END OF Simulation
+
+
+            //var sysViewer = new SystemViewer();
+            //sysViewer.SetData(allImage);
+            //sysViewer.Show();
         }
 
-        public void OnArrival()
+        public void OnArrival(DateTime currentTime)
         {
-            var newBox = new ServiceBoxElement();
+            _arrivalCounter++;
 
-            if (_robot.IsIdle)
+
+            if (_robot.IsIdle && _platformA.IsEmpty)
             {
-                _robot.MoveIt(newBox, _entranceStation);
+                _entranceStation.AddNewBox(new ServiceBoxElement(2.5, 2.5, 2.5)
+                    {
+                        Name = "Box-" + _arrivalCounter.ToString(),
+                        ArrivalTime = currentTime
+                    });
+
+                // Scheduling the Arrival Time to the StationA
+                _fel.AddNewEvent(new FutureEvent(Events.ServiceStartedOnStationA,
+                                                 currentTime.Add(TimeSpan.FromSeconds(2))));
+
+                _fel.AddNewEvent(new FutureEvent(Events.RobotJobFinished, currentTime.Add(TimeSpan.FromSeconds(2))));
+
+                _robot.MoveIt(_entranceStation, _platformA, TimeSpan.FromSeconds(2));
                 _robot.Status = RobotStatus.Busy;
             }
             else
             {
-                _entranceStation.EntranceQueue.Enqueue(newBox);
+                _entranceStation.AddNewBox(new ServiceBoxElement(2.5, 2.5, 2.5)
+                    {
+                        Name = "Box-" + _arrivalCounter.ToString(),
+                        ArrivalTime = currentTime
+                    });
+
                 // Q++; //
             }
 
             // Scheduling the next Entrance!
-            _fel.GenerateNextEntrance();
+            _fel.GenerateNextEntrance(currentTime);
         }
 
-        public void OnServiceEndedAtStationA()
+        private void OnServiceStartedAtStationA(DateTime currentTime)
+        {
+            // Scheduling the Service End Time
+            _fel.AddNewEvent(new FutureEvent(Events.ServiceEndedOnStationA, currentTime.Add(TimeSpan.FromSeconds(2))));
+
+            _platformA.Status = StationStatus.OnService;
+        }
+
+        private void OnServiceStartedAtStationB(DateTime currentTime)
+        {
+            // Scheduling the Service End Time
+            _fel.AddNewEvent(new FutureEvent(Events.ServiceEndedOnStationB, currentTime.Add(TimeSpan.FromSeconds(2))));
+
+            _platformB.Status = StationStatus.OnService;
+        }
+
+        private void OnServiceStartedAtStationC(DateTime currentTime)
+        {
+            // Scheduling the Service End Time
+            _fel.AddNewEvent(new FutureEvent(Events.ServiceEndedOnStationC, currentTime.Add(TimeSpan.FromSeconds(2))));
+
+            _platformC.Status = StationStatus.OnService;
+        }
+
+
+        public void OnServiceEndedAtStationA(DateTime currentTime)
         {
             if (_platformB.IsEmpty && _robot.IsIdle)
             {
-                _robot.MoveIt(_platformA.ServiceBox, _platformB);
+                _robot.MoveIt(_platformA, _platformB, TimeSpan.FromSeconds(3));
+
+
+                _fel.AddNewEvent(new FutureEvent(Events.ServiceStartedOnStationB,
+                                                 currentTime.Add(TimeSpan.FromSeconds(3))));
+                _fel.AddNewEvent(new FutureEvent(Events.RobotJobFinished, currentTime.Add(TimeSpan.FromSeconds(3))));
+                _robot.Status = RobotStatus.Busy;
+                _platformA.Status = StationStatus.Empty;
             }
             else
             {
-                _platformA.Status = StationStatus.BlockedOrAwaiting;
+                if (!_platformB.IsEmpty && !_robot.IsIdle)
+                    _platformA.Status = StationStatus.BlockedAndWaitingforRobot;
+                else if (!_robot.IsIdle)
+                    _platformA.Status = StationStatus.WaitingforRobot;
+                else if (!_platformB.IsEmpty)
+                    _platformA.Status = StationStatus.Blocked;
             }
         }
 
-        public void OnServiceEndedAtStationB()
+        public void OnServiceEndedAtStationB(DateTime currentTime)
         {
             if (_platformC.IsEmpty && _robot.IsIdle)
             {
-                _robot.MoveIt(_platformB.ServiceBox, _platformC);
+                _robot.MoveIt(_platformB, _platformC, TimeSpan.FromSeconds(3));
+
+                _fel.AddNewEvent(new FutureEvent(Events.ServiceStartedOnStationC,
+                                                 currentTime.Add(TimeSpan.FromSeconds(3))));
+                _fel.AddNewEvent(new FutureEvent(Events.RobotJobFinished, currentTime.Add(TimeSpan.FromSeconds(3))));
+                _robot.Status = RobotStatus.Busy;
+                _platformB.Status = StationStatus.Empty;
             }
             else
             {
-                _platformB.Status = StationStatus.BlockedOrAwaiting;
+                if (!_platformC.IsEmpty && !_robot.IsIdle)
+                    _platformB.Status = StationStatus.BlockedAndWaitingforRobot;
+                else if (!_robot.IsIdle)
+                    _platformB.Status = StationStatus.WaitingforRobot;
+                else if (!_platformC.IsEmpty)
+                    _platformB.Status = StationStatus.Blocked;
             }
         }
 
-        public void OnServiceEndedAtStationC()
+        public void OnServiceEndedAtStationC(DateTime currentTime)
         {
             if (_robot.IsIdle)
             {
-                _robot.MoveIt(_platformB.ServiceBox, _inspectorStation);
+                _robot.MoveIt(_platformC, _inspectorStation, TimeSpan.FromSeconds(3));
+                _fel.AddNewEvent(new FutureEvent(Events.BoxMovedToInspector, currentTime.Add(TimeSpan.FromSeconds(3))));
+                _robot.Status = RobotStatus.Busy;
+                _platformC.Status = StationStatus.Empty;
             }
             else
             {
-                _platformC.Status = StationStatus.BlockedOrAwaiting;
+                if (!_robot.IsIdle)
+                    _platformC.Status = StationStatus.WaitingforRobot;
             }
         }
 
-        public void OnRobotJobFinished()
+
+        public void OnRobotJobFinished(DateTime currentTime)
         {
-            if (_platformC.IsAwaiting)
+            if (_platformC.IsBlockedOrAwaiting)
             {
-                _robot.MoveIt(_platformB.ServiceBox, _inspectorStation);
+                _robot.MoveIt(_platformC, _inspectorStation, TimeSpan.FromSeconds(3));
+
+                _fel.AddNewEvent(new FutureEvent(Events.BoxMovedToInspector, currentTime.Add(TimeSpan.FromSeconds(3))));
+                _fel.AddNewEvent(new FutureEvent(Events.RobotJobFinished, currentTime.Add(TimeSpan.FromSeconds(3))));
+
+                _platformC.Status = StationStatus.Empty;
             }
-            else if (_platformB.IsAwaiting)
+            else if (_platformB.IsBlockedOrAwaiting && _platformC.IsEmpty)
             {
-                _robot.MoveIt(_platformB.ServiceBox, _platformC);
+                _robot.MoveIt(_platformB, _platformC, TimeSpan.FromSeconds(3));
+
+                _fel.AddNewEvent(new FutureEvent(Events.ServiceStartedOnStationC,currentTime.Add(TimeSpan.FromSeconds(3))));
+                _fel.AddNewEvent(new FutureEvent(Events.RobotJobFinished, currentTime.Add(TimeSpan.FromSeconds(3))));
+
+                _platformB.Status = StationStatus.Empty;
             }
-            else if (_platformA.IsAwaiting)
+            else if (_platformA.IsBlockedOrAwaiting && _platformB.IsEmpty)
             {
-                _robot.MoveIt(_platformA.ServiceBox, _platformB);
+                _robot.MoveIt(_platformA, _platformB, TimeSpan.FromSeconds(3));
+
+                _fel.AddNewEvent(new FutureEvent(Events.ServiceStartedOnStationB, currentTime.Add(TimeSpan.FromSeconds(3))));
+                _fel.AddNewEvent(new FutureEvent(Events.RobotJobFinished, currentTime.Add(TimeSpan.FromSeconds(3))));
+                
+                _platformA.Status = StationStatus.Empty;
             }
             else if (_entranceStation.GetQueueLen > 0)
             {
-                _robot.MoveIt(_entranceStation);
+                _robot.MoveIt(_entranceStation, _platformA, TimeSpan.FromSeconds(3));
+
+                _fel.AddNewEvent(new FutureEvent(Events.ServiceStartedOnStationA, currentTime.Add(TimeSpan.FromSeconds(2))));
+                _fel.AddNewEvent(new FutureEvent(Events.RobotJobFinished, currentTime.Add(TimeSpan.FromSeconds(2))));
             }
             else
             {

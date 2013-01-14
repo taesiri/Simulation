@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Media3D;
+using FinalProject.SimulationWorld;
 using HelixToolkit.Wpf;
 
 namespace FinalProject.SimulationElements
@@ -38,6 +39,8 @@ namespace FinalProject.SimulationElements
             get { return EntranceQueue.Count; }
         }
 
+        public string Name { get; set; }
+
         public void CreateStation(Point3D location, string textureUri)
         {
             var geometryModel = new GeometryModel3D();
@@ -53,14 +56,40 @@ namespace FinalProject.SimulationElements
             Visual3DModel = geometryModel;
 
 
-            SetTransformer();
+            LateInitializer();
         }
 
-        private void SetTransformer()
+        private void LateInitializer()
         {
+            EntranceQueue = new Queue<ServiceBoxElement>();
+
             Tranformer = new TranslateTransform3D();
             Transform = Tranformer;
+
+            Name = "NewEntrancePlatfrom";
         }
+
+
+        public void AddNewBox(ServiceBoxElement box)
+        {
+            // TODO: Calculate the Position and Render the BOX! 
+            
+            int n = EntranceQueue.Count;
+            box.Transform = new TranslateTransform3D(-15 - (n*5), 0, 2.1f);
+            box.Transformer = new TranslateTransform3D(-15 - (n*5), 0, 2.1f);
+
+            World.Instance.Mother.Children.Add(box);
+            
+            EntranceQueue.Enqueue(box);
+
+           
+        }
+
+        public ServiceBoxElement Dequeue()
+        {
+            return EntranceQueue.Dequeue();
+        }
+
 
         protected override void OnMouseDown(MouseButtonEventArgs e)
         {

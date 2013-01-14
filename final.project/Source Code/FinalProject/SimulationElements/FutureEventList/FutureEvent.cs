@@ -26,5 +26,10 @@ namespace FinalProject.SimulationElements.FutureEventList
 
             return Time.CompareTo(otherObject.Time);
         }
+
+        public override string ToString()
+        {
+            return string.Format("{0},{1}", Event.ToString(), Time.ToString("h:mm:ss"));
+        }
     }
 }

@@ -63,9 +63,15 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ListExtension.cs" />
+    <Compile Include="SimulationElements\Dialog\BoxDetails.xaml.cs">
+      <DependentUpon>BoxDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SimulationElements\FutureEventList\FutureEvent.cs" />
     <Compile Include="SimulationElements\FutureEventList\FutureEventList.cs" />
     <Compile Include="SimulationElements\FutureEventList\SystemImage.cs" />
+    <Compile Include="SimulationElements\FutureEventList\SystemViewer.xaml.cs">
+      <DependentUpon>SystemViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SimulationElements\Robot.cs" />
     <Compile Include="SimulationElements\ServiceBoxElement.cs" />
     <Compile Include="SimulationElements\ServiceEntranceStation.cs" />
@@ -88,6 +94,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SimulationElements\Dialog\BoxDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SimulationElements\FutureEventList\SystemViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SimulationWorld\World.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

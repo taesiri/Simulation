@@ -55,13 +55,18 @@ namespace FinalProject.SimulationElements
             Visual3DModel = geometryModel;
 
 
-            SetTransformer();
+            Initializer();
         }
 
-        private void SetTransformer()
+        private void Initializer()
         {
             Tranformer = new TranslateTransform3D();
             Transform = Tranformer;
+
+            InspectorQueue = new Queue<ServiceBoxElement>();
+
+            Inspector1Status = WorkerStatus.Idle;
+            Inspector2Status = WorkerStatus.Idle;
         }
 
         protected override void OnMouseDown(MouseButtonEventArgs e)

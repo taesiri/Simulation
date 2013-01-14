@@ -24,5 +24,9 @@ namespace FinalProject.SimulationElements.FutureEventList
         public StationStatus StationAStatus { get; set; }
         public StationStatus StationBStatus { get; set; }
         public StationStatus StationCStatus { get; set; }
+
+        public FutureEvent CurrentEvent { get; set; }
+        public RobotStatus RobotStatus { get; set; }
+        public string RobotLastActivity { get; set; }
     }
 }

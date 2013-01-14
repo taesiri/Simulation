@@ -14,6 +14,9 @@
         ServiceStartedOnStationC,
         ServiceEndedOnStationC,
         RobotJobFinished,
+        BoxMovedToInspector,
+        BoxLoadingStarted,
+        BoxLoadingEnded,
         Departure,
         EndOfSimulation
     }
@@ -28,7 +31,9 @@
     {
         Empty = 0,
         OnService = 1,
-        BlockedOrAwaiting = 2
+        Blocked = 2,
+        WaitingforRobot = 3,
+        BlockedAndWaitingforRobot = 4
     }
 
     public enum WorkerStatus

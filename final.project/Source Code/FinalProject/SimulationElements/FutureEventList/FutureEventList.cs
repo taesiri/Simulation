@@ -6,7 +6,11 @@ namespace FinalProject.SimulationElements.FutureEventList
 {
     public class FutureEventList
     {
-        private DateTime _lastEnter = DateTime.Now;
+        public FutureEventList()
+        {
+            EventList = new List<FutureEvent>();
+        }
+
         public List<FutureEvent> EventList { get; set; }
 
         public FutureEvent GetImminentEvent()
@@ -14,21 +18,26 @@ namespace FinalProject.SimulationElements.FutureEventList
             if (EventList.Count != 0)
             {
                 EventList.BubbleSort();
-                return EventList[0];
+
+                FutureEvent eL = EventList[0];
+                EventList.RemoveAt(0);
+                return eL;
             }
 
 
             return new FutureEvent(Events.EndOfSimulation, new DateTime());
         }
 
-        public void GenerateNextEntrance()
+        public void GenerateNextEntrance(DateTime currentTime)
         {
-            TimeSpan timeBetweenTwoEnter = TimeSpan.FromSeconds(1); // Const
+            TimeSpan timeBetweenTwoEnter = TimeSpan.FromSeconds(5); // Const
+            EventList.Add(new FutureEvent(Events.Arrival, currentTime.Add(timeBetweenTwoEnter)));
+        }
 
-            _lastEnter = _lastEnter.Add(timeBetweenTwoEnter);
-            EventList.Add(new FutureEvent(Events.Arrival, _lastEnter));
-
-            throw new NotImplementedException();
+        public void AddNewEvent(FutureEvent newEvent)
+        {
+            EventList.Add(newEvent);
+            EventList.BubbleSort();
         }
     }
 }

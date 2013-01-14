@@ -2,13 +2,14 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Media3D;
+using FinalProject.SimulationElements.Dialog;
 using HelixToolkit.Wpf;
 
 namespace FinalProject.SimulationElements
 {
     public class ServiceBoxElement : UIElement3D
     {
-        public TranslateTransform3D Tranformer;
+        public TranslateTransform3D Transformer;
 
         public ServiceBoxElement()
         {
@@ -38,6 +39,7 @@ namespace FinalProject.SimulationElements
         }
 
 
+        public string Name { get; set; }
         public DateTime ArrivalTime { get; set; } // Entered to the System
         public DateTime DepartureTime { get; set; } // Left the System
 
@@ -80,23 +82,28 @@ namespace FinalProject.SimulationElements
             Visual3DModel = geometryModel;
 
 
-            SetTransformer();
+            Initializer();
         }
 
-        private void SetTransformer()
+        private void Initializer()
         {
-            Tranformer = new TranslateTransform3D();
-            Transform = Tranformer;
+            Transformer = new TranslateTransform3D();
+            Transform = Transformer;
         }
 
 
         public void ShowDetailedInformation()
         {
+            var detailer = new BoxDetails(Name, ArrivalTime);
+            detailer.Show();
         }
 
         protected override void OnMouseDown(MouseButtonEventArgs e)
         {
-            ShowDetailedInformation();
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                ShowDetailedInformation();
+            }
             base.OnMouseDown(e);
         }
     }

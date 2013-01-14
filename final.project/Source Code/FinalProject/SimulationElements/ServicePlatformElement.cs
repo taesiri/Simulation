@@ -2,13 +2,16 @@
 using System.Windows.Input;
 using System.Windows.Media.Media3D;
 using FinalProject.SimulationElements.Enums;
+using FinalProject.SimulationWorld;
 using HelixToolkit.Wpf;
 
 namespace FinalProject.SimulationElements
 {
     public class ServicePlatformElement : UIElement3D
     {
+        public BillboardTextVisual3D PlatformStatusText;
         public TranslateTransform3D Tranformer;
+        private StationStatus _status = StationStatus.Empty;
 
         public ServicePlatformElement()
         {
@@ -33,8 +36,20 @@ namespace FinalProject.SimulationElements
             CreatePlatform(location, textureUri);
         }
 
+        public string Name { get; set; }
         public ServiceBoxElement InnerElement { get; set; }
-        public StationStatus Status { get; set; }
+
+        public StationStatus Status
+        {
+            get { return _status; }
+            set
+            {
+                _status = value;
+                PlatformStatusText.Text = value.ToString();
+            }
+        }
+
+
         public int TotalServiceTime { get; set; }
 
         public bool IsEmpty
@@ -46,11 +61,16 @@ namespace FinalProject.SimulationElements
             }
         }
 
-        public bool IsAwaiting
+        public bool IsBlockedOrAwaiting
         {
             get
             {
-                if (Status == StationStatus.BlockedOrAwaiting) return true;
+                if (Status == StationStatus.WaitingforRobot)
+                    return true;
+                if (Status == StationStatus.Blocked)
+                    return true;
+                if (Status == StationStatus.BlockedAndWaitingforRobot)
+                    return true;
                 return false;
             }
         }
@@ -60,6 +80,8 @@ namespace FinalProject.SimulationElements
 
         public void CreatePlatform(Point3D location, string textureUri)
         {
+            Initializer();
+
             var geometryModel = new GeometryModel3D();
 
             var meshBuilder = new MeshBuilder();
@@ -71,13 +93,22 @@ namespace FinalProject.SimulationElements
             geometryModel.Material = MaterialHelper.CreateImageMaterial(textureUri);
 
             Visual3DModel = geometryModel;
-
-
-            SetTransformer();
         }
 
-        private void SetTransformer()
+        public void Initializer()
         {
+            PlatformStatusText = new BillboardTextVisual3D();
+            PlatformStatusText.DepthOffset = 0.01;
+            PlatformStatusText.Position = new Point3D(0, 0, 0);
+            PlatformStatusText.Text = "Created!";
+            World.Instance.Mother.Children.Add(PlatformStatusText);
+
+
+            Status = StationStatus.Empty;
+            InnerElement = null;
+            TotalServiceTime = 0;
+            Name = "NewPlatfrom";
+
             Tranformer = new TranslateTransform3D();
             Transform = Tranformer;
         }
@@ -90,6 +121,11 @@ namespace FinalProject.SimulationElements
         public void MoveInnerBoxToNextSpot()
         {
             // THIS PLACE is a 'Place Holder'! - Actual transformation will not done here! robot will handle all movements!
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }
