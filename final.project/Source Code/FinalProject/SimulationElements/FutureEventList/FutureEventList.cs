@@ -30,7 +30,7 @@ namespace FinalProject.SimulationElements.FutureEventList
 
         public void GenerateNextEntrance(DateTime currentTime)
         {
-            TimeSpan timeBetweenTwoEnter = TimeSpan.FromSeconds(5); // Const
+            TimeSpan timeBetweenTwoEnter = TimeSpan.FromSeconds(6); // Const
             EventList.Add(new FutureEvent(Events.Arrival, currentTime.Add(timeBetweenTwoEnter)));
         }
 

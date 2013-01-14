@@ -31,7 +31,7 @@ namespace FinalProject.SimulationElements
             ServiceBoxElement box = source.ServiceBox;
             source.ServiceBox = null;
             source.Status = StationStatus.Empty;
-            
+
             destination.ServiceBox = box;
 
             double src = box.Transformer.OffsetX;
@@ -56,7 +56,7 @@ namespace FinalProject.SimulationElements
             var da = new DoubleAnimation {From = src, To = desten, Duration = new Duration(duration)};
 
 
-            var newTransformer = new TranslateTransform3D(box.Transformer.OffsetX, box.Transformer.OffsetY,2.1);
+            var newTransformer = new TranslateTransform3D(box.Transformer.OffsetX, box.Transformer.OffsetY, 2.1);
             box.Transform = newTransformer;
             box.Transformer = newTransformer;
             newTransformer.BeginAnimation(TranslateTransform3D.OffsetXProperty, da);
@@ -82,7 +82,7 @@ namespace FinalProject.SimulationElements
         public void MoveIt(ServicePlatformElement source, ServiceInspectorStation destination, TimeSpan duration)
         {
             LastActivity = "C->Ins"; // One Possibility!}
-            
+
             ServiceBoxElement box = source.ServiceBox;
             source.ServiceBox = null;
             source.Status = StationStatus.Empty;
@@ -107,6 +107,11 @@ namespace FinalProject.SimulationElements
             newTransformer.BeginAnimation(TranslateTransform3D.OffsetYProperty, daY);
 
             destination.InspectorQueue.Enqueue(box);
+        }
+
+        public void LoadBox(ServicePlatformElement platform)
+        {
+            // Place Holder
         }
     }
 }

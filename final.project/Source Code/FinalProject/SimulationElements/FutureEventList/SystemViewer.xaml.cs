@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Windows;
 
 namespace FinalProject.SimulationElements.FutureEventList
 {
     /// <summary>
     ///     Interaction logic for SystemViewer.xaml
     /// </summary>
-    public partial class SystemViewer : Window
+    public partial class SystemViewer
     {
         public ObservableCollection<SystemImage> Data = new ObservableCollection<SystemImage>();
 

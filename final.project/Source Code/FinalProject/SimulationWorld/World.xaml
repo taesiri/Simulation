@@ -32,15 +32,13 @@
             <helixKit:SunLight />
             <helixKit:GridLinesVisual3D Thickness="0.01" Width="32" Length="32" MinorDistance="1" MajorDistance="1" />
 
-            <!--<helixKit:BillboardTextVisual3D Position="-8,4,-1" Text="Platform A Status" FontFamily="Calibri" DepthOffset="0.01" />
-            <helixKit:BillboardTextVisual3D Position="0,4,-1" Text="Platform B Status" FontFamily="Calibri" DepthOffset="0.01" />
-            <helixKit:BillboardTextVisual3D Position="8,4,-1" Text="Platform C Status" FontFamily="Calibri" DepthOffset="0.01" />-->
-            
         </helixKit:HelixViewport3D>
-        <Button Content="Deploy!" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="BtnDeployOnClick" />
-        <Button Content="MoveIt" HorizontalAlignment="Left" Margin="105,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="BtnMoveIt_OnClick" />
+        <Button Content="Deploy!" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top"
+                Width="75" Click="BtnDeployOnClick" />
+        <Button Content="MoveIt" HorizontalAlignment="Left" Margin="105,10,0,0" Grid.Row="1" VerticalAlignment="Top"
+                Width="75" Click="BtnMoveIt_OnClick" />
 
+        <Label x:Name="LblRobotStatus"  Content="Robot Status :" Margin="10,35,652,0" Grid.Row="1" Height="35" VerticalAlignment="Top" />
 
-        
     </Grid>
 </Window>

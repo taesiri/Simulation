@@ -66,6 +66,9 @@
     <Compile Include="SimulationElements\Dialog\BoxDetails.xaml.cs">
       <DependentUpon>BoxDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SimulationElements\Dialog\FutureEventListViewer.xaml.cs">
+      <DependentUpon>FutureEventListViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SimulationElements\FutureEventList\FutureEvent.cs" />
     <Compile Include="SimulationElements\FutureEventList\FutureEventList.cs" />
     <Compile Include="SimulationElements\FutureEventList\SystemImage.cs" />
@@ -95,6 +98,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SimulationElements\Dialog\BoxDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SimulationElements\Dialog\FutureEventListViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

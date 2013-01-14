@@ -56,8 +56,11 @@ namespace FinalProject.SimulationElements
         {
             get
             {
-                if (Status == StationStatus.Empty) return true;
-                return false;
+                if (ServiceBox != null)
+                    return false;
+                return true;
+                //if (Status == StationStatus.Empty) return true;
+                //return false;
             }
         }
 

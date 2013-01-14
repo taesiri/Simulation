@@ -4,19 +4,22 @@
     {
         BeginingOfSimulation,
         Arrival,
-        MovingToStationA,
+        LoadingBoxStartedOnStationA,
+        LoadingBoxEndedOnStationA,
+        LoadingBoxStartedOnStationB,
+        LoadingBoxEndedOnStationB,
+        LoadingBoxStartedOnStationC,
+        LoadingBoxEndedOnStationC,
         ServiceStartedOnStationA,
         ServiceEndedOnStationA,
-        MovingToStationB,
         ServiceStartedOnStationB,
         ServiceEndedOnStationB,
-        MovingToStationC,
         ServiceStartedOnStationC,
         ServiceEndedOnStationC,
         RobotJobFinished,
-        BoxMovedToInspector,
-        BoxLoadingStarted,
-        BoxLoadingEnded,
+        BoxArrivedToInspector,
+        InspectorWorker1JobDone,
+        InspectorWorker2JobDone,
         Departure,
         EndOfSimulation
     }
@@ -31,9 +34,12 @@
     {
         Empty = 0,
         OnService = 1,
-        Blocked = 2,
-        WaitingforRobot = 3,
-        BlockedAndWaitingforRobot = 4
+        ServiceDone = 2,
+        Loading = 3,
+        Loaded = 4,
+        Blocked = 5,
+        WaitingforRobot = 6,
+        BlockedAndWaitingforRobot = 7,
     }
 
     public enum WorkerStatus

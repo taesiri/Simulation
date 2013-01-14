@@ -15,6 +15,8 @@ namespace FinalProject
             var vw = new World();
 
             vw.Show();
+
+            Hide();
         }
     }
 }
