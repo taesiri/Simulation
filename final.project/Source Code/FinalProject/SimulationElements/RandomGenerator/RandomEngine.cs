@@ -71,9 +71,14 @@ namespace FinalProject.SimulationElements.RandomGenerator
 
             if (norm >= 1)
                 norm = 0.999;
-            
+
             norm = 1 - norm;
-            double number = Math.Log(norm, Math.E) * (-1*mean);
+            double number = Math.Log(norm, Math.E)*(-1*mean);
+
+            number = Math.Round(number);
+            if (number == 0)
+                number = 1;
+
             return number;
         }
     }

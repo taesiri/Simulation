@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FinalProject.SimulationElements.Enums;
+using FinalProject.SimulationElements.RandomGenerator;
 
 namespace FinalProject.SimulationElements.FutureEventList
 {
@@ -30,7 +31,13 @@ namespace FinalProject.SimulationElements.FutureEventList
 
         public void GenerateNextEntrance(DateTime currentTime)
         {
-            TimeSpan timeBetweenTwoEnter = TimeSpan.FromSeconds(6); // Const
+            TimeSpan timeBetweenTwoEnter = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(12))); // Const
+
+            while (timeBetweenTwoEnter.TotalMinutes > 30)
+            {
+                timeBetweenTwoEnter = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(12)));
+            }
+
             EventList.Add(new FutureEvent(Events.Arrival, currentTime.Add(timeBetweenTwoEnter)));
         }
 

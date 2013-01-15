@@ -73,21 +73,42 @@ namespace FinalProject.SimulationElements
         public void AddNewBox(ServiceBoxElement box)
         {
             // TODO: Calculate the Position and Render the BOX! 
-            
+
             int n = EntranceQueue.Count;
             box.Transform = new TranslateTransform3D(-15 - (n*5), 0, 2.1f);
             box.Transformer = new TranslateTransform3D(-15 - (n*5), 0, 2.1f);
 
             World.Instance.Mother.Children.Add(box);
-            
+
             EntranceQueue.Enqueue(box);
 
-           
+            //reArrenging Box!
+            int counter = 1;
+            foreach (ServiceBoxElement boxe in EntranceQueue)
+            {
+                var tr = new TranslateTransform3D(-15 - (counter * 5), 0, 2.1f);
+                boxe.Transform = tr;
+                boxe.Transformer = tr;
+                counter++;
+            }
+
         }
 
         public ServiceBoxElement Dequeue()
         {
-            return EntranceQueue.Dequeue();
+            ServiceBoxElement item = EntranceQueue.Dequeue();
+
+            //reArrenging Box!
+            int counter = 1;
+            foreach (ServiceBoxElement box in EntranceQueue)
+            {
+                var tr = new TranslateTransform3D(-15 - (counter*5), 0, 2.1f);
+                box.Transform = tr;
+                box.Transformer = tr;
+                counter++;
+            }
+
+            return item;
         }
 
 
