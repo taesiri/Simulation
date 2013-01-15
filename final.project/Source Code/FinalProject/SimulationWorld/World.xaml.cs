@@ -8,6 +8,7 @@ using FinalProject.SimulationElements;
 using FinalProject.SimulationElements.Dialog;
 using FinalProject.SimulationElements.Enums;
 using FinalProject.SimulationElements.FutureEventList;
+using FinalProject.SimulationElements.RandomGenerator;
 
 namespace FinalProject.SimulationWorld
 {
@@ -29,13 +30,13 @@ namespace FinalProject.SimulationWorld
         private ServicePlatformElement _platformB;
         private ServicePlatformElement _platformC;
 
-
         //private ServiceEntranceStation _platformElem;
 
         private Robot _robot;
 
         public World()
         {
+            GlobalTimeScale = 1;
             InitializeComponent();
             Instance = this;
             CreateScene();
@@ -47,7 +48,19 @@ namespace FinalProject.SimulationWorld
             _fel.EventList.Add(new FutureEvent(Events.Arrival, _startTime));
             _felViewer.SetData(_fel.EventList);
             _felViewer.Show();
+
+
+            var rnd = new Random();
+            int numb = rnd.Next(1, 200);
+
+
+            for (int i = 0; i < numb; i++)
+            {
+                RandomEngine.GetNormal();
+            }
         }
+
+        public double GlobalTimeScale { get; set; }
 
         private void BtnDeployOnClick(object sender, RoutedEventArgs e)
         {
@@ -421,7 +434,8 @@ namespace FinalProject.SimulationWorld
         {
             _simulationClock = 0;
 
-            _timer = new DispatcherTimer {Interval = TimeSpan.FromSeconds(1)};
+            GlobalTimeScale = 1/60f;
+            _timer = new DispatcherTimer {Interval = TimeSpan.FromSeconds(1*GlobalTimeScale)};
 
             _timer.Tick += timer_Tick;
             _timer.Start();

@@ -75,6 +75,7 @@
     <Compile Include="SimulationElements\FutureEventList\SystemViewer.xaml.cs">
       <DependentUpon>SystemViewer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SimulationElements\RandomGenerator\RandomEngine.cs" />
     <Compile Include="SimulationElements\Robot.cs" />
     <Compile Include="SimulationElements\ServiceBoxElement.cs" />
     <Compile Include="SimulationElements\ServiceEntranceStation.cs" />

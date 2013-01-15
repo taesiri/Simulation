@@ -33,7 +33,7 @@ namespace FinalProject.SimulationElements
 
         public void MoveIt(ServicePlatformElement source, ServicePlatformElement destination, TimeSpan duration)
         {
-            duration = TimeSpan.FromMilliseconds(duration.Milliseconds*GlobalTimeScale);
+            duration = TimeSpan.FromSeconds(duration.Seconds * GlobalTimeScale);
             // Place Holder
             LastActivity = source + "->" + destination;
 
@@ -73,7 +73,7 @@ namespace FinalProject.SimulationElements
 
         public void MoveIt(ServiceEntranceStation source, ServicePlatformElement destination, TimeSpan duration)
         {
-            duration = TimeSpan.FromMilliseconds(duration.Milliseconds*GlobalTimeScale);
+            duration = TimeSpan.FromSeconds(duration.Seconds*GlobalTimeScale);
             // Move one Box from Entrance Station and put it on StationA
             LastActivity = "EQ->A"; // One Possibility!
             ServiceBoxElement box = source.Dequeue();
@@ -91,7 +91,7 @@ namespace FinalProject.SimulationElements
 
         public void MoveIt(ServicePlatformElement source, ServiceInspectorStation destination, TimeSpan duration)
         {
-            duration = TimeSpan.FromMilliseconds(duration.Milliseconds*GlobalTimeScale);
+            duration = TimeSpan.FromSeconds(duration.Seconds * GlobalTimeScale);
             LastActivity = "C->Ins"; // One Possibility!}
 
             ServiceBoxElement box = source.ServiceBox;
