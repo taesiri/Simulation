@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Media.Media3D;
+using System.Windows.Threading;
 using FinalProject.SimulationElements;
 using FinalProject.SimulationElements.Dialog;
 using FinalProject.SimulationElements.Enums;
@@ -41,7 +42,9 @@ namespace FinalProject.SimulationWorld
             _felViewer = new FutureEventListViewer();
 
 
-            _fel.EventList.Add(new FutureEvent(Events.Arrival, DateTime.Now));
+            _startTime = DateTime.Now;
+
+            _fel.EventList.Add(new FutureEvent(Events.Arrival, _startTime));
             _felViewer.SetData(_fel.EventList);
             _felViewer.Show();
         }
@@ -53,6 +56,7 @@ namespace FinalProject.SimulationWorld
 
         private void BtnMoveIt_OnClick(object sender, RoutedEventArgs e)
         {
+            StartSimulation();
         }
 
         public void CreateScene()
@@ -73,15 +77,11 @@ namespace FinalProject.SimulationWorld
 
             _robot = new Robot();
 
-            //var sampleBox = new ServiceBoxElement(new Point3D(16, 10, 2.1), 2.5, 2.5, 2.5, @"Textures\postBox.jpg");
-
             Mother.Children.Add(_platformA);
             Mother.Children.Add(_platformB);
             Mother.Children.Add(_platformC);
             Mother.Children.Add(_entranceStation);
             Mother.Children.Add(_inspectorStation);
-
-            //Mother.Children.Add(sampleBox);
         }
 
 
@@ -188,10 +188,6 @@ namespace FinalProject.SimulationWorld
                 allImage.Add(image);
             }
             //END OF Simulation
-
-            //var sysViewer = new SystemViewer();
-            //sysViewer.SetData(allImage);
-            //sysViewer.Show();
         }
 
 
@@ -413,5 +409,103 @@ namespace FinalProject.SimulationWorld
         public void OnDeparture()
         {
         }
+
+        #region AutomaticSimulator
+
+        private readonly DateTime _startTime;
+        private int _simulationClock;
+
+        private DispatcherTimer _timer;
+
+        private void StartSimulation()
+        {
+            _simulationClock = 0;
+
+            _timer = new DispatcherTimer {Interval = TimeSpan.FromSeconds(1)};
+
+            _timer.Tick += timer_Tick;
+            _timer.Start();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            DateTime currentTime = _startTime;
+            currentTime = currentTime.Add(TimeSpan.FromSeconds(_simulationClock));
+
+            List<FutureEvent> events = _fel.GetEventsAt(currentTime);
+            if (events.Count > 0)
+            {
+                do
+                {
+                    _felViewer.SetData(events);
+                    foreach (FutureEvent futureEvent in events)
+                    {
+                        switch (futureEvent.Event)
+                        {
+                            case Events.Arrival:
+                                OnArrival(futureEvent.Time);
+                                break;
+                            case Events.Departure:
+                                OnDeparture();
+                                break;
+                            case Events.ServiceEndedOnStationA:
+                                OnServiceEndedAtStationA(futureEvent.Time);
+                                break;
+                            case Events.ServiceEndedOnStationB:
+                                OnServiceEndedAtStationB(futureEvent.Time);
+                                break;
+                            case Events.ServiceEndedOnStationC:
+                                OnServiceEndedAtStationC(futureEvent.Time);
+                                break;
+                            case Events.RobotJobFinished:
+                                OnRobotJobFinished(futureEvent.Time);
+                                break;
+                            case Events.ServiceStartedOnStationA: // BOX arrived to the Station A!
+                                OnServiceStartedAtStationA(futureEvent.Time);
+                                break;
+                            case Events.ServiceStartedOnStationB: // BOX arrived to the Station B!
+                                OnServiceStartedAtStationB(futureEvent.Time);
+                                break;
+                            case Events.ServiceStartedOnStationC: // BOX arrived to the Station C!
+                                OnServiceStartedAtStationC(futureEvent.Time);
+                                break;
+                            case Events.LoadingBoxStartedOnStationA:
+                                OnLoadingBoxStartedOnStationA(futureEvent.Time);
+                                break;
+                            case Events.LoadingBoxEndedOnStationA:
+                                OnLoadingBoxEndedOnStationA(futureEvent.Time);
+                                break;
+                            case Events.LoadingBoxStartedOnStationB:
+                                OnLoadingBoxStartedOnStationB(futureEvent.Time);
+                                break;
+                            case Events.LoadingBoxEndedOnStationB:
+                                OnLoadingBoxEndedOnStationB(futureEvent.Time);
+                                break;
+                            case Events.LoadingBoxStartedOnStationC:
+                                OnLoadingBoxStartedOnStationC(futureEvent.Time);
+                                break;
+                            case Events.LoadingBoxEndedOnStationC:
+                                OnLoadingBoxEndedOnStationC(futureEvent.Time);
+                                break;
+                            case Events.BoxArrivedToInspector:
+                                OnBoxArrivedToInspector(futureEvent.Time);
+                                break;
+                            case Events.EndOfSimulation:
+                                _timer.Stop();
+                                break;
+                            case Events.BeginingOfSimulation:
+                                break;
+                        }
+                    }
+
+
+                    events = new List<FutureEvent>(_fel.GetEventsAt(currentTime));
+                } while (events.Count != 0);
+            }
+            LblRobotStatus.Content = _robot.Status;
+            _simulationClock++;
+        }
+
+        #endregion
     }
 }

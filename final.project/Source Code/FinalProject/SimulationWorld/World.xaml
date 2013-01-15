@@ -33,12 +33,12 @@
             <helixKit:GridLinesVisual3D Thickness="0.01" Width="32" Length="32" MinorDistance="1" MajorDistance="1" />
 
         </helixKit:HelixViewport3D>
-        <Button Content="Deploy!" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top"
-                Width="75" Click="BtnDeployOnClick" />
-        <Button Content="MoveIt" HorizontalAlignment="Left" Margin="105,10,0,0" Grid.Row="1" VerticalAlignment="Top"
+        <Button Content="Move Simulation Clock" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top"
+                Width="138" Click="BtnDeployOnClick" />
+        <Button Content="Start Timer" HorizontalAlignment="Left" Margin="166,10,0,0" Grid.Row="1" VerticalAlignment="Top"
                 Width="75" Click="BtnMoveIt_OnClick" />
 
-        <Label x:Name="LblRobotStatus"  Content="Robot Status :" Margin="10,35,652,0" Grid.Row="1" Height="35" VerticalAlignment="Top" />
+        <Label x:Name="LblRobotStatus"  Content="Robot Status :" Margin="10,35,0,0" Grid.Row="1" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="231" />
 
     </Grid>
 </Window>

@@ -39,5 +39,28 @@ namespace FinalProject.SimulationElements.FutureEventList
             EventList.Add(newEvent);
             EventList.BubbleSort();
         }
+
+        public List<FutureEvent> GetEventsAt(DateTime dateTime)
+        {
+            var returnList = new List<FutureEvent>();
+
+            foreach (FutureEvent futureEvent in EventList)
+            {
+                if (futureEvent.Time == dateTime)
+                {
+                    returnList.Add(futureEvent);
+                }
+            }
+
+            if (returnList.Count != 0)
+            {
+                foreach (FutureEvent futureEvent in returnList)
+                {
+                    EventList.Remove(futureEvent);
+                }
+            }
+
+            return returnList;
+        }
     }
 }

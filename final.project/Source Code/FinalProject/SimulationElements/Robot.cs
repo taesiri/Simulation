@@ -9,8 +9,16 @@ namespace FinalProject.SimulationElements
     public class Robot
     {
         public string LastActivity = "None";
-        public RobotStatus Status { get; set; }
 
+
+        public Robot()
+        {
+            GlobalTimeScale = 1;
+            Status = RobotStatus.Idle;
+        }
+
+        public double GlobalTimeScale { get; set; }
+        public RobotStatus Status { get; set; }
 
         public bool IsIdle
         {
@@ -25,6 +33,7 @@ namespace FinalProject.SimulationElements
 
         public void MoveIt(ServicePlatformElement source, ServicePlatformElement destination, TimeSpan duration)
         {
+            duration = TimeSpan.FromMilliseconds(duration.Milliseconds*GlobalTimeScale);
             // Place Holder
             LastActivity = source + "->" + destination;
 
@@ -64,6 +73,7 @@ namespace FinalProject.SimulationElements
 
         public void MoveIt(ServiceEntranceStation source, ServicePlatformElement destination, TimeSpan duration)
         {
+            duration = TimeSpan.FromMilliseconds(duration.Milliseconds*GlobalTimeScale);
             // Move one Box from Entrance Station and put it on StationA
             LastActivity = "EQ->A"; // One Possibility!
             ServiceBoxElement box = source.Dequeue();
@@ -81,6 +91,7 @@ namespace FinalProject.SimulationElements
 
         public void MoveIt(ServicePlatformElement source, ServiceInspectorStation destination, TimeSpan duration)
         {
+            duration = TimeSpan.FromMilliseconds(duration.Milliseconds*GlobalTimeScale);
             LastActivity = "C->Ins"; // One Possibility!}
 
             ServiceBoxElement box = source.ServiceBox;
