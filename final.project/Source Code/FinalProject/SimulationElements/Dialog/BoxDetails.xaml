@@ -1,31 +1,48 @@
 ﻿<Window x:Class="FinalProject.SimulationElements.Dialog.BoxDetails"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="BoxDetails" Height="446" Width="424" WindowStyle="ThreeDBorderWindow" ResizeMode="NoResize">
+        Title="BoxDetails" Height="470" Width="424" WindowStyle="ThreeDBorderWindow" ResizeMode="NoResize">
     <Grid>
-        <Label Content="Box Name" HorizontalAlignment="Left" Margin="57,19,0,0" VerticalAlignment="Top"/>
-        <Button Content="Close" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="CloseBtnClicked"/>
-        <Label Content="Arrival Date" HorizontalAlignment="Left" Margin="49,64,0,0" VerticalAlignment="Top"/>
-        <Label Content="Departure Date" HorizontalAlignment="Left" Margin="30,95,0,0" VerticalAlignment="Top"/>
-        <Label Content="Service Start (A)" HorizontalAlignment="Left" Margin="27,126,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Txt_SSA" Height="26" Margin="0,126,10,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" HorizontalAlignment="Right" Width="268" IsReadOnly="True" HorizontalContentAlignment="Center"/>
-        <TextBox x:Name="Txt_BoxName" Height="26" Margin="0,23,10,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" HorizontalAlignment="Right" Width="268" IsReadOnly="True" HorizontalContentAlignment="Center"/>
-        <TextBox x:Name="Txt_DepartureDate" Height="26" Margin="0,95,10,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" HorizontalAlignment="Right" Width="268" IsReadOnly="True" HorizontalContentAlignment="Center"/>
-        <TextBox x:Name="Txt_ArrivalDate" Height="26" Margin="0,64,10,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" HorizontalAlignment="Right" Width="268" IsReadOnly="True" HorizontalContentAlignment="Center"/>
-        <Label Content="Service Start (B)" HorizontalAlignment="Left" Margin="27,157,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Txt_SSB" Height="26" Margin="0,157,10,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" HorizontalAlignment="Right" Width="268" IsReadOnly="True" HorizontalContentAlignment="Center"/>
-        <Label Content="Service Start (C)" HorizontalAlignment="Left" Margin="27,188,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Txt_SSC" Height="26" Margin="0,188,10,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" HorizontalAlignment="Right" Width="268" IsReadOnly="True" HorizontalContentAlignment="Center"/>
-        <Label Content="Service End (A)" HorizontalAlignment="Left" Margin="33,222,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Txt_SEA" Height="26" Margin="0,222,10,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" HorizontalAlignment="Right" Width="268" IsReadOnly="True" HorizontalContentAlignment="Center"/>
-        <Label Content="Service End (B)" HorizontalAlignment="Left" Margin="33,253,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Txt_SEB" Height="26" Margin="0,253,10,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" HorizontalAlignment="Right" Width="268" IsReadOnly="True" HorizontalContentAlignment="Center"/>
-        <Label Content="Service End (C)" HorizontalAlignment="Left" Margin="33,284,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Txt_SEC" Height="26" Margin="0,284,10,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" HorizontalAlignment="Right" Width="268" IsReadOnly="True" HorizontalContentAlignment="Center"/>
-        <Label Content="Total Service Time" HorizontalAlignment="Left" Margin="16,315,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Txt_TotalServiceTime" Height="26" Margin="0,315,10,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" HorizontalAlignment="Right" Width="268" IsReadOnly="True" HorizontalContentAlignment="Center"/>
-        <Label Content="Total Wasted Time" HorizontalAlignment="Left" Margin="13,346,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Txt_WastedTime" Height="26" Margin="0,346,10,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" HorizontalAlignment="Right" Width="268" IsReadOnly="True" HorizontalContentAlignment="Center"/>
+        <Label Content="Box Name" HorizontalAlignment="Left" Margin="57,19,0,0" VerticalAlignment="Top" />
+        <Button Content="Close" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75"
+                Click="CloseBtnClicked" />
+        <Label Content="Arrival Date" HorizontalAlignment="Left" Margin="49,64,0,0" VerticalAlignment="Top" />
+        <Label Content="Departure Date" HorizontalAlignment="Left" Margin="30,95,0,0" VerticalAlignment="Top" />
+        <Label Content="Service Start (A)" HorizontalAlignment="Left" Margin="27,126,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="TxtSsa" Height="26" Margin="0,126,10,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top"
+                 HorizontalAlignment="Right" Width="268" IsReadOnly="True" HorizontalContentAlignment="Center" />
+        <TextBox x:Name="TxtBoxName" Height="26" Margin="0,23,10,0" TextWrapping="Wrap" Text="..."
+                 VerticalAlignment="Top" HorizontalAlignment="Right" Width="268" IsReadOnly="True"
+                 HorizontalContentAlignment="Center" />
+        <TextBox x:Name="TxtDepartureDate" Height="26" Margin="0,95,10,0" TextWrapping="Wrap" Text="..."
+                 VerticalAlignment="Top" HorizontalAlignment="Right" Width="268" IsReadOnly="True"
+                 HorizontalContentAlignment="Center" />
+        <TextBox x:Name="TxtArrivalDate" Height="26" Margin="0,64,10,0" TextWrapping="Wrap" Text="..."
+                 VerticalAlignment="Top" HorizontalAlignment="Right" Width="268" IsReadOnly="True"
+                 HorizontalContentAlignment="Center" />
+        <Label Content="Service Start (B)" HorizontalAlignment="Left" Margin="27,157,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="TxtSsb" Height="26" Margin="0,157,10,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top"
+                 HorizontalAlignment="Right" Width="268" IsReadOnly="True" HorizontalContentAlignment="Center" />
+        <Label Content="Service Start (C)" HorizontalAlignment="Left" Margin="27,188,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="TxtSsc" Height="26" Margin="0,188,10,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top"
+                 HorizontalAlignment="Right" Width="268" IsReadOnly="True" HorizontalContentAlignment="Center" />
+        <Label Content="Service End (A)" HorizontalAlignment="Left" Margin="33,222,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="TxtSea" Height="26" Margin="0,222,10,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top"
+                 HorizontalAlignment="Right" Width="268" IsReadOnly="True" HorizontalContentAlignment="Center" />
+        <Label Content="Service End (B)" HorizontalAlignment="Left" Margin="33,253,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="TxtSeb" Height="26" Margin="0,253,10,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top"
+                 HorizontalAlignment="Right" Width="268" IsReadOnly="True" HorizontalContentAlignment="Center" />
+        <Label Content="Service End (C)" HorizontalAlignment="Left" Margin="33,284,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="TxtSec" Height="26" Margin="0,284,10,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top"
+                 HorizontalAlignment="Right" Width="268" IsReadOnly="True" HorizontalContentAlignment="Center" />
+        <Label Content="Total Service Time" HorizontalAlignment="Left" Margin="16,315,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="TxtTotalServiceTime" Height="26" Margin="0,315,10,0" TextWrapping="Wrap" Text="..."
+                 VerticalAlignment="Top" HorizontalAlignment="Right" Width="268" IsReadOnly="True"
+                 HorizontalContentAlignment="Center" />
+        <Label Content="Total Wasted Time" HorizontalAlignment="Left" Margin="13,346,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="TxtWastedTime" Height="26" Margin="0,346,10,0" TextWrapping="Wrap" Text="..."
+                 VerticalAlignment="Top" HorizontalAlignment="Right" Width="268" IsReadOnly="True"
+                 HorizontalContentAlignment="Center" />
 
     </Grid>
 </Window>

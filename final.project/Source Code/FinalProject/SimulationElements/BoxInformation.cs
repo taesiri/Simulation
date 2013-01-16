@@ -4,6 +4,8 @@ namespace FinalProject.SimulationElements
 {
     public class BoxInformation
     {
+
+   
         public string Name { get; set; }
         public DateTime ArrivalTime { get; set; } // Entered to the System
         public DateTime DepartureTime { get; set; } // Left the System
@@ -29,5 +31,24 @@ namespace FinalProject.SimulationElements
         public DateTime InspectorServiceDoneTime { get; set; } // Inspector Start Time
         public TimeSpan InspectorQueueTime { get; set; } // Inspector Queue Time
         public TimeSpan InspectorDuration { get; set; } //Inspector Service Duration
+
+
+        public TimeSpan GetServiceDurationA
+        {
+            get
+            {
+                return StationAServiceEndTime - StationAServiceStartTime;
+            }
+        }
+
+        public TimeSpan GetServiceDurationB
+        {
+            get { return StationBServiceEndTime - StationBServiceStartTime; }
+        }
+
+        public TimeSpan GetServiceDurationC
+        {
+            get { return StationCServiceEndTime - StationCServiceStartTime; }
+        }
     }
 }

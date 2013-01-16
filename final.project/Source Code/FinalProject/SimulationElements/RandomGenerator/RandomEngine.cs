@@ -61,7 +61,12 @@ namespace FinalProject.SimulationElements.RandomGenerator
                 string msg = string.Format("Shape must be positive. Received {0}.", standardDeviation);
                 throw new ArgumentOutOfRangeException(msg);
             }
-            return mean + standardDeviation*GetNormal();
+
+            double val = mean + standardDeviation*GetNormal();
+            if (val < 0)
+                val = Math.Abs(val);
+
+            return val;
         }
 
 

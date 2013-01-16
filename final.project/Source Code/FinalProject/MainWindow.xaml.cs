@@ -29,5 +29,10 @@ namespace FinalProject
 
             vw.Show();
         }
+
+        private void BtnExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

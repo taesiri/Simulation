@@ -25,10 +25,12 @@ namespace FinalProject.SimulationWorld
 
         private ServiceEntranceStation _entranceStation;
         private ServiceInspectorStation _inspectorStation;
+        private readonly List<ServiceBoxElement> _jobDoneList;
 
         private ServicePlatformElement _platformA;
         private ServicePlatformElement _platformB;
         private ServicePlatformElement _platformC;
+
 
         private Robot _robot;
 
@@ -54,6 +56,7 @@ namespace FinalProject.SimulationWorld
             {
                 RandomEngine.GetNormal();
             }
+            _jobDoneList = new List<ServiceBoxElement>();
         }
 
         public double GlobalTimeScale { get; set; }
@@ -403,7 +406,7 @@ namespace FinalProject.SimulationWorld
             _fel.AddNewEvent(new FutureEvent(Events.RobotJobFinished, currentTime));
 
             //When the Job going to finish? 
-            TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(2 + RandomEngine.GetNormal())));
+            TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60 * (RandomEngine.GetNormal(2, 1))));
             _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker1JobDone, currentTime.Add(workTime)));
 
             box.BoxDetails.InspectorServiceStartTime = currentTime;
@@ -418,7 +421,7 @@ namespace FinalProject.SimulationWorld
 
             //When the Job going to finish? 
 
-            TimeSpan workTime = TimeSpan.FromMinutes(2 + RandomEngine.GetNormal());
+            TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60 * (RandomEngine.GetNormal(2, 1))));
             _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker2JobDone, currentTime.Add(workTime)));
             box.BoxDetails.InspectorServiceStartTime = currentTime;
         }
@@ -430,7 +433,9 @@ namespace FinalProject.SimulationWorld
             ServiceBoxElement box = _inspectorStation.Inspector1Box;
             box.BoxDetails.InspectorServiceDoneTime = currentTime;
             box.BoxDetails.DepartureTime = currentTime;
-            Mother.Children.Remove(box);
+
+            _jobDoneList.Add(box);
+            ArrangeBoxes();
             // Check the Q
 
 
@@ -440,7 +445,7 @@ namespace FinalProject.SimulationWorld
                 _inspectorStation.Inspector1Box.Transform = new TranslateTransform3D(16, 3, 0);
                 _inspectorStation.Inspector1Box.Transformer = new TranslateTransform3D(16, 3, 0);
                 //When the Job going to finish? 
-                TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(2 + RandomEngine.GetNormal())));
+                TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(RandomEngine.GetNormal(2,1))));
                 _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker1JobDone, currentTime.Add(workTime)));
                 _inspectorStation.Inspector1Status = WorkerStatus.Busy;
                 _inspectorStation.Inspector1Box.BoxDetails.InspectorServiceStartTime = currentTime;
@@ -451,13 +456,16 @@ namespace FinalProject.SimulationWorld
             }
         }
 
+
         private void OnInspector2JobFinished(DateTime currentTime)
         {
             _inspectorStation.Inspector2Status = WorkerStatus.Idle;
             ServiceBoxElement box = _inspectorStation.Inspector2Box;
             box.BoxDetails.InspectorServiceDoneTime = currentTime;
             box.BoxDetails.DepartureTime = currentTime;
-            Mother.Children.Remove(box);
+
+            _jobDoneList.Add(box);
+            ArrangeBoxes();
             // Check the Q
 
             if (_inspectorStation.GetQueueLen > 0)
@@ -466,7 +474,7 @@ namespace FinalProject.SimulationWorld
                 _inspectorStation.Inspector2Box.Transform = new TranslateTransform3D(16, -3, 0);
                 _inspectorStation.Inspector2Box.Transformer = new TranslateTransform3D(16, -3, 0);
                 //When the Job going to finish? 
-                TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(2 + RandomEngine.GetNormal())));
+                TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60 * (RandomEngine.GetNormal(2, 1))));
                 _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker2JobDone, currentTime.Add(workTime)));
                 _inspectorStation.Inspector2Status = WorkerStatus.Busy;
                 _inspectorStation.Inspector2Box.BoxDetails.InspectorServiceStartTime = currentTime;
@@ -480,6 +488,17 @@ namespace FinalProject.SimulationWorld
 
         public void OnDeparture()
         {
+        }
+
+        private void ArrangeBoxes()
+        {
+            int counter = 0;
+            foreach (ServiceBoxElement box  in _jobDoneList)
+            {
+                counter++;
+                box.Transform = new TranslateTransform3D(30 + (counter*5), 0, 0);
+                box.Transformer = new TranslateTransform3D(30 + (counter*5), 0, 0);
+            }
         }
 
         private void StopTimer(object sender, RoutedEventArgs e)

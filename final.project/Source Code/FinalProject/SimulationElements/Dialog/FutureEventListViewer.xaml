@@ -1,13 +1,13 @@
 ﻿<Window x:Class="FinalProject.SimulationElements.Dialog.FutureEventListViewer"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="FutureEventListViewer" Height="408" Width="330" DataContext="{Binding RelativeSource={RelativeSource Self}}">
+        Title="FutureEventListViewer" Height="417" Width="347" DataContext="{Binding RelativeSource={RelativeSource Self}}" WindowStyle="ThreeDBorderWindow" ResizeMode="CanResizeWithGrip">
     <Grid>
         <ListView Name="LstViewData" ItemsSource="{Binding GetData }">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Time" Width="150" DisplayMemberBinding="{Binding Time}" />
-                    <GridViewColumn Header="Event" Width="150" DisplayMemberBinding="{Binding Event}" />
+                    <GridViewColumn Header="Time" Width="100" DisplayMemberBinding="{Binding Time.TimeOfDay}" />
+                    <GridViewColumn Header="Event" Width="220" DisplayMemberBinding="{Binding Event}" />
                 </GridView>
             </ListView.View>
         </ListView>

@@ -93,7 +93,7 @@ namespace FinalProject.SimulationElements
 
         public void ShowDetailedInformation()
         {
-            var detailer = new BoxDetails(BoxDetails.Name, BoxDetails.ArrivalTime);
+            var detailer = new BoxDetails(BoxDetails);
             detailer.Show();
         }
 

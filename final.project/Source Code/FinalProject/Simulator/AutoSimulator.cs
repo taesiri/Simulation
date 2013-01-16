@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using FinalProject.SimulationElements.Enums;
 using FinalProject.SimulationElements.FutureEventList;
@@ -446,7 +445,7 @@ namespace FinalProject.Simulator
             _fel.AddNewEvent(new FutureEvent(Events.RobotJobFinished, currentTime));
 
             //When the Job going to finish? 
-            TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(2 + RandomEngine.GetNormal())));
+            TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60 * (RandomEngine.GetNormal(2, 1))));
             _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker1JobDone, currentTime.Add(workTime)));
 
 
@@ -463,7 +462,7 @@ namespace FinalProject.Simulator
 
             //When the Job going to finish? 
 
-            TimeSpan workTime = TimeSpan.FromMinutes(2 + RandomEngine.GetNormal());
+            TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60 * (RandomEngine.GetNormal(2, 1))));
             _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker2JobDone, currentTime.Add(workTime)));
 
 
@@ -485,7 +484,7 @@ namespace FinalProject.Simulator
             {
                 _inspectorStation.Inspector1Box = _inspectorStation.InspectorQueue.Dequeue();
                 //When the Job going to finish? 
-                TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(2 + RandomEngine.GetNormal())));
+                TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60 * (RandomEngine.GetNormal(2, 1))));
                 _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker1JobDone, currentTime.Add(workTime)));
                 _inspectorStation.Inspector1Status = WorkerStatus.Busy;
 
@@ -510,7 +509,7 @@ namespace FinalProject.Simulator
             {
                 _inspectorStation.Inspector2Box = _inspectorStation.InspectorQueue.Dequeue();
                 //When the Job going to finish? 
-                TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(2 + RandomEngine.GetNormal())));
+                TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60 * (RandomEngine.GetNormal(2, 1))));
                 _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker2JobDone, currentTime.Add(workTime)));
                 _inspectorStation.Inspector2Status = WorkerStatus.Busy;
             }
@@ -525,29 +524,5 @@ namespace FinalProject.Simulator
         }
 
         #endregion
-    }
-
-    public class SimulationResult
-    {
-        public List<Box> BoxResult;
-        public List<ResultRow> Result;
-
-        public SimulationResult()
-        {
-            BoxResult = new List<Box>();
-            Result = new List<ResultRow>();
-        }
-
-        public void PushRow(ResultRow row)
-        {
-            Result.Add(row);
-        }
-    }
-
-    public class ResultRow
-    {
-        public Events CurrentEvent { get; set; }
-        public SystemImage SystemImage { get; set; }
-        public DateTime Time { get; set; }
     }
 }
