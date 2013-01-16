@@ -7,9 +7,12 @@ namespace FinalProject.SimulationElements.FutureEventList
 {
     public class FutureEventList
     {
+        public DateTime EndTime;
+
         public FutureEventList()
         {
             EventList = new List<FutureEvent>();
+            EndTime = DateTime.Today + TimeSpan.FromHours(16);
         }
 
         public List<FutureEvent> EventList { get; set; }
@@ -38,7 +41,15 @@ namespace FinalProject.SimulationElements.FutureEventList
                 timeBetweenTwoEnter = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(12)));
             }
 
-            EventList.Add(new FutureEvent(Events.Arrival, currentTime.Add(timeBetweenTwoEnter)));
+            DateTime entraneTime = currentTime.Add(timeBetweenTwoEnter);
+            if (entraneTime > EndTime)
+            {
+               //NO More Entrance!
+            }
+            else
+            {
+                EventList.Add(new FutureEvent(Events.Arrival, currentTime.Add(timeBetweenTwoEnter)));
+            }
         }
 
         public void AddNewEvent(FutureEvent newEvent)

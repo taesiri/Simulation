@@ -33,8 +33,7 @@ namespace FinalProject.SimulationElements
 
         public void MoveIt(ServicePlatformElement source, ServicePlatformElement destination, TimeSpan duration)
         {
-
-            duration = TimeSpan.FromSeconds(duration.TotalSeconds * GlobalTimeScale);
+            duration = TimeSpan.FromSeconds(duration.TotalSeconds*GlobalTimeScale);
 
             // Place Holder
             LastActivity = source + "->" + destination;
@@ -76,7 +75,7 @@ namespace FinalProject.SimulationElements
         public void MoveIt(ServiceEntranceStation source, ServicePlatformElement destination, TimeSpan duration)
         {
             duration = TimeSpan.FromSeconds(duration.TotalSeconds*GlobalTimeScale);
-          
+
 
             // Move one Box from Entrance Station and put it on StationA
             LastActivity = "EQ->A"; // One Possibility!
@@ -93,38 +92,47 @@ namespace FinalProject.SimulationElements
             newTransformer.BeginAnimation(TranslateTransform3D.OffsetXProperty, da);
         }
 
-        public void MoveIt(ServicePlatformElement source, ServiceInspectorStation destination, TimeSpan duration)
+        public void MoveIt(ServicePlatformElement source, ServiceInspectorStation destination, TimeSpan duration, int p)
         {
-            duration = TimeSpan.FromSeconds(duration.TotalSeconds * GlobalTimeScale);
+            duration = TimeSpan.FromSeconds(duration.TotalSeconds*GlobalTimeScale);
 
-
-            LastActivity = "C->Ins"; // One Possibility!}
-
+            LastActivity = "C->Ins";
             ServiceBoxElement box = source.ServiceBox;
             source.ServiceBox = null;
             source.Status = StationStatus.Empty;
-
-            int qLen = destination.InspectorQueue.Count;
-
-
+            int qLen = destination.GetQueueLen;
             double srcX = box.Transformer.OffsetX;
             const double destenX = 16;
-
             double srcY = box.Transformer.OffsetY;
-            double destenY = 10 + (5*qLen);
+
+            double destenY = 0;
+
+            if (p == 0)
+            {
+                destenY = 10 + (5*qLen);
+                destination.PushBoxToQueue(box);
+            }
+            else if (p == 1)
+            {
+                destenY = 3;
+                destination.Inspector1Box = box;
+            }
+            else if (p == 2)
+            {
+                destenY = -3;
+                destination.Inspector2Box = box;
+            }
 
             var daX = new DoubleAnimation {From = srcX, To = destenX, Duration = new Duration(duration)};
             var daY = new DoubleAnimation {From = srcY, To = destenY, Duration = new Duration(duration)};
-
             var newTransformer = new TranslateTransform3D(box.Transformer.OffsetX, box.Transformer.OffsetY, 2.1);
             box.Transform = newTransformer;
             box.Transformer = newTransformer;
-
             newTransformer.BeginAnimation(TranslateTransform3D.OffsetXProperty, daX);
             newTransformer.BeginAnimation(TranslateTransform3D.OffsetYProperty, daY);
-
-            destination.InspectorQueue.Enqueue(box);
+         
         }
+
 
         public void LoadBox(ServicePlatformElement platform)
         {

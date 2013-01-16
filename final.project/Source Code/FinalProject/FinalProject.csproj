@@ -86,6 +86,12 @@
     <Compile Include="SimulationWorld\World.xaml.cs">
       <DependentUpon>World.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Simulator\ARobot.cs" />
+    <Compile Include="Simulator\AutoSimulator.cs" />
+    <Compile Include="Simulator\Box.cs" />
+    <Compile Include="Simulator\Entrance.cs" />
+    <Compile Include="Simulator\Inspector.cs" />
+    <Compile Include="Simulator\Platform.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

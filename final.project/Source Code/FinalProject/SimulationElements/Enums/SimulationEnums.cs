@@ -17,8 +17,10 @@
         ServiceStartedOnStationC,
         ServiceEndedOnStationC,
         RobotJobFinished,
-        BoxArrivedToInspector,
+        BoxArrivedToInspectorQ,
+        InspectorWorker1JobStarted,
         InspectorWorker1JobDone,
+        InspectorWorker2JobStarted,
         InspectorWorker2JobDone,
         Departure,
         EndOfSimulation

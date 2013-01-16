@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using FinalProject.SimulationWorld;
+using FinalProject.Simulator;
 
 namespace FinalProject
 {
@@ -11,12 +13,21 @@ namespace FinalProject
         public MainWindow()
         {
             InitializeComponent();
+        }
 
+        private void BtnAutoSClick(object sender, RoutedEventArgs e)
+        {
+            DateTime start = DateTime.Today + TimeSpan.FromHours(8);
+            var simulator = new AutoSimulator(start, start.Add(TimeSpan.FromHours(3)));
+
+            simulator.StartSimulation();
+        }
+
+        private void BtnRealTimeSimulation(object sender, RoutedEventArgs e)
+        {
             var vw = new World();
 
             vw.Show();
-
-            Hide();
         }
     }
 }
