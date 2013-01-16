@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CodeReason.Reports">
+      <HintPath>..\..\Libraries\CodeReason.Reports.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeReason.Reports.Charts.Visifire">
+      <HintPath>..\..\Libraries\CodeReason.Reports.Charts.Visifire.dll</HintPath>
+    </Reference>
     <Reference Include="DynamicDataDisplay">
       <HintPath>..\..\Libraries\DynamicDataDisplay.dll</HintPath>
     </Reference>
@@ -43,6 +49,7 @@
     <Reference Include="HelixToolkit.Wpf.Input">
       <HintPath>..\..\Libraries\HelixToolkit.Wpf.Input.dll</HintPath>
     </Reference>
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -63,6 +70,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ListExtension.cs" />
+    <Compile Include="SimulationElements\BoxInformation.cs" />
     <Compile Include="SimulationElements\Dialog\BoxDetails.xaml.cs">
       <DependentUpon>BoxDetails.xaml</DependentUpon>
     </Compile>
@@ -120,6 +128,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Resource Include="Simulator\Report\Template\aut.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Simulator\Report\Template\Template.xaml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -159,6 +174,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

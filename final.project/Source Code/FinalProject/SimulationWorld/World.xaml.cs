@@ -58,11 +58,6 @@ namespace FinalProject.SimulationWorld
 
         public double GlobalTimeScale { get; set; }
 
-        private void BtnDeployOnClick(object sender, RoutedEventArgs e)
-        {
-            Simulator();
-        }
-
         private void BtnMoveIt_OnClick(object sender, RoutedEventArgs e)
         {
             StartSimulation();
@@ -92,16 +87,11 @@ namespace FinalProject.SimulationWorld
 
             _robot = new Robot {GlobalTimeScale = 1/60f};
 
-            //var dBox = new ServiceBoxElement(2.5, 2.5, 2.5);
-            // dBox.Transform = new TranslateTransform3D(16,-3, 2.1);
-
             Mother.Children.Add(_platformA);
             Mother.Children.Add(_platformB);
             Mother.Children.Add(_platformC);
             Mother.Children.Add(_entranceStation);
             Mother.Children.Add(_inspectorStation);
-            // Mother.Children.Add(dBox);
-
 
             //Timer
             GlobalTimeScale = 1/60f;
@@ -112,124 +102,23 @@ namespace FinalProject.SimulationWorld
             _timer.Tick += timer_Tick;
         }
 
-
-        public void Simulator()
-        {
-            var allEvents = new List<FutureEvent>();
-            var allImage = new List<SystemImage>();
-            int counter = 0;
-            bool running = true;
-            while (running)
-            {
-                _felViewer.SetData(_fel.EventList);
-
-                counter++;
-                FutureEvent imminentEvent = _fel.GetImminentEvent();
-                allEvents.Add(imminentEvent);
-
-                Title = string.Format("Event : {0} Time : {1}", imminentEvent.Event.ToString(),
-                                      imminentEvent.Time.ToString("h:mm:ss"));
-
-                switch (imminentEvent.Event)
-                {
-                    case Events.Arrival:
-                        OnArrival(imminentEvent.Time);
-                        break;
-                    case Events.Departure:
-                        OnDeparture();
-                        break;
-                    case Events.ServiceEndedOnStationA:
-                        OnServiceEndedAtStationA(imminentEvent.Time);
-                        break;
-                    case Events.ServiceEndedOnStationB:
-                        OnServiceEndedAtStationB(imminentEvent.Time);
-                        break;
-                    case Events.ServiceEndedOnStationC:
-                        OnServiceEndedAtStationC(imminentEvent.Time);
-                        break;
-                    case Events.RobotJobFinished:
-                        OnRobotJobFinished(imminentEvent.Time);
-                        break;
-                    case Events.ServiceStartedOnStationA: // BOX arrived to the Station A!
-                        OnServiceStartedAtStationA(imminentEvent.Time);
-                        break;
-                    case Events.ServiceStartedOnStationB: // BOX arrived to the Station B!
-                        OnServiceStartedAtStationB(imminentEvent.Time);
-                        break;
-                    case Events.ServiceStartedOnStationC: // BOX arrived to the Station C!
-                        OnServiceStartedAtStationC(imminentEvent.Time);
-                        break;
-                    case Events.LoadingBoxStartedOnStationA:
-                        OnLoadingBoxStartedOnStationA(imminentEvent.Time);
-                        break;
-                    case Events.LoadingBoxEndedOnStationA:
-                        OnLoadingBoxEndedOnStationA(imminentEvent.Time);
-                        break;
-                    case Events.LoadingBoxStartedOnStationB:
-                        OnLoadingBoxStartedOnStationB(imminentEvent.Time);
-                        break;
-                    case Events.LoadingBoxEndedOnStationB:
-                        OnLoadingBoxEndedOnStationB(imminentEvent.Time);
-                        break;
-                    case Events.LoadingBoxStartedOnStationC:
-                        OnLoadingBoxStartedOnStationC(imminentEvent.Time);
-                        break;
-                    case Events.LoadingBoxEndedOnStationC:
-                        OnLoadingBoxEndedOnStationC(imminentEvent.Time);
-                        break;
-                    case Events.BoxArrivedToInspectorQ:
-                        OnBoxArrivedToInspector(imminentEvent.Time);
-                        break;
-                    case Events.EndOfSimulation:
-                        running = false;
-                        break;
-                    case Events.BeginingOfSimulation:
-                        // Place Holder!
-                        break;
-
-                    default:
-                        break;
-                }
-
-                LblRobotStatus.Content = _robot.Status;
-
-                if (counter >= 1)
-                {
-                    running = false;
-                    counter = 0;
-                }
-
-                //Create System Image
-                var image = new SystemImage
-                    {
-                        EntranceQueueLen = _entranceStation.GetQueueLen,
-                        StationAStatus = _platformA.Status,
-                        StationBStatus = _platformB.Status,
-                        StationCStatus = _platformC.Status,
-                        Inspector1Status = WorkerStatus.Idle,
-                        Inspector2Status = WorkerStatus.Idle,
-                        CurrentEvent = imminentEvent,
-                        RobotStatus = _robot.Status,
-                        RobotLastActivity = _robot.LastActivity
-                    };
-
-                allImage.Add(image);
-            }
-            //END OF Simulation
-        }
-
-
         private void OnArrival(DateTime currentTime)
         {
             _arrivalCounter++;
 
+
+            Guid g = Guid.NewGuid();
+            string guidString = Convert.ToBase64String(g.ToByteArray());
+            guidString = guidString.Replace("=", "");
+            guidString = guidString.Replace("+", "");
 
             if (_robot.IsIdle && _platformA.IsEmpty)
             {
                 _entranceStation.AddNewBox(new ServiceBoxElement(2.5, 2.5, 2.5)
                     {
                         Name = "Box-" + _arrivalCounter.ToString(CultureInfo.InvariantCulture),
-                        ArrivalTime = currentTime
+                        ArrivalTime = currentTime,
+                        Identifier = guidString
                     });
 
 
@@ -244,7 +133,8 @@ namespace FinalProject.SimulationWorld
                 _entranceStation.AddNewBox(new ServiceBoxElement(2.5, 2.5, 2.5)
                     {
                         Name = "Box-" + _arrivalCounter.ToString(CultureInfo.InvariantCulture),
-                        ArrivalTime = currentTime
+                        ArrivalTime = currentTime,
+                        Identifier = guidString
                     });
 
                 // Q++; //
@@ -256,6 +146,10 @@ namespace FinalProject.SimulationWorld
 
         private void OnServiceStartedAtStationA(DateTime currentTime)
         {
+            ServiceBoxElement box = _platformA.ServiceBox;
+            box.BoxDetails.StationAServiceStartTime = currentTime;
+
+
             // Scheduling the Service End Time
             TimeSpan boxServiceEndTime = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(1.1)));
             _fel.AddNewEvent(new FutureEvent(Events.ServiceEndedOnStationA, currentTime.Add(boxServiceEndTime)));
@@ -264,6 +158,9 @@ namespace FinalProject.SimulationWorld
 
         private void OnServiceStartedAtStationB(DateTime currentTime)
         {
+            ServiceBoxElement box = _platformB.ServiceBox;
+            box.BoxDetails.StationBServiceStartTime = currentTime;
+
             // Scheduling the Service End Time
             TimeSpan boxServiceEndTime = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(1.3)));
             _fel.AddNewEvent(new FutureEvent(Events.ServiceEndedOnStationB, currentTime.Add(boxServiceEndTime)));
@@ -272,6 +169,9 @@ namespace FinalProject.SimulationWorld
 
         private void OnServiceStartedAtStationC(DateTime currentTime)
         {
+            ServiceBoxElement box = _platformC.ServiceBox;
+            box.BoxDetails.StationCServiceStartTime = currentTime;
+
             // Scheduling the Service End Time
             TimeSpan boxServiceEndTime = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(1.2)));
             _fel.AddNewEvent(new FutureEvent(Events.ServiceEndedOnStationC, currentTime.Add(boxServiceEndTime)));
@@ -281,6 +181,9 @@ namespace FinalProject.SimulationWorld
 
         private void OnServiceEndedAtStationA(DateTime currentTime)
         {
+            ServiceBoxElement box = _platformA.ServiceBox;
+            box.BoxDetails.StationAServiceEndTime = currentTime;
+
             _platformA.Status = StationStatus.ServiceDone;
 
             if (_platformB.IsEmpty && _robot.IsIdle)
@@ -304,6 +207,9 @@ namespace FinalProject.SimulationWorld
 
         private void OnServiceEndedAtStationB(DateTime currentTime)
         {
+            ServiceBoxElement box = _platformB.ServiceBox;
+            box.BoxDetails.StationBServiceEndTime = currentTime;
+
             _platformB.Status = StationStatus.ServiceDone;
 
             if (_platformC.IsEmpty && _robot.IsIdle)
@@ -327,6 +233,7 @@ namespace FinalProject.SimulationWorld
 
         private void OnServiceEndedAtStationC(DateTime currentTime)
         {
+            ServiceBoxElement box = _platformC.ServiceBox;
             _platformC.Status = StationStatus.ServiceDone;
 
             if (_robot.IsIdle)
@@ -338,16 +245,19 @@ namespace FinalProject.SimulationWorld
                 {
                     _robot.MoveIt(_platformC, _inspectorStation, boxMovementTime, 1);
                     _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker1JobStarted, currentTime.Add(boxMovementTime)));
+                    box.BoxDetails.EnteredToInspector = currentTime.Add(boxMovementTime);
                 }
                 else if (_inspectorStation.Inspector2Status == WorkerStatus.Idle)
                 {
                     _robot.MoveIt(_platformC, _inspectorStation, boxMovementTime, 2);
                     _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker2JobStarted, currentTime.Add(boxMovementTime)));
+                    box.BoxDetails.EnteredToInspector = currentTime.Add(boxMovementTime);
                 }
                 else
                 {
                     _robot.MoveIt(_platformC, _inspectorStation, boxMovementTime, 0);
                     _fel.AddNewEvent(new FutureEvent(Events.BoxArrivedToInspectorQ, currentTime.Add(boxMovementTime)));
+                    box.BoxDetails.EnteredToInspector = currentTime.Add(boxMovementTime);
                 }
 
                 _robot.Status = RobotStatus.Busy;
@@ -358,6 +268,7 @@ namespace FinalProject.SimulationWorld
                 if (!_robot.IsIdle)
                     _platformC.Status = StationStatus.WaitingforRobot;
             }
+            box.BoxDetails.StationCServiceEndTime = currentTime;
         }
 
 
@@ -366,7 +277,8 @@ namespace FinalProject.SimulationWorld
             if (_platformC.IsBlockedOrAwaiting)
             {
                 TimeSpan boxMovementTime = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(0.7)));
-
+                ServiceBoxElement box = _platformC.ServiceBox;
+                box.BoxDetails.EnteredToInspector = currentTime.Add(boxMovementTime);
                 if (_inspectorStation.Inspector1Status == WorkerStatus.Idle)
                 {
                     _robot.MoveIt(_platformC, _inspectorStation, boxMovementTime, 1);
@@ -421,12 +333,15 @@ namespace FinalProject.SimulationWorld
 
         private void OnLoadingBoxStartedOnStationA(DateTime currentTime)
         {
+            ServiceBoxElement box = _platformA.ServiceBox;
             TimeSpan boxLoadingTime = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(0.7)));
 
             _robot.Status = RobotStatus.Busy;
             _robot.LoadBox(_platformA);
             _fel.AddNewEvent(new FutureEvent(Events.LoadingBoxEndedOnStationA, currentTime.Add(boxLoadingTime)));
             _platformA.Status = StationStatus.Loading;
+
+            box.BoxDetails.StationALoadDuration = boxLoadingTime;
         }
 
         private void OnLoadingBoxEndedOnStationA(DateTime currentTime)
@@ -438,12 +353,15 @@ namespace FinalProject.SimulationWorld
 
         private void OnLoadingBoxStartedOnStationB(DateTime currentTime)
         {
+            ServiceBoxElement box = _platformB.ServiceBox;
             TimeSpan boxLoadingTime = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(0.7)));
 
             _robot.Status = RobotStatus.Busy;
             _robot.LoadBox(_platformB);
             _fel.AddNewEvent(new FutureEvent(Events.LoadingBoxEndedOnStationB, currentTime.Add(boxLoadingTime)));
             _platformB.Status = StationStatus.Loading;
+
+            box.BoxDetails.StationBLoadDuration = boxLoadingTime;
         }
 
         private void OnLoadingBoxEndedOnStationB(DateTime currentTime)
@@ -456,12 +374,14 @@ namespace FinalProject.SimulationWorld
 
         private void OnLoadingBoxStartedOnStationC(DateTime currentTime)
         {
+            ServiceBoxElement box = _platformC.ServiceBox;
             TimeSpan boxLoadingTime = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(0.7)));
 
             _robot.Status = RobotStatus.Busy;
             _robot.LoadBox(_platformC);
             _fel.AddNewEvent(new FutureEvent(Events.LoadingBoxEndedOnStationC, currentTime.Add(boxLoadingTime)));
             _platformC.Status = StationStatus.Loading;
+            box.BoxDetails.StationCLoadDuration = boxLoadingTime;
         }
 
         private void OnLoadingBoxEndedOnStationC(DateTime currentTime)
@@ -478,24 +398,29 @@ namespace FinalProject.SimulationWorld
 
         private void OnInspector1JobStarted(DateTime currentTime)
         {
+            ServiceBoxElement box = _inspectorStation.Inspector1Box;
             _inspectorStation.Inspector1Status = WorkerStatus.Busy;
             _fel.AddNewEvent(new FutureEvent(Events.RobotJobFinished, currentTime));
 
             //When the Job going to finish? 
-            TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(10 + RandomEngine.GetNormal())));
+            TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(2 + RandomEngine.GetNormal())));
             _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker1JobDone, currentTime.Add(workTime)));
+
+            box.BoxDetails.InspectorServiceStartTime = currentTime;
         }
 
 
         private void OnInspector2JobStarted(DateTime currentTime)
         {
+            ServiceBoxElement box = _inspectorStation.Inspector2Box;
             _inspectorStation.Inspector2Status = WorkerStatus.Busy;
             _fel.AddNewEvent(new FutureEvent(Events.RobotJobFinished, currentTime));
 
             //When the Job going to finish? 
 
-            TimeSpan workTime = TimeSpan.FromMinutes(10 + RandomEngine.GetNormal());
+            TimeSpan workTime = TimeSpan.FromMinutes(2 + RandomEngine.GetNormal());
             _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker2JobDone, currentTime.Add(workTime)));
+            box.BoxDetails.InspectorServiceStartTime = currentTime;
         }
 
 
@@ -503,23 +428,53 @@ namespace FinalProject.SimulationWorld
         {
             _inspectorStation.Inspector1Status = WorkerStatus.Idle;
             ServiceBoxElement box = _inspectorStation.Inspector1Box;
-            _inspectorStation.Inspector1Box = null;
-
+            box.BoxDetails.InspectorServiceDoneTime = currentTime;
+            box.BoxDetails.DepartureTime = currentTime;
             Mother.Children.Remove(box);
-
             // Check the Q
+
+
+            if (_inspectorStation.GetQueueLen > 0)
+            {
+                _inspectorStation.Inspector1Box = _inspectorStation.InspectorQueue.Dequeue();
+                _inspectorStation.Inspector1Box.Transform = new TranslateTransform3D(16, 3, 0);
+                _inspectorStation.Inspector1Box.Transformer = new TranslateTransform3D(16, 3, 0);
+                //When the Job going to finish? 
+                TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(2 + RandomEngine.GetNormal())));
+                _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker1JobDone, currentTime.Add(workTime)));
+                _inspectorStation.Inspector1Status = WorkerStatus.Busy;
+                _inspectorStation.Inspector1Box.BoxDetails.InspectorServiceStartTime = currentTime;
+            }
+            else
+            {
+                _inspectorStation.Inspector1Box = null;
+            }
         }
 
         private void OnInspector2JobFinished(DateTime currentTime)
         {
             _inspectorStation.Inspector2Status = WorkerStatus.Idle;
             ServiceBoxElement box = _inspectorStation.Inspector2Box;
-            _inspectorStation.Inspector2Box = null;
-
+            box.BoxDetails.InspectorServiceDoneTime = currentTime;
+            box.BoxDetails.DepartureTime = currentTime;
             Mother.Children.Remove(box);
-
-
             // Check the Q
+
+            if (_inspectorStation.GetQueueLen > 0)
+            {
+                _inspectorStation.Inspector2Box = _inspectorStation.InspectorQueue.Dequeue();
+                _inspectorStation.Inspector2Box.Transform = new TranslateTransform3D(16, -3, 0);
+                _inspectorStation.Inspector2Box.Transformer = new TranslateTransform3D(16, -3, 0);
+                //When the Job going to finish? 
+                TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(2 + RandomEngine.GetNormal())));
+                _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker2JobDone, currentTime.Add(workTime)));
+                _inspectorStation.Inspector2Status = WorkerStatus.Busy;
+                _inspectorStation.Inspector2Box.BoxDetails.InspectorServiceStartTime = currentTime;
+            }
+            else
+            {
+                _inspectorStation.Inspector2Box = null;
+            }
         }
 
 

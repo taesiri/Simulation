@@ -29,5 +29,7 @@ namespace FinalProject.Simulator
         public DateTime InspectorServiceDoneTime { get; set; } // Inspector Start Time
         public TimeSpan InspectorQueueTime { get; set; } // Inspector Queue Time
         public TimeSpan InspectorDuration { get; set; } //Inspector Service Duration
+
+        public string Identifier { get; set; }
     }
 }

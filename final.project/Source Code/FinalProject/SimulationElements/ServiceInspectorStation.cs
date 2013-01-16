@@ -16,7 +16,7 @@ namespace FinalProject.SimulationElements
         public TranslateTransform3D Tranformer;
         private WorkerStatus _inspector1Status = WorkerStatus.Idle;
         private WorkerStatus _inspector2Status = WorkerStatus.Idle;
-        private Queue<ServiceBoxElement> _inspectorQueue;
+        public Queue<ServiceBoxElement> InspectorQueue;
 
         public ServiceInspectorStation()
         {
@@ -62,7 +62,7 @@ namespace FinalProject.SimulationElements
 
         public int GetQueueLen
         {
-            get { return _inspectorQueue.Count; }
+            get { return InspectorQueue.Count; }
         }
 
         public string ServiceProviderName { get; set; }
@@ -72,8 +72,8 @@ namespace FinalProject.SimulationElements
 
         public void PushBoxToQueue(ServiceBoxElement box)
         {
-            _inspectorQueue.Enqueue(box);
-            InspectorQStatusText.Text = "Queue len :" + _inspectorQueue.Count.ToString();
+            InspectorQueue.Enqueue(box);
+            InspectorQStatusText.Text = "Queue len :" + InspectorQueue.Count.ToString();
         }
 
         public void CreateStation(Point3D location, string textureUri)
@@ -119,7 +119,7 @@ namespace FinalProject.SimulationElements
             Tranformer = new TranslateTransform3D();
             Transform = Tranformer;
 
-            _inspectorQueue = new Queue<ServiceBoxElement>();
+            InspectorQueue = new Queue<ServiceBoxElement>();
 
             Inspector1Status = WorkerStatus.Idle;
             Inspector2Status = WorkerStatus.Idle;

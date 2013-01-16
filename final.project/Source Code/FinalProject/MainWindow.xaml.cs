@@ -18,7 +18,7 @@ namespace FinalProject
         private void BtnAutoSClick(object sender, RoutedEventArgs e)
         {
             DateTime start = DateTime.Today + TimeSpan.FromHours(8);
-            var simulator = new AutoSimulator(start, start.Add(TimeSpan.FromHours(3)));
+            var simulator = new AutoSimulator(start, start.Add(TimeSpan.FromHours(8)));
 
             simulator.StartSimulation();
         }

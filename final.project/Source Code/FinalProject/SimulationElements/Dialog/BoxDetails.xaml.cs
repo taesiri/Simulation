@@ -17,8 +17,7 @@ namespace FinalProject.SimulationElements.Dialog
         {
             InitializeComponent();
 
-            LblBoxEntranceDate.Content = time.ToString("h:mm:ss");
-            LblBoxName.Content = name;
+          
         }
 
 

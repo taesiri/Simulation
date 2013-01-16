@@ -142,13 +142,19 @@ namespace FinalProject.Simulator
         {
             _arrivalCounter++;
 
+            Guid g = Guid.NewGuid();
+            string guidString = Convert.ToBase64String(g.ToByteArray());
+            guidString = guidString.Replace("=", "");
+            guidString = guidString.Replace("+", "");
+
 
             if (_robot.IsIdle && _platformA.IsEmpty)
             {
                 _entranceStation.AddNewBox(new Box
                     {
                         Name = "Box-" + _arrivalCounter.ToString(CultureInfo.InvariantCulture),
-                        ArrivalTime = currentTime
+                        ArrivalTime = currentTime,
+                        Identifier = guidString
                     });
 
 
@@ -163,7 +169,8 @@ namespace FinalProject.Simulator
                 _entranceStation.AddNewBox(new Box
                     {
                         Name = "Box-" + _arrivalCounter.ToString(CultureInfo.InvariantCulture),
-                        ArrivalTime = currentTime
+                        ArrivalTime = currentTime,
+                        Identifier = guidString
                     });
 
                 // Q++; //
@@ -297,8 +304,6 @@ namespace FinalProject.Simulator
                 if (!_robot.IsIdle)
                     _platformC.Status = StationStatus.WaitingforRobot;
             }
-
-
             box.StationCServiceEndTime = currentTime;
         }
 
@@ -323,10 +328,8 @@ namespace FinalProject.Simulator
                 }
                 else
                 {
-                   
                     _robot.MoveIt(_platformC, _inspectorStation, 0);
                     _fel.AddNewEvent(new FutureEvent(Events.BoxArrivedToInspectorQ, currentTime.Add(boxMovementTime)));
-                    
                 }
 
                 _platformC.Status = StationStatus.Empty;
@@ -443,7 +446,7 @@ namespace FinalProject.Simulator
             _fel.AddNewEvent(new FutureEvent(Events.RobotJobFinished, currentTime));
 
             //When the Job going to finish? 
-            TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(10 + RandomEngine.GetNormal())));
+            TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(2 + RandomEngine.GetNormal())));
             _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker1JobDone, currentTime.Add(workTime)));
 
 
@@ -460,7 +463,7 @@ namespace FinalProject.Simulator
 
             //When the Job going to finish? 
 
-            TimeSpan workTime = TimeSpan.FromMinutes(10 + RandomEngine.GetNormal());
+            TimeSpan workTime = TimeSpan.FromMinutes(2 + RandomEngine.GetNormal());
             _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker2JobDone, currentTime.Add(workTime)));
 
 
@@ -477,7 +480,21 @@ namespace FinalProject.Simulator
             box.DepartureTime = currentTime;
             _result.BoxResult.Add(box);
 
-            _inspectorStation.Inspector1Box = null;
+
+            if (_inspectorStation.GetQueueLen > 0)
+            {
+                _inspectorStation.Inspector1Box = _inspectorStation.InspectorQueue.Dequeue();
+                //When the Job going to finish? 
+                TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(2 + RandomEngine.GetNormal())));
+                _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker1JobDone, currentTime.Add(workTime)));
+                _inspectorStation.Inspector1Status = WorkerStatus.Busy;
+
+
+            }
+            else
+            {
+                _inspectorStation.Inspector1Box = null;
+            }
         }
 
         private void OnInspector2JobFinished(DateTime currentTime)
@@ -489,9 +506,19 @@ namespace FinalProject.Simulator
             box.DepartureTime = currentTime;
             _result.BoxResult.Add(box);
 
-            _inspectorStation.Inspector2Box = null;
+            if (_inspectorStation.GetQueueLen > 0)
+            {
+                _inspectorStation.Inspector2Box = _inspectorStation.InspectorQueue.Dequeue();
+                //When the Job going to finish? 
+                TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(2 + RandomEngine.GetNormal())));
+                _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker2JobDone, currentTime.Add(workTime)));
+                _inspectorStation.Inspector2Status = WorkerStatus.Busy;
+            }
+            else
+            {
+                _inspectorStation.Inspector2Box = null;
+            }
         }
-
 
         public void OnDeparture()
         {
