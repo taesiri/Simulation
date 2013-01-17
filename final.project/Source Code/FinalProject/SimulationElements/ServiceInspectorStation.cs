@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Media3D;
@@ -13,10 +14,11 @@ namespace FinalProject.SimulationElements
         public BillboardTextVisual3D Inspector1StatusText;
         public BillboardTextVisual3D Inspector2StatusText;
         public BillboardTextVisual3D InspectorQStatusText;
+        public Queue<ServiceBoxElement> InspectorQueue;
         public TranslateTransform3D Tranformer;
         private WorkerStatus _inspector1Status = WorkerStatus.Idle;
         private WorkerStatus _inspector2Status = WorkerStatus.Idle;
-        public Queue<ServiceBoxElement> InspectorQueue;
+        private TimeSpan _totalServiceTime;
 
         public ServiceInspectorStation()
         {
@@ -69,6 +71,11 @@ namespace FinalProject.SimulationElements
 
         public ServiceBoxElement Inspector1Box { get; set; }
         public ServiceBoxElement Inspector2Box { get; set; }
+
+        public TimeSpan GetTotalServiceTime
+        {
+            get { return _totalServiceTime; }
+        }
 
         public void PushBoxToQueue(ServiceBoxElement box)
         {
@@ -126,6 +133,12 @@ namespace FinalProject.SimulationElements
             Inspector1Box = null;
             Inspector2Box = null;
         }
+
+        public void AddServiceTime(TimeSpan time)
+        {
+            _totalServiceTime += time;
+        }
+
 
         protected override void OnMouseDown(MouseButtonEventArgs e)
         {

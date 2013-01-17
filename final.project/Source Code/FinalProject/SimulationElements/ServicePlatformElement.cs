@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Media3D;
 using FinalProject.SimulationElements.Enums;
@@ -11,6 +12,7 @@ namespace FinalProject.SimulationElements
     {
         public BillboardTextVisual3D PlatformStatusText;
         public TranslateTransform3D Tranformer;
+        private TimeSpan _totalServiceTime;
         private StationStatus _status = StationStatus.Empty;
 
         public ServicePlatformElement()
@@ -130,5 +132,16 @@ namespace FinalProject.SimulationElements
         {
             return Name;
         }
+
+        public TimeSpan GetTotalServiceTime
+        {
+            get { return _totalServiceTime; }
+        }
+
+        public void AddServiceTime(TimeSpan time)
+        {
+            _totalServiceTime += time;
+        }
+
     }
 }

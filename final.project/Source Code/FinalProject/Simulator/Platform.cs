@@ -1,14 +1,15 @@
-﻿using FinalProject.SimulationElements;
+﻿using System;
+using FinalProject.SimulationElements;
 using FinalProject.SimulationElements.Enums;
 
 namespace FinalProject.Simulator
 {
     public class Platform
     {
+        private TimeSpan _totalServiceTime;
         public string Name { get; set; }
         public ServiceBoxElement InnerElement { get; set; }
         public StationStatus Status { get; set; }
-        public int TotalServiceTime { get; set; }
 
         public bool IsEmpty
         {
@@ -36,6 +37,16 @@ namespace FinalProject.Simulator
             }
         }
 
+        public TimeSpan GetTotalServiceTime
+        {
+            get { return _totalServiceTime; }
+        }
+
         public Box ServiceBox { get; set; }
+
+        public void AddServiceTime(TimeSpan time)
+        {
+            _totalServiceTime += time;
+        }
     }
 }

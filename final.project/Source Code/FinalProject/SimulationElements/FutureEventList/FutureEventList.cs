@@ -36,10 +36,10 @@ namespace FinalProject.SimulationElements.FutureEventList
         {
             TimeSpan timeBetweenTwoEnter = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(12))); // Const
 
-            while (timeBetweenTwoEnter.TotalMinutes > 30)
-            {
-                timeBetweenTwoEnter = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(12)));
-            }
+            //while (timeBetweenTwoEnter.TotalMinutes > 30)
+            //{
+            //    timeBetweenTwoEnter = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(12)));
+            //}
 
             DateTime entraneTime = currentTime.Add(timeBetweenTwoEnter);
             if (entraneTime > EndTime)

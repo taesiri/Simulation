@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using FinalProject.SimulationWorld;
 using FinalProject.Simulator;
+using FinalProject.Simulator.Report;
 
 namespace FinalProject
 {
@@ -18,9 +20,20 @@ namespace FinalProject
         private void BtnAutoSClick(object sender, RoutedEventArgs e)
         {
             DateTime start = DateTime.Today + TimeSpan.FromHours(8);
-            var simulator = new AutoSimulator(start, start.Add(TimeSpan.FromHours(8)));
 
-            simulator.StartSimulation();
+            var results = new List<SimulationResult>();
+            for (int i = 0; i < 10; i++)
+            {
+                var simulator = new AutoSimulator(start, start.Add(TimeSpan.FromHours(8)),
+                                                  start.Add(TimeSpan.FromHours(1)));
+
+                simulator.StartSimulation();
+                results.Add(simulator.GetResult());
+            }
+
+
+            var reportWindow = new ReportWindow(results);
+            reportWindow.Show();
         }
 
         private void BtnRealTimeSimulation(object sender, RoutedEventArgs e)

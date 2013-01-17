@@ -73,6 +73,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ListExtension.cs" />
+    <Compile Include="Plot\Plotter.xaml.cs">
+      <DependentUpon>Plotter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SimulationElements\BoxInformation.cs" />
     <Compile Include="SimulationElements\Dialog\BoxDetails.xaml.cs">
       <DependentUpon>BoxDetails.xaml</DependentUpon>
@@ -103,6 +106,9 @@
     <Compile Include="Simulator\Entrance.cs" />
     <Compile Include="Simulator\Inspector.cs" />
     <Compile Include="Simulator\Platform.cs" />
+    <Compile Include="Simulator\Report\ReportWindow.xaml.cs">
+      <DependentUpon>ReportWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Simulator\ResultRow.cs" />
     <Compile Include="Simulator\SimulationResult.cs" />
     <Page Include="MainWindow.xaml">
@@ -117,6 +123,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Plot\Plotter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SimulationElements\Dialog\BoxDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -133,9 +143,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Resource Include="Simulator\Report\Template\aut.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    <Page Include="Simulator\Report\ReportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Content Include="Simulator\Report\Template\aut.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Simulator\Report\Template\Template.xaml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

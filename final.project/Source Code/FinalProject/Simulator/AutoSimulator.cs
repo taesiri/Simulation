@@ -21,10 +21,10 @@ namespace FinalProject.Simulator
         private int _arrivalCounter;
         private SimulationResult _result;
 
-
-        public AutoSimulator(DateTime startTime, DateTime endTime)
+        public AutoSimulator(DateTime startTime, DateTime endTime, DateTime warmUp)
         {
             _fel = new FutureEventList {EndTime = endTime};
+            WarmUpTime = warmUp;
             _fel.AddNewEvent(new FutureEvent(Events.Arrival, startTime));
 
             StartTime = startTime; // 8:00 AM
@@ -47,6 +47,8 @@ namespace FinalProject.Simulator
                 RandomEngine.GetNormal();
             }
         }
+
+        public DateTime WarmUpTime { get; set; }
 
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
@@ -126,6 +128,17 @@ namespace FinalProject.Simulator
                         break;
                 }
             }
+
+            _result.SimulationStartDate = StartTime;
+
+            _result.SimulationEndDate = EndTime;
+
+            _result.StationATotalService = _platformA.GetTotalServiceTime;
+            _result.StationBTotalService = _platformB.GetTotalServiceTime;
+            _result.StationCTotalService = _platformC.GetTotalServiceTime;
+
+            _result.Inspector1TotalService = _inspectorStation.GetTotalServiceTimeInspector1;
+            _result.Inspector2TotalService = _inspectorStation.GetTotalServiceTimeInspector2;
         }
 
         public SimulationResult GetResult()
@@ -156,7 +169,6 @@ namespace FinalProject.Simulator
                         Identifier = guidString
                     });
 
-
                 TimeSpan boxMovementTime = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(0.7)));
 
                 _fel.AddNewEvent(new FutureEvent(Events.LoadingBoxStartedOnStationA, currentTime.Add(boxMovementTime)));
@@ -185,9 +197,11 @@ namespace FinalProject.Simulator
             box.StationAServiceStartTime = currentTime;
 
             // Scheduling the Service End Time
-            TimeSpan boxServiceEndTime = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(1.1)));
-            _fel.AddNewEvent(new FutureEvent(Events.ServiceEndedOnStationA, currentTime.Add(boxServiceEndTime)));
+            TimeSpan boxServiceDuration = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(1.1)));
+            _fel.AddNewEvent(new FutureEvent(Events.ServiceEndedOnStationA, currentTime.Add(boxServiceDuration)));
             _platformA.Status = StationStatus.OnService;
+
+            _platformA.AddServiceTime(boxServiceDuration);
         }
 
         private void OnServiceStartedAtStationB(DateTime currentTime)
@@ -196,9 +210,11 @@ namespace FinalProject.Simulator
             box.StationBServiceStartTime = currentTime;
 
             // Scheduling the Service End Time
-            TimeSpan boxServiceEndTime = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(1.3)));
-            _fel.AddNewEvent(new FutureEvent(Events.ServiceEndedOnStationB, currentTime.Add(boxServiceEndTime)));
+            TimeSpan boxServiceDuration = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(1.3)));
+            _fel.AddNewEvent(new FutureEvent(Events.ServiceEndedOnStationB, currentTime.Add(boxServiceDuration)));
             _platformB.Status = StationStatus.OnService;
+
+            _platformB.AddServiceTime(boxServiceDuration);
         }
 
         private void OnServiceStartedAtStationC(DateTime currentTime)
@@ -207,9 +223,11 @@ namespace FinalProject.Simulator
             box.StationCServiceStartTime = currentTime;
 
             // Scheduling the Service End Time
-            TimeSpan boxServiceEndTime = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(1.2)));
-            _fel.AddNewEvent(new FutureEvent(Events.ServiceEndedOnStationC, currentTime.Add(boxServiceEndTime)));
+            TimeSpan boxServiceDuration = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(1.2)));
+            _fel.AddNewEvent(new FutureEvent(Events.ServiceEndedOnStationC, currentTime.Add(boxServiceDuration)));
             _platformC.Status = StationStatus.OnService;
+
+            _platformC.AddServiceTime(boxServiceDuration);
         }
 
 
@@ -371,7 +389,6 @@ namespace FinalProject.Simulator
         {
             Box box = _platformA.ServiceBox;
 
-
             TimeSpan boxLoadingTime = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(0.7)));
 
             _robot.Status = RobotStatus.Busy;
@@ -445,9 +462,9 @@ namespace FinalProject.Simulator
             _fel.AddNewEvent(new FutureEvent(Events.RobotJobFinished, currentTime));
 
             //When the Job going to finish? 
-            TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60 * (RandomEngine.GetNormal(2, 1))));
+            TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(RandomEngine.GetNormal(2, 1))));
             _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker1JobDone, currentTime.Add(workTime)));
-
+            _inspectorStation.AddServiceTimeInspector1(workTime);
 
             box.InspectorServiceStartTime = currentTime;
         }
@@ -462,9 +479,9 @@ namespace FinalProject.Simulator
 
             //When the Job going to finish? 
 
-            TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60 * (RandomEngine.GetNormal(2, 1))));
+            TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(RandomEngine.GetNormal(2, 1))));
             _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker2JobDone, currentTime.Add(workTime)));
-
+            _inspectorStation.AddServiceTimeInspector2(workTime);
 
             box.InspectorServiceStartTime = currentTime;
         }
@@ -477,18 +494,19 @@ namespace FinalProject.Simulator
 
             box.InspectorServiceDoneTime = currentTime;
             box.DepartureTime = currentTime;
-            _result.BoxResult.Add(box);
+
+            if (box.DepartureTime >= WarmUpTime)
+                _result.BoxResult.Add(box);
 
 
             if (_inspectorStation.GetQueueLen > 0)
             {
                 _inspectorStation.Inspector1Box = _inspectorStation.InspectorQueue.Dequeue();
                 //When the Job going to finish? 
-                TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60 * (RandomEngine.GetNormal(2, 1))));
+                TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(RandomEngine.GetNormal(2, 1))));
                 _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker1JobDone, currentTime.Add(workTime)));
+                _inspectorStation.AddServiceTimeInspector1(workTime);
                 _inspectorStation.Inspector1Status = WorkerStatus.Busy;
-
-
             }
             else
             {
@@ -503,14 +521,17 @@ namespace FinalProject.Simulator
 
             box.InspectorServiceDoneTime = currentTime;
             box.DepartureTime = currentTime;
-            _result.BoxResult.Add(box);
+
+            if (box.DepartureTime >= WarmUpTime)
+                _result.BoxResult.Add(box);
 
             if (_inspectorStation.GetQueueLen > 0)
             {
                 _inspectorStation.Inspector2Box = _inspectorStation.InspectorQueue.Dequeue();
                 //When the Job going to finish? 
-                TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60 * (RandomEngine.GetNormal(2, 1))));
+                TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(RandomEngine.GetNormal(2, 1))));
                 _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker2JobDone, currentTime.Add(workTime)));
+                _inspectorStation.AddServiceTimeInspector2(workTime);
                 _inspectorStation.Inspector2Status = WorkerStatus.Busy;
             }
             else

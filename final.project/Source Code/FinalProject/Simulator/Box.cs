@@ -31,5 +31,10 @@ namespace FinalProject.Simulator
         public TimeSpan InspectorDuration { get; set; } //Inspector Service Duration
 
         public string Identifier { get; set; }
+
+        public TimeSpan GetInSystemTime
+        {
+            get { return DepartureTime - ArrivalTime; }
+        }
     }
 }

@@ -1,0 +1,9 @@
+﻿<Window x:Class="FinalProject.Simulator.Report.ReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Final Project - Report " Height="465" Width="708"
+        Activated="WindowActivated" WindowState="Maximized">
+    <Grid>
+        <DocumentViewer Name="DocumentViewer" />
+    </Grid>
+</Window>
