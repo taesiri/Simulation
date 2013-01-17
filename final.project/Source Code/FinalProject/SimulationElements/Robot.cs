@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Media3D;
 using FinalProject.SimulationElements.Enums;
+using FinalProject.SimulationWorld;
 
 namespace FinalProject.SimulationElements
 {
@@ -69,7 +70,13 @@ namespace FinalProject.SimulationElements
             var newTransformer = new TranslateTransform3D(box.Transformer.OffsetX, box.Transformer.OffsetY, 2.1);
             box.Transform = newTransformer;
             box.Transformer = newTransformer;
+
             newTransformer.BeginAnimation(TranslateTransform3D.OffsetXProperty, da);
+
+
+            var robotTransform = new TranslateTransform3D(box.Transformer.OffsetX, box.Transformer.OffsetY, 0);
+            World.Instance.MotherRobot.Transform = robotTransform;
+            robotTransform.BeginAnimation(TranslateTransform3D.OffsetXProperty, da);
         }
 
         public void MoveIt(ServiceEntranceStation source, ServicePlatformElement destination, TimeSpan duration)
@@ -90,6 +97,11 @@ namespace FinalProject.SimulationElements
             box.Transform = newTransformer;
             box.Transformer = newTransformer;
             newTransformer.BeginAnimation(TranslateTransform3D.OffsetXProperty, da);
+
+
+            var robotTransform = new TranslateTransform3D(box.Transformer.OffsetX, box.Transformer.OffsetY, 0);
+            World.Instance.MotherRobot.Transform = robotTransform;
+            robotTransform.BeginAnimation(TranslateTransform3D.OffsetXProperty, da);
         }
 
         public void MoveIt(ServicePlatformElement source, ServiceInspectorStation destination, TimeSpan duration, int p)
@@ -130,7 +142,18 @@ namespace FinalProject.SimulationElements
             box.Transformer = newTransformer;
             newTransformer.BeginAnimation(TranslateTransform3D.OffsetXProperty, daX);
             newTransformer.BeginAnimation(TranslateTransform3D.OffsetYProperty, daY);
-         
+
+
+            var robotTransform = new TranslateTransform3D(box.Transformer.OffsetX, box.Transformer.OffsetY, 0);
+            World.Instance.MotherRobot.Transform = robotTransform;
+            robotTransform.BeginAnimation(TranslateTransform3D.OffsetXProperty, daX);
+            robotTransform.BeginAnimation(TranslateTransform3D.OffsetYProperty, daY);
+        }
+
+        public void ResetRobot()
+        {
+            var robotTransform = new TranslateTransform3D(-12, 8, -3.5);
+            World.Instance.MotherRobot.Transform = robotTransform;
         }
 
 

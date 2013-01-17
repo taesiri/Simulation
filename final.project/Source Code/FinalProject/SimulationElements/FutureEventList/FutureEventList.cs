@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using FinalProject.SimulationElements.Enums;
 using FinalProject.SimulationElements.RandomGenerator;
+using FinalProject.SimulationWorld;
 
 namespace FinalProject.SimulationElements.FutureEventList
 {
@@ -36,15 +37,20 @@ namespace FinalProject.SimulationElements.FutureEventList
         {
             TimeSpan timeBetweenTwoEnter = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(12))); // Const
 
-            //while (timeBetweenTwoEnter.TotalMinutes > 30)
-            //{
-            //    timeBetweenTwoEnter = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(12)));
-            //}
+
+            if (World.Instance.MnuChkFastEntrance.IsChecked)
+            {
+                while (timeBetweenTwoEnter.TotalMinutes > 30)
+                {
+                    timeBetweenTwoEnter = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(12)));
+                }
+            }
+
 
             DateTime entraneTime = currentTime.Add(timeBetweenTwoEnter);
             if (entraneTime > EndTime)
             {
-               //NO More Entrance!
+                //NO More Entrance!
             }
             else
             {

@@ -105,6 +105,7 @@
     <Compile Include="SimulationElements\ServiceInspectorStation.cs" />
     <Compile Include="SimulationElements\ServicePlatformElement.cs" />
     <Compile Include="SimulationElements\Enums\SimulationEnums.cs" />
+    <Compile Include="SimulationElements\ServiceRobotElement.cs" />
     <Compile Include="SimulationElements\StaticElement.cs" />
     <Compile Include="SimulationWorld\World.xaml.cs">
       <DependentUpon>World.xaml</DependentUpon>

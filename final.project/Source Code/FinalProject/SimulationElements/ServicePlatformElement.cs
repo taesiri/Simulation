@@ -12,8 +12,8 @@ namespace FinalProject.SimulationElements
     {
         public BillboardTextVisual3D PlatformStatusText;
         public TranslateTransform3D Tranformer;
-        private TimeSpan _totalServiceTime;
         private StationStatus _status = StationStatus.Empty;
+        private TimeSpan _totalServiceTime;
 
         public ServicePlatformElement()
         {
@@ -82,6 +82,11 @@ namespace FinalProject.SimulationElements
 
         public ServiceBoxElement ServiceBox { get; set; }
 
+        public TimeSpan GetTotalServiceTime
+        {
+            get { return _totalServiceTime; }
+        }
+
 
         public void CreatePlatform(Point3D location, string textureUri)
         {
@@ -95,7 +100,7 @@ namespace FinalProject.SimulationElements
             //meshBuilder.AddBox(location, xLen, yLen, zLen);
 
             geometryModel.Geometry = meshBuilder.ToMesh();
-            geometryModel.Material = MaterialHelper.CreateImageMaterial(textureUri);
+            geometryModel.Material = Materials.DarkGray;
 
             Visual3DModel = geometryModel;
         }
@@ -133,15 +138,9 @@ namespace FinalProject.SimulationElements
             return Name;
         }
 
-        public TimeSpan GetTotalServiceTime
-        {
-            get { return _totalServiceTime; }
-        }
-
         public void AddServiceTime(TimeSpan time)
         {
             _totalServiceTime += time;
         }
-
     }
 }

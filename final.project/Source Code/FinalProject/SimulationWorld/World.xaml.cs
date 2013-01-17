@@ -21,6 +21,7 @@ namespace FinalProject.SimulationWorld
         private readonly FutureEventList _fel = new FutureEventList();
         private readonly FutureEventListViewer _felViewer;
         private readonly List<ServiceBoxElement> _jobDoneList;
+        public ServiceRobotElement MotherRobot;
         private int _arrivalCounter;
 
 
@@ -95,6 +96,10 @@ namespace FinalProject.SimulationWorld
             Mother.Children.Add(_platformC);
             Mother.Children.Add(_entranceStation);
             Mother.Children.Add(_inspectorStation);
+
+            MotherRobot = new ServiceRobotElement();
+            MotherRobot.Transform = new TranslateTransform3D(-12, 8, -3.5);
+            Mother.Children.Add(MotherRobot);
 
             //Timer
             GlobalTimeScale = 1/60f;
@@ -326,11 +331,13 @@ namespace FinalProject.SimulationWorld
                 else
                 {
                     _robot.Status = RobotStatus.Idle;
+                    _robot.ResetRobot();
                 }
             }
             else
             {
                 _robot.Status = RobotStatus.Idle;
+                _robot.ResetRobot();
             }
         }
 
