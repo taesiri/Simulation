@@ -1,0 +1,176 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" type="text/css" href="visio.css"/>
+<title>
+FinalProject
+</title>
+<script type="text/javascript" language="javascript">
+function UpdateTooltip(){};
+function OnShapeClick(){};
+</script>
+
+<script src="png_1.js" type="text/javascript" language="javascript"></script>
+<script type="text/javascript" language="javascript">
+	if( (parent.isSVG) || 
+		(parent.isVML && parent.vmlSupported) || 
+		(parent.isXAML && parent.isUpLevel)) 
+	{
+		location.replace(parent.g_FileList[parent.g_CurPageIndex].PriImage);
+	}
+</script>
+
+
+<script type="text/javascript" language="javascript">
+var pageID = 17;
+var isUpLevel = parent.isUpLevel;
+var OnShapeClick = null;
+if (!parent.isMac)
+{
+	OnShapeClick = parent.OnShapeClick;
+}
+
+var OnShapeKey = parent.OnShapeKey;
+var UpdateTooltip = parent.UpdateTooltip;
+var clickMenu = parent.clickMenu;
+var toggleMenuDiv = parent.toggleMenuDiv;
+var toggleMenuLink = parent.toggleMenuLink;
+var GoToPage = parent.GoToPage;
+
+
+if (parent.isUpLevel)
+{
+
+	if (parent.g_FirstPageToLoad != null && parent.g_FirstPageToLoad.length > 0)
+	{
+		if (parent.g_FileList[parent.g_CurPageIndex].PageID != pageID)
+		{
+			var fileEntry = parent.g_FileList[parent.g_CurPageIndex];
+			var fileToLoad = fileToLoad = fileEntry.PriImage;
+			if (fileEntry.SecImage.length > 0)
+			{
+				fileToLoad = fileEntry.SecImage;
+			}
+
+			location.replace(fileToLoad);
+		}
+
+		parent.g_FirstPageToLoad = null;
+	}
+
+
+	var viewMgr = new parent.CViewMgr();
+	parent.viewMgr = viewMgr;
+
+	viewMgr.SupportsDetails = true;
+	viewMgr.SupportsSearch = true;
+
+	viewMgr.put_Location = ViewMgrSetRasterLocation;
+	viewMgr.visBBoxLeft = 1.076073;
+	viewMgr.visBBoxRight = 10.726376;
+	viewMgr.visBBoxBottom = 0.819409;
+	viewMgr.visBBoxTop = 7.951501;
+	viewMgr.highlightDiv = null;
+}
+
+function load ()
+{
+	if(isUpLevel)
+	{
+		arrowdiv.innerHTML = '<img id="arrowgif" alt="Shows the location of the selected shape" src="arrow.png"/>';
+
+		var pageIndex = parent.PageIndexFromID (pageID);
+		parent.CurPageUpdate (pageIndex);
+	}
+}
+
+function unload()
+{
+	if(isUpLevel)
+	{
+		viewMgr = null;
+		parent.viewMgr = null;
+	}
+}
+
+window.onload = load;
+window.onunload = unload;
+document.onclick = clickMenu;
+
+</script>
+<style type="text/css"> 
+body {
+	background:url(foo) fixed;
+	padding: 10px;
+}
+div.banner {
+	position: fixed;
+	_position: absolute;
+	top: 0;
+	left: 0;
+	_top: expression(eval(document.body.scrollTop));
+	_left: expression(eval(document.body.scrollLeft));
+	width: 100%;
+	_width: expression(eval(document.body.clientWidth));
+	margin: 0;
+	padding: 3px;
+	padding-left: 6px;
+	background:lime;
+	background-color: #FFFFC6;
+	font: 11px tahoma,arial,serif;
+	border-bottom: 2px ridge #FFFFC6;
+}
+</style>
+</head>
+
+<body class="pageView" bgcolor="#FFFFFF" style="margin: 0px">
+
+<script type="text/javascript" language="javascript">
+// Displays the banner prompt to install Silverlight
+if (parent.slSupported && !parent.slInstalled)
+{
+	var slBanner = document.createElement("div");
+	slBanner.className = "banner";
+	slBanner.innerHTML = 'To enable full functionality such as Pan and Zoom, <a href="http://www.microsoft.com/silverlight/resources/install.aspx" target="parent">click here</a> to install the Silverlight plug-in.';
+
+	document.body.appendChild(slBanner);
+	document.body.style.paddingTop = "2.5em";
+}
+</script>
+
+
+<div id="arrowdiv" style="position:absolute;top:0;left:0;visibility:hidden;z-index:5">
+</div>
+
+<div id="menu1" onclick="clickMenu()" class="hlMenu">
+</div>
+<DIV id="RasterDiv" style="margin:10px">
+
+<center>
+  <IMG id="ConvertedImage" SRC="png_12.png" ALT="RobotJobFinished" name=RasterImage BORDER="0" USEMAP="#visImageMap">
+</center>
+
+<MAP NAME="visImageMap">
+  <AREA shape="POLYGON" tabindex="1" ALT="Is Station A FREE ?" origTitle="Is Station A FREE ?" TITLE="Is Station A FREE ?"  target="_top" COORDS="824,484,797,462,770,484,770,484,770,485,751,500,797,539,844,500,827,487,827,484,824,484" onmouseover="UpdateTooltip(this,17,45,event)" onfocus="UpdateTooltip(this,17,45,event)" onclick="return OnShapeClick(17,45,event);" onkeyup="OnShapeKey(17,45,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Is Station B FREE ?" origTitle="Is Station B FREE ?" TITLE="Is Station B FREE ?"  target="_top" COORDS="691,343,665,320,638,343,637,343,637,343,618,359,665,397,711,359,694,345,694,343,691,343" onmouseover="UpdateTooltip(this,17,43,event)" onfocus="UpdateTooltip(this,17,43,event)" onclick="return OnShapeClick(17,43,event);" onkeyup="OnShapeKey(17,43,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Is Station C FREE ?" origTitle="Is Station C FREE ?" TITLE="Is Station C FREE ?"  target="_top" COORDS="570,268,543,246,516,268,516,268,516,268,497,284,543,323,590,284,573,270,573,268,570,268" onmouseover="UpdateTooltip(this,17,41,event)" onfocus="UpdateTooltip(this,17,41,event)" onclick="return OnShapeClick(17,41,event);" onkeyup="OnShapeKey(17,41,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Updateing FEL" origTitle="Updateing FEL" TITLE="Updateing FEL"  target="_top" COORDS="384,603,476,603,476,547,384,547,384,603" onmouseover="UpdateTooltip(this,17,31,event)" onfocus="UpdateTooltip(this,17,31,event)" onclick="return OnShapeClick(17,31,event);" onkeyup="OnShapeKey(17,31,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Scheduling Moving Box TIME" origTitle="Scheduling Moving Box TIME" TITLE="Scheduling Moving Box TIME"  target="_top" COORDS="384,529,476,529,476,472,384,472,384,529" onmouseover="UpdateTooltip(this,17,30,event)" onfocus="UpdateTooltip(this,17,30,event)" onclick="return OnShapeClick(17,30,event);" onkeyup="OnShapeKey(17,30,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Updateing FEL" origTitle="Updateing FEL" TITLE="Updateing FEL"  target="_top" COORDS="246,529,339,529,339,472,246,472,246,529" onmouseover="UpdateTooltip(this,17,29,event)" onfocus="UpdateTooltip(this,17,29,event)" onclick="return OnShapeClick(17,29,event);" onkeyup="OnShapeKey(17,29,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Scheduling Moving Box TIME" origTitle="Scheduling Moving Box TIME" TITLE="Scheduling Moving Box TIME"  target="_top" COORDS="246,387,339,387,339,330,246,330,246,387" onmouseover="UpdateTooltip(this,17,28,event)" onfocus="UpdateTooltip(this,17,28,event)" onclick="return OnShapeClick(17,28,event);" onkeyup="OnShapeKey(17,28,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Updateing FEL" origTitle="Updateing FEL" TITLE="Updateing FEL"  target="_top" COORDS="125,529,218,529,218,472,125,472,125,529" onmouseover="UpdateTooltip(this,17,27,event)" onfocus="UpdateTooltip(this,17,27,event)" onclick="return OnShapeClick(17,27,event);" onkeyup="OnShapeKey(17,27,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Scheduling Moving Box TIME" origTitle="Scheduling Moving Box TIME" TITLE="Scheduling Moving Box TIME"  target="_top" COORDS="125,313,218,313,218,256,125,256,125,313" onmouseover="UpdateTooltip(this,17,26,event)" onfocus="UpdateTooltip(this,17,26,event)" onclick="return OnShapeClick(17,26,event);" onkeyup="OnShapeKey(17,26,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Robot Status = Idle" origTitle="Robot Status = Idle" TITLE="Robot Status = Idle"  target="_top" COORDS="805,676,921,676,921,625,805,625,805,676" onmouseover="UpdateTooltip(this,17,23,event)" onfocus="UpdateTooltip(this,17,23,event)" onclick="return OnShapeClick(17,23,event);" onkeyup="OnShapeKey(17,23,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Is Entrance Station Needs Robot ?" origTitle="Is Entrance Station Needs Robot ?" TITLE="Is Entrance Station Needs Robot ?"  target="_top" COORDS="819,383,797,365,776,383,773,383,773,385,751,404,797,443,844,404,824,387,824,383,819,383" onmouseover="UpdateTooltip(this,17,19,event)" onfocus="UpdateTooltip(this,17,19,event)" onclick="return OnShapeClick(17,19,event);" onkeyup="OnShapeKey(17,19,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Is Station A Needs Robot ?" origTitle="Is Station A Needs Robot ?" TITLE="Is Station A Needs Robot ?"  target="_top" COORDS="696,265,711,253,665,214,618,253,633,265,633,266,633,266,665,292,696,266,696,266,696,265" onmouseover="UpdateTooltip(this,17,18,event)" onfocus="UpdateTooltip(this,17,18,event)" onclick="return OnShapeClick(17,18,event);" onkeyup="OnShapeKey(17,18,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Is Station B Needs Robot ?" origTitle="Is Station B Needs Robot ?" TITLE="Is Station B Needs Robot ?"  target="_top" COORDS="575,191,590,178,543,140,497,178,512,191,512,191,512,191,543,217,574,191,575,191,575,191" onmouseover="UpdateTooltip(this,17,17,event)" onfocus="UpdateTooltip(this,17,17,event)" onclick="return OnShapeClick(17,17,event);" onkeyup="OnShapeKey(17,17,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Is Station C Needs Robot ?" origTitle="Is Station C Needs Robot ?" TITLE="Is Station C Needs Robot ?"  target="_top" COORDS="454,191,469,178,422,140,376,178,391,191,391,191,391,191,422,217,453,191,454,191,454,191" onmouseover="UpdateTooltip(this,17,8,event)" onfocus="UpdateTooltip(this,17,8,event)" onclick="return OnShapeClick(17,8,event);" onkeyup="OnShapeKey(17,8,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Return" origTitle="Return" TITLE="Return"  target="_top" COORDS="402,670,457,670,463,669,469,666,473,662,475,656,476,651,475,645,473,640,469,635,463,633,457,632,402,632,397,633,391,635,387,640,384,645,384,651,384,656,387,662,391,666,397,669,402,670" onmouseover="UpdateTooltip(this,17,6,event)" onfocus="UpdateTooltip(this,17,6,event)" onclick="return OnShapeClick(17,6,event);" onkeyup="OnShapeKey(17,6,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Updateing FEL" origTitle="Updateing FEL" TITLE="Updateing FEL"  target="_top" COORDS="4,529,97,529,97,472,4,472,4,529" onmouseover="UpdateTooltip(this,17,3,event)" onfocus="UpdateTooltip(this,17,3,event)" onclick="return OnShapeClick(17,3,event);" onkeyup="OnShapeKey(17,3,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Scheduling Moving Box TIME" origTitle="Scheduling Moving Box TIME" TITLE="Scheduling Moving Box TIME"  target="_top" COORDS="4,207,97,207,97,150,4,150,4,207" onmouseover="UpdateTooltip(this,17,2,event)" onfocus="UpdateTooltip(this,17,2,event)" onclick="return OnShapeClick(17,2,event);" onkeyup="OnShapeKey(17,2,event);">
+</MAP>
+
+
+</DIV>
+</body>
+</html>

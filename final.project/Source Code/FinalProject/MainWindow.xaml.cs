@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Windows;
+using FinalProject.Plot;
 using FinalProject.SimulationWorld;
 using FinalProject.Simulator;
 using FinalProject.Simulator.Report;
@@ -46,6 +49,18 @@ namespace FinalProject
         private void BtnExit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void BtnGraphClick(object sender, RoutedEventArgs e)
+        {
+            var plotterDialog = new PlotterDialog();
+            plotterDialog.ShowDialog();
+        }
+
+        private void BtnSimulationChartsClick(object sender, RoutedEventArgs e)
+        {
+            String appStartPath = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
+            Process.Start(appStartPath + @"\Charts\FinalProject.htm");
         }
     }
 }

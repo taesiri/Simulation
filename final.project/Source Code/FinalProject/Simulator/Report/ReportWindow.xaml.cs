@@ -36,8 +36,7 @@ namespace FinalProject.Simulator.Report
                 var reportDocument = new ReportDocument();
 
                 String appStartPath = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
-
-
+                
                 var reader =
                     new StreamReader(new FileStream(appStartPath + @"\Simulator\Report\Template\Template.xaml",
                                                     FileMode.Open,
