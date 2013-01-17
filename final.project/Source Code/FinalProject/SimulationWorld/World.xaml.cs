@@ -20,12 +20,12 @@ namespace FinalProject.SimulationWorld
         public static World Instance;
         private readonly FutureEventList _fel = new FutureEventList();
         private readonly FutureEventListViewer _felViewer;
+        private readonly List<ServiceBoxElement> _jobDoneList;
         private int _arrivalCounter;
 
 
         private ServiceEntranceStation _entranceStation;
         private ServiceInspectorStation _inspectorStation;
-        private readonly List<ServiceBoxElement> _jobDoneList;
 
         private ServicePlatformElement _platformA;
         private ServicePlatformElement _platformB;
@@ -61,7 +61,7 @@ namespace FinalProject.SimulationWorld
 
         public double GlobalTimeScale { get; set; }
 
-        private void BtnMoveIt_OnClick(object sender, RoutedEventArgs e)
+        private void BtnStartSimulationClick(object sender, RoutedEventArgs e)
         {
             StartSimulation();
         }
@@ -406,7 +406,7 @@ namespace FinalProject.SimulationWorld
             _fel.AddNewEvent(new FutureEvent(Events.RobotJobFinished, currentTime));
 
             //When the Job going to finish? 
-            TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60 * (RandomEngine.GetNormal(2, 1))));
+            TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(RandomEngine.GetNormal(2, 1))));
             _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker1JobDone, currentTime.Add(workTime)));
 
             box.BoxDetails.InspectorServiceStartTime = currentTime;
@@ -421,7 +421,7 @@ namespace FinalProject.SimulationWorld
 
             //When the Job going to finish? 
 
-            TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60 * (RandomEngine.GetNormal(2, 1))));
+            TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(RandomEngine.GetNormal(2, 1))));
             _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker2JobDone, currentTime.Add(workTime)));
             box.BoxDetails.InspectorServiceStartTime = currentTime;
         }
@@ -445,7 +445,7 @@ namespace FinalProject.SimulationWorld
                 _inspectorStation.Inspector1Box.Transform = new TranslateTransform3D(16, 3, 0);
                 _inspectorStation.Inspector1Box.Transformer = new TranslateTransform3D(16, 3, 0);
                 //When the Job going to finish? 
-                TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(RandomEngine.GetNormal(2,1))));
+                TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(RandomEngine.GetNormal(2, 1))));
                 _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker1JobDone, currentTime.Add(workTime)));
                 _inspectorStation.Inspector1Status = WorkerStatus.Busy;
                 _inspectorStation.Inspector1Box.BoxDetails.InspectorServiceStartTime = currentTime;
@@ -474,7 +474,7 @@ namespace FinalProject.SimulationWorld
                 _inspectorStation.Inspector2Box.Transform = new TranslateTransform3D(16, -3, 0);
                 _inspectorStation.Inspector2Box.Transformer = new TranslateTransform3D(16, -3, 0);
                 //When the Job going to finish? 
-                TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60 * (RandomEngine.GetNormal(2, 1))));
+                TimeSpan workTime = TimeSpan.FromSeconds(Math.Round(60*(RandomEngine.GetNormal(2, 1))));
                 _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker2JobDone, currentTime.Add(workTime)));
                 _inspectorStation.Inspector2Status = WorkerStatus.Busy;
                 _inspectorStation.Inspector2Box.BoxDetails.InspectorServiceStartTime = currentTime;
@@ -501,12 +501,18 @@ namespace FinalProject.SimulationWorld
             }
         }
 
-        private void StopTimer(object sender, RoutedEventArgs e)
+        private void BtnStopSimulationClick(object sender, RoutedEventArgs e)
         {
             _timer.Stop();
         }
 
-        #region AutomaticSimulator
+        private void MnuItemExitClick(object sender, RoutedEventArgs e)
+        {
+            _felViewer.Close();
+            Close();
+        }
+
+        #region TimerSimulation
 
         private readonly DateTime _startTime;
         private int _simulationClock;
@@ -525,7 +531,7 @@ namespace FinalProject.SimulationWorld
 
 
             _felViewer.Title = currentTime.ToString("h:mm:ss");
-            LblSimulationClick.Content = currentTime.ToString("h:mm:ss");
+            LblSimulationClock.Content = currentTime.ToString("h:mm:ss");
 
             _felViewer.SetData(_fel.EventList);
 
@@ -612,6 +618,17 @@ namespace FinalProject.SimulationWorld
             }
             LblRobotStatus.Content = "Robot Status : " + _robot.Status;
             _simulationClock++;
+
+
+            SysImageCtrl.SetState(new SystemImage
+                {
+                    EntranceQueueLen = _entranceStation.GetQueueLen,
+                    StationAStatus = _platformA.Status,
+                    StationBStatus = _platformB.Status,
+                    StationCStatus = _platformC.Status,
+                    Inspector1Status = _inspectorStation.Inspector1Status,
+                    Inspector2Status = _inspectorStation.Inspector2Status
+                });
         }
 
         #endregion

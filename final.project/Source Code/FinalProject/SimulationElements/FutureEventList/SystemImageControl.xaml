@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="FinalProject.SimulationElements.FutureEventList.SystemImageControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" Height="75" Width="200">
+    <Grid>
+        <Rectangle x:Name="RecEntrance" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Stroke="Black"
+                   VerticalAlignment="Top" Width="50" Margin="2,22,0,0" />
+        <Rectangle x:Name="RecStationA" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Stroke="Black"
+                   VerticalAlignment="Top" Width="32" Margin="63,22,0,0" />
+        <Rectangle x:Name="RecStationB" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Stroke="Black"
+                   VerticalAlignment="Top" Width="32" Margin="97,22,0,0" />
+        <Rectangle x:Name="RecStationC" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Stroke="Black"
+                   VerticalAlignment="Top" Width="32" Margin="131,22,0,0" />
+        <Rectangle x:Name="RecInspector1" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Stroke="Black"
+                   VerticalAlignment="Top" Width="32" Margin="168,0,0,0" />
+        <Rectangle x:Name="RecInspector2" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Stroke="Black"
+                   VerticalAlignment="Top" Width="32" Margin="168,43,0,0" />
+        <Label Content="Entrance" FontSize="9" HorizontalAlignment="Left" Margin="2,22,0,0" VerticalAlignment="Top"
+               Height="32" Width="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <Label Content="A" HorizontalAlignment="Left" Margin="63,22,0,0" VerticalAlignment="Top" Height="32" Width="32"
+               HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <Label Content="B" HorizontalAlignment="Left" Margin="97,22,0,0" VerticalAlignment="Top" Height="32" Width="32"
+               HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <Label Content="C" HorizontalAlignment="Left" Margin="131,22,0,0" VerticalAlignment="Top" Height="32"
+               Width="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <Label Content="I1" HorizontalAlignment="Left" Margin="168,0,0,0" VerticalAlignment="Top" Height="32"
+               Width="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <Label Content="I2" HorizontalAlignment="Left" Margin="168,43,0,0" VerticalAlignment="Top" Height="32"
+               Width="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+
+    </Grid>
+</UserControl>

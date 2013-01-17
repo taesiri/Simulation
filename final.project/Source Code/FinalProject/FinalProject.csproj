@@ -92,6 +92,9 @@
     <Compile Include="SimulationElements\FutureEventList\FutureEvent.cs" />
     <Compile Include="SimulationElements\FutureEventList\FutureEventList.cs" />
     <Compile Include="SimulationElements\FutureEventList\SystemImage.cs" />
+    <Compile Include="SimulationElements\FutureEventList\SystemImageControl.xaml.cs">
+      <DependentUpon>SystemImageControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SimulationElements\FutureEventList\SystemViewer.xaml.cs">
       <DependentUpon>SystemViewer.xaml</DependentUpon>
     </Compile>
@@ -207,6 +210,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SimulationElements\Dialog\FutureEventListViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SimulationElements\FutureEventList\SystemImageControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
