@@ -21,6 +21,7 @@ namespace FinalProject.SimulationWorld
         private readonly FutureEventList _fel = new FutureEventList();
         private readonly FutureEventListViewer _felViewer;
         private readonly List<ServiceBoxElement> _jobDoneList;
+        private readonly Random _rnd;
         public ServiceRobotElement MotherRobot;
         private int _arrivalCounter;
 
@@ -31,7 +32,6 @@ namespace FinalProject.SimulationWorld
         private ServicePlatformElement _platformA;
         private ServicePlatformElement _platformB;
         private ServicePlatformElement _platformC;
-
 
         private Robot _robot;
 
@@ -50,8 +50,8 @@ namespace FinalProject.SimulationWorld
             _felViewer.Show();
 
 
-            var rnd = new Random();
-            int numb = rnd.Next(1, 200);
+            _rnd = new Random(DateTime.Now.Millisecond);
+            int numb = _rnd.Next(5, 200);
 
             for (int i = 0; i < numb; i++)
             {
@@ -249,7 +249,26 @@ namespace FinalProject.SimulationWorld
                 TimeSpan boxMovementTime = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(0.7)));
 
 
-                if (_inspectorStation.Inspector1Status == WorkerStatus.Idle)
+                if (_inspectorStation.Inspector1Status == WorkerStatus.Idle &&
+                    _inspectorStation.Inspector2Status == WorkerStatus.Idle)
+                {
+                    int tos = _rnd.Next(1, 10);
+                    if (tos < 5)
+                    {
+                        _robot.MoveIt(_platformC, _inspectorStation, boxMovementTime, 1);
+                        _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker1JobStarted,
+                                                         currentTime.Add(boxMovementTime)));
+                        box.BoxDetails.EnteredToInspector = currentTime.Add(boxMovementTime);
+                    }
+                    else
+                    {
+                        _robot.MoveIt(_platformC, _inspectorStation, boxMovementTime, 2);
+                        _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker2JobStarted,
+                                                         currentTime.Add(boxMovementTime)));
+                        box.BoxDetails.EnteredToInspector = currentTime.Add(boxMovementTime);
+                    }
+                }
+                else if (_inspectorStation.Inspector1Status == WorkerStatus.Idle)
                 {
                     _robot.MoveIt(_platformC, _inspectorStation, boxMovementTime, 1);
                     _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker1JobStarted, currentTime.Add(boxMovementTime)));
@@ -287,7 +306,26 @@ namespace FinalProject.SimulationWorld
                 TimeSpan boxMovementTime = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(0.7)));
                 ServiceBoxElement box = _platformC.ServiceBox;
                 box.BoxDetails.EnteredToInspector = currentTime.Add(boxMovementTime);
-                if (_inspectorStation.Inspector1Status == WorkerStatus.Idle)
+
+
+                if (_inspectorStation.Inspector1Status == WorkerStatus.Idle &&
+                    _inspectorStation.Inspector2Status == WorkerStatus.Idle)
+                {
+                    int tos = _rnd.Next(1, 10);
+                    if (tos < 5)
+                    {
+                        _robot.MoveIt(_platformC, _inspectorStation, boxMovementTime, 1);
+                        _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker1JobStarted,
+                                                         currentTime.Add(boxMovementTime)));
+                    }
+                    else
+                    {
+                        _robot.MoveIt(_platformC, _inspectorStation, boxMovementTime, 2);
+                        _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker2JobStarted,
+                                                         currentTime.Add(boxMovementTime)));
+                    }
+                }
+                else if (_inspectorStation.Inspector1Status == WorkerStatus.Idle)
                 {
                     _robot.MoveIt(_platformC, _inspectorStation, boxMovementTime, 1);
                     _fel.AddNewEvent(new FutureEvent(Events.InspectorWorker1JobStarted, currentTime.Add(boxMovementTime)));
