@@ -7,24 +7,28 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="261*"/>
             <RowDefinition Height="299*"/>
+            <RowDefinition Height="100*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <d3:ChartPlotter Name="MainPlotter" Margin="10,10,10,2">
                 <d3:Header TextBlock.FontSize="20">
-                    Exponential Distribution Graph
+                    Probability density function
                 </d3:Header>
-                <d3:VerticalAxisTitle>( Probability Density )</d3:VerticalAxisTitle>
-                <d3:HorizontalAxisTitle>( X )</d3:HorizontalAxisTitle>
+                <d3:VerticalAxisTitle>P(x)</d3:VerticalAxisTitle>
+                <d3:HorizontalAxisTitle>( x )</d3:HorizontalAxisTitle>
             </d3:ChartPlotter>
         </Grid>
         <Grid Grid.Row="1">
             <d3:ChartPlotter Name="CdfPlotter" Margin="10,10,10,2">
                 <d3:Header TextBlock.FontSize="20">
-                    Commutative Distribution Graph
+                    Cumulative distribution function
                 </d3:Header>
-                <d3:VerticalAxisTitle>( Probability Density )</d3:VerticalAxisTitle>
-                <d3:HorizontalAxisTitle>( F(X) )</d3:HorizontalAxisTitle>
+                <d3:VerticalAxisTitle>P(X)</d3:VerticalAxisTitle>
+                <d3:HorizontalAxisTitle>( x )</d3:HorizontalAxisTitle>
             </d3:ChartPlotter>
+        </Grid>
+        <Grid Grid.Row="2">
+            <TextBlock x:Name="TxtBlockSampleNumber" TextWrapping="Wrap" Text="" FontSize="14" Margin="10" />
         </Grid>
     </Grid>
 </Window>

@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         Title="Plotter Dialog" Height="259" Width="259" ResizeMode="NoResize" WindowStyle="ToolWindow" Background="DarkGray" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button Content="Close" HorizontalAlignment="Right" Margin="0,0,136,10" VerticalAlignment="Bottom" Width="107" Click="BtnCancelClick"/>
-        <Button Content="Draw" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="109" Click="BtnDrawClick"/>
+        <Button Content="Close" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="91" Click="BtnCancelClick"/>
+        <Button Content="Draw" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="90" Click="BtnDrawClick"/>
         <TextBox x:Name="TxtMeanValue" Height="26" Margin="0,44,10,0" TextWrapping="Wrap" Text="12" VerticalAlignment="Top" HorizontalAlignment="Right" Width="155" VerticalContentAlignment="Center"/>
         <Label Content="Mean Value" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" Width="93"/>
         <Label Content="Color" HorizontalAlignment="Left" Margin="43,85,0,0" VerticalAlignment="Top" Width="60"/>

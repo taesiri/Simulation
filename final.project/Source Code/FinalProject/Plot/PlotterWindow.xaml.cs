@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media;
+using FinalProject.SimulationElements.RandomGenerator;
 using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 
@@ -24,7 +25,28 @@ namespace FinalProject.Plot
         private void PlotterWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
             ExponentialDistribution(Landa, PlotterColor);
-            CommutativeDistribution(Landa, PlotterColor);
+            CumulativeDistribution(Landa, PlotterColor);
+            SampleRandoms(Convert.ToDouble(1/Landa));
+        }
+
+        public void SampleRandoms(double mean)
+        {
+            var rand = new Random(DateTime.Now.Millisecond);
+            int n = rand.Next(10, 100);
+            for (int i = 0; i < n; i++)
+            {
+                RandomEngine.GetNormal();
+            }
+
+            string text = "Sample Randome Numbers : \n";
+
+            for (int i = 0; i < 50; i++)
+            {
+                text += RandomEngine.GetExpo(mean) + ",";
+            }
+            text = text.Remove(text.Length - 1, 1);
+
+            TxtBlockSampleNumber.Text = text;
         }
 
         public void ExponentialDistribution(double landa, Color color)
@@ -37,7 +59,7 @@ namespace FinalProject.Plot
             for (int i = 0; i < n; i++)
             {
                 x[i] = i;
-                y[i] = landa*Math.Pow(Math.E, -1*landa*x[i])*10;
+                y[i] = landa*Math.Pow(Math.E, -1*landa*x[i]);
             }
 
             // Create data sources:
@@ -55,7 +77,7 @@ namespace FinalProject.Plot
             MainPlotter.FitToView();
         }
 
-        public void CommutativeDistribution(double landa, Color color)
+        public void CumulativeDistribution(double landa, Color color)
         {
             // Prepare data in arrays
             const int n = 200;
@@ -65,7 +87,7 @@ namespace FinalProject.Plot
             for (int i = 0; i < n; i++)
             {
                 x[i] = i;
-                y[i] = (1 - Math.Pow(Math.E, -1*landa*x[i]))*10;
+                y[i] = (1 - Math.Pow(Math.E, -1*landa*x[i]));
             }
 
             // Create data sources:
@@ -78,7 +100,7 @@ namespace FinalProject.Plot
 
             CdfPlotter.AddLineGraph(compositeDataSource, clr,
                                     3,
-                                    "Commutative Distribution");
+                                    "Cumulative Distribution");
 
             // Force evertyhing plotted to be visible
             CdfPlotter.FitToView();
