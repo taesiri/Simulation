@@ -38,11 +38,14 @@ namespace FinalProject.SimulationElements.FutureEventList
             TimeSpan timeBetweenTwoEnter = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(12))); // Const
 
 
-            if (World.Instance.MnuChkFastEntrance.IsChecked)
+            if (World.Instance != null)
             {
-                while (timeBetweenTwoEnter.TotalMinutes > 30)
+                if (World.Instance.MnuChkFastEntrance.IsChecked)
                 {
-                    timeBetweenTwoEnter = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(12)));
+                    while (timeBetweenTwoEnter.TotalMinutes > 30)
+                    {
+                        timeBetweenTwoEnter = TimeSpan.FromMinutes(Math.Round(RandomEngine.GetExpo(12)));
+                    }
                 }
             }
 
