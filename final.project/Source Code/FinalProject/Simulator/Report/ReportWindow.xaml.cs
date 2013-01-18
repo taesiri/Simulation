@@ -4,7 +4,6 @@ using System.Data;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Windows;
 using System.Windows.Xps.Packaging;
 using CodeReason.Reports;
 
@@ -13,7 +12,7 @@ namespace FinalProject.Simulator.Report
     /// <summary>
     ///     Interaction logic for ReportWindow.xaml
     /// </summary>
-    public partial class ReportWindow : Window
+    public partial class ReportWindow
     {
         private readonly List<SimulationResult> _data;
         private bool _firstActivated = true;
@@ -86,6 +85,7 @@ namespace FinalProject.Simulator.Report
                         Math.Round(totalAverage.TotalMinutes/_data.Count) + " - Minutes Per Box"
                     });
 
+
                 data.DataTables.Add(table);
 
 
@@ -108,6 +108,8 @@ namespace FinalProject.Simulator.Report
                 var averageInspector = new TimeSpan(0);
                 var averagetotal = new TimeSpan(0);
 
+                var totalServiceEachRun = new List<TimeSpan>();
+
 
                 foreach (SimulationResult element in _data)
                 {
@@ -125,6 +127,8 @@ namespace FinalProject.Simulator.Report
                     averageC += element.StationCTotalService;
                     averageInspector += element.Inspector1TotalService + element.Inspector2TotalService;
                     averagetotal += element.TotalService;
+
+                    totalServiceEachRun.Add(element.TotalService);
                 }
                 table.Rows.Add(new object[]
                     {
@@ -198,8 +202,7 @@ namespace FinalProject.Simulator.Report
                 data.DataTables.Add(table);
 
 
-
-                // CHART
+                // CHART One
                 var chartTable = new DataTable("ChartOne");
                 chartTable.Columns.Add("Run", typeof (string));
                 chartTable.Columns.Add("TotalBoxes", typeof (int));
@@ -208,6 +211,21 @@ namespace FinalProject.Simulator.Report
                 foreach (SimulationResult element in _data)
                 {
                     chartTable.Rows.Add(new object[] {counter, element.BoxResult.Count});
+                    counter++;
+                }
+
+                data.DataTables.Add(chartTable);
+
+
+                // CHART Two
+                chartTable = new DataTable("ChartTwo");
+                chartTable.Columns.Add("Run", typeof (string));
+                chartTable.Columns.Add("AverageServicetime", typeof (double));
+
+                counter = 1;
+                foreach (TimeSpan element in totalServiceEachRun)
+                {
+                    chartTable.Rows.Add(new object[] {counter, element.TotalMinutes});
                     counter++;
                 }
 

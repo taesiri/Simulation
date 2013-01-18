@@ -435,18 +435,19 @@
             </Table>
         </xrd:SectionDataGroup>
     </Section>
-
-
     <Section Padding="60,10,40,10" FontSize="12" BreakPageBefore="True" FontFamily="Segoe UI">
         <Paragraph  FontFamily="Segoe UI" FontSize="14">
-            Charts
+            Simulation Chart
         </Paragraph>
 
         <Paragraph FontFamily="Segoe UI" FontSize="10" >
             <crcv:ColumnChart TableName="ChartOne" TableColumns="Run,TotalBoxes" Width="18cm" Height="12cm" Title="Run/Total Boxes" View3D="True">
             </crcv:ColumnChart>
         </Paragraph>
+        <Paragraph FontFamily="Segoe UI" FontSize="10" >
+            <crcv:ColumnChart TableName="ChartTwo" TableColumns="Run,AverageServicetime" Width="18cm" Height="12cm" Title="Run/Average Service Time (min)" View3D="True">
+            </crcv:ColumnChart>
+        </Paragraph>
+        
     </Section>
-    
-    
-</FlowDocument>
+ </FlowDocument>

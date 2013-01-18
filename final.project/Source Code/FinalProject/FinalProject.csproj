@@ -475,6 +475,7 @@
     <Content Include="Charts\FinalProject_files\54DC422D-368E-0D66-8379-EF755746492C.odttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="ClassDiagrams.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

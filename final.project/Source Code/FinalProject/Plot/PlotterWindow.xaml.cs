@@ -38,7 +38,7 @@ namespace FinalProject.Plot
                 RandomEngine.GetNormal();
             }
 
-            string text = "Sample Randome Numbers : \n";
+            string text = "Sample Random Numbers : \n";
 
             for (int i = 0; i < 50; i++)
             {

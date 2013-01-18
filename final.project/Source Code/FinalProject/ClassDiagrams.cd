@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access">
+  <Class Name="FinalProject.SimulationElements.BoxInformation">
+    <Position X="7" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>gCAAAAAAAAAAIAIEAhBBMwQAAgAGCAAQAIAgAACBBAA=</HashCode>
+      <FileName>SimulationElements\BoxInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FinalProject.SimulationElements.Robot">
+    <Position X="0.5" Y="5.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAEgAAAAAAEAAAAAAAAAAAABAAAAAAAIAAAABA=</HashCode>
+      <FileName>SimulationElements\Robot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FinalProject.SimulationElements.Dialog.BoxDetails">
+    <Position X="7" Y="6.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>SimulationElements\Dialog\BoxDetails.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FinalProject.SimulationElements.FutureEventList.FutureEvent" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="8" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQEAAAAAAAAAgAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>SimulationElements\FutureEventList\FutureEvent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FinalProject.SimulationElements.FutureEventList.FutureEventList">
+    <Position X="0.5" Y="2.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAACEAAAAAAAAIAAAAgAAAAAAAAACAAAAA=</HashCode>
+      <FileName>SimulationElements\FutureEventList\FutureEventList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FinalProject.Simulator.ARobot">
+    <Position X="0.5" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAEAAAAAAAAAAAAAAAAAAAABAAAAAAAIAAAABA=</HashCode>
+      <FileName>Simulator\ARobot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FinalProject.Simulator.Box">
+    <Position X="9.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>gCAAAAAAAAAAIAIEAhBBMwQAAgAGCAAQAIAgQACBBAA=</HashCode>
+      <FileName>Simulator\Box.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FinalProject.Simulator.Entrance">
+    <Position X="9.5" Y="6.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAQAAAAAJAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Simulator\Entrance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FinalProject.Simulator.Inspector">
+    <Position X="4.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAEACCAAAAAAIAAAABAAAABIAAAAAAAIAAEMAAACA=</HashCode>
+      <FileName>Simulator\Inspector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FinalProject.Simulator.Platform">
+    <Position X="4.25" Y="5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAEAAAAAAAAAAAAABQAAAAAAAAAAIAAAAQYAAQ=</HashCode>
+      <FileName>Simulator\Platform.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="FinalProject.SimulationElements.Enums.Events">
+    <Position X="0.5" Y="10.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAIBAAAgAAAAAAAABxAAAAAAAAACAAADgIQAABAgAA=</HashCode>
+      <FileName>SimulationElements\Enums\SimulationEnums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FinalProject.SimulationElements.Enums.RobotStatus">
+    <Position X="7.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SimulationElements\Enums\SimulationEnums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FinalProject.SimulationElements.Enums.StationStatus">
+    <Position X="4.75" Y="10.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAEAAAAAAAJAAYAACAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>SimulationElements\Enums\SimulationEnums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FinalProject.SimulationElements.Enums.WorkerStatus">
+    <Position X="3" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SimulationElements\Enums\SimulationEnums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
