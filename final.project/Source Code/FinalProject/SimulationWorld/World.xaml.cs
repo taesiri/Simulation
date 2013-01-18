@@ -557,6 +557,14 @@ namespace FinalProject.SimulationWorld
             Close();
         }
 
+        private void MnuItemShowColorHelperClick(object sender, RoutedEventArgs e)
+        {
+            if (SysImageCtrl.ColorHelper != null)
+            {
+                SysImageCtrl.ColorHelper.Show();
+            }
+        }
+
         #region TimerSimulation
 
         private readonly DateTime _startTime;

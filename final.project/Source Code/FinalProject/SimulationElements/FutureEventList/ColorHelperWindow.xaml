@@ -1,0 +1,39 @@
+﻿<Window x:Class="FinalProject.SimulationElements.FutureEventList.ColorHelperWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Helper" Height="309" Width="533" ResizeMode="NoResize" WindowStyle="ToolWindow" Closing="Window_Closing_1">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="249*"/>
+            <ColumnDefinition Width="278*"/>
+        </Grid.ColumnDefinitions>
+       <Grid Grid.Column="0" Background="#FFE6E6E6">
+            <Label Content="Working Station Status " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+            <Label Content="Empty" HorizontalAlignment="Left" Margin="136,48,0,0" VerticalAlignment="Top"/>
+            <Label Content="Loading" HorizontalAlignment="Left" Margin="126,79,0,0" VerticalAlignment="Top"/>
+            <Label Content="On Service" HorizontalAlignment="Left" Margin="113,110,0,0" VerticalAlignment="Top"/>
+            <Label Content="Blocked" HorizontalAlignment="Left" Margin="127,141,0,0" VerticalAlignment="Top"/>
+            <Label Content="Blocked And Waiting for Robot" HorizontalAlignment="Left" Margin="4,172,0,0" VerticalAlignment="Top"/>
+            <Label Content="Waiting for Robot" HorizontalAlignment="Left" Margin="74,203,0,0" VerticalAlignment="Top"/>
+            <Rectangle Fill="Silver" HorizontalAlignment="Left" Height="26" Margin="184,48,0,0" Stroke="Black" VerticalAlignment="Top" Width="26"/>
+            <Rectangle Fill="Gold" HorizontalAlignment="Left" Height="26" Margin="184,79,0,0" Stroke="Black" VerticalAlignment="Top" Width="26"/>
+            <Rectangle Fill="Orange" HorizontalAlignment="Left" Height="26" Margin="184,110,0,0" Stroke="Black" VerticalAlignment="Top" Width="26"/>
+            <Rectangle Fill="Red" HorizontalAlignment="Left" Height="26" Margin="184,141,0,0" Stroke="Black" VerticalAlignment="Top" Width="26"/>
+            <Rectangle Fill="DarkRed" HorizontalAlignment="Left" Height="26" Margin="184,172,0,0" Stroke="Black" VerticalAlignment="Top" Width="26"/>
+            <Rectangle Fill="OrangeRed" HorizontalAlignment="Left" Height="26" Margin="184,203,0,0" Stroke="Black" VerticalAlignment="Top" Width="26"/>
+            </Grid>
+        <Grid Grid.Column="1" Background="#FFDAFAFF">
+            <Label Content="Inspector Worker Status " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+            <Label Content="Idle" HorizontalAlignment="Left" Margin="142,48,0,0" VerticalAlignment="Top"/>
+            <Label Content="Busy" HorizontalAlignment="Left" Margin="136,79,0,0" VerticalAlignment="Top"/>
+            <Rectangle Fill="Silver" HorizontalAlignment="Left" Height="26" Margin="184,48,0,0" Stroke="Black" VerticalAlignment="Top" Width="26"/>
+            <Rectangle Fill="YellowGreen" HorizontalAlignment="Left" Height="26" Margin="184,79,0,0" Stroke="Black" VerticalAlignment="Top" Width="26"/>
+            <Label Content="Entrance Queue" HorizontalAlignment="Left" Margin="56,171,0,0" VerticalAlignment="Top"/>
+            <Label Content="Empty" HorizontalAlignment="Left" Margin="136,202,0,0" VerticalAlignment="Top"/>
+            <Label Content="Not Empty" HorizontalAlignment="Left" Margin="104,233,0,0" VerticalAlignment="Top"/>
+            <Rectangle Fill="Silver" HorizontalAlignment="Left" Height="26" Margin="184,202,0,0" Stroke="Black" VerticalAlignment="Top" Width="26"/>
+            <Rectangle Fill="SkyBlue" HorizontalAlignment="Left" Height="26" Margin="184,233,0,0" Stroke="Black" VerticalAlignment="Top" Width="26"/>
+
+        </Grid>
+    </Grid>
+</Window>

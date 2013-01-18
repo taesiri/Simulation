@@ -89,6 +89,9 @@
     <Compile Include="SimulationElements\Dialog\FutureEventListViewer.xaml.cs">
       <DependentUpon>FutureEventListViewer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SimulationElements\FutureEventList\ColorHelperWindow.xaml.cs">
+      <DependentUpon>ColorHelperWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SimulationElements\FutureEventList\FutureEvent.cs" />
     <Compile Include="SimulationElements\FutureEventList\FutureEventList.cs" />
     <Compile Include="SimulationElements\FutureEventList\SystemImage.cs" />
@@ -211,6 +214,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SimulationElements\Dialog\FutureEventListViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SimulationElements\FutureEventList\ColorHelperWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

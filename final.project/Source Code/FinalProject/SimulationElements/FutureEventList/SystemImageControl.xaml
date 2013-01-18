@@ -5,6 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" Height="75" Width="200">
     <Grid>
+        <Grid.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Shwo Helper" Click="MnuShowHelperClick"></MenuItem>
+            </ContextMenu>
+        </Grid.ContextMenu>
+
         <Rectangle x:Name="RecEntrance" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Stroke="Black"
                    VerticalAlignment="Top" Width="50" Margin="2,22,0,0" />
         <Rectangle x:Name="RecStationA" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Stroke="Black"

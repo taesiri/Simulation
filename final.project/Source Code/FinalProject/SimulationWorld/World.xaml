@@ -21,6 +21,8 @@
                           IsChecked="True" />
                 <MenuItem x:Name="MenuItemShowCoordinateSystem" Header="Show Coordinate System" IsCheckable="True"
                           IsChecked="True" />
+                <Separator/>
+                <MenuItem Header="Show Color Helper" Click="MnuItemShowColorHelperClick"></MenuItem>
             </MenuItem>
             <MenuItem Header="Timer">
                 <MenuItem Header="Start Timer" Click="BtnStartSimulationClick" />

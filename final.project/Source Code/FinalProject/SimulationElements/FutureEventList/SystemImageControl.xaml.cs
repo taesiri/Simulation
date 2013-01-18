@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.Windows;
+using System.Windows.Media;
 using System.Windows.Shapes;
 using FinalProject.SimulationElements.Enums;
 
@@ -9,9 +10,12 @@ namespace FinalProject.SimulationElements.FutureEventList
     /// </summary>
     public partial class SystemImageControl
     {
+        public  ColorHelperWindow ColorHelper;
+
         public SystemImageControl()
         {
             InitializeComponent();
+            ColorHelper = new ColorHelperWindow();
         }
 
         public void SetState(SystemImage image)
@@ -72,6 +76,11 @@ namespace FinalProject.SimulationElements.FutureEventList
             {
                 rec.Fill = Brushes.SkyBlue;
             }
+        }
+
+        private void MnuShowHelperClick(object sender, RoutedEventArgs e)
+        {
+            ColorHelper.Show();
         }
     }
 }
