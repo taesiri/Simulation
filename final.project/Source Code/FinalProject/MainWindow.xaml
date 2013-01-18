@@ -1,7 +1,7 @@
 ﻿<Window x:Class="FinalProject.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Final Project" Height="300" Width="239" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Final Project" Height="300" Width="239" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="icon.ico">
     <Grid>
         <Button Content="Auto Simulation" Margin="10,10,10,0" VerticalAlignment="Top" Click="BtnAutoSClick" Height="30"/>
         <Button Content="RealTime Simulation" Margin="10,45,10,0" VerticalAlignment="Top" Click="BtnRealTimeSimulation" Height="30"/>

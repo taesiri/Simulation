@@ -33,7 +33,7 @@
     <Section>
         <Paragraph/>
         <Paragraph TextAlignment="Center">
-            <Image Tag="aut.jpg" Width="8cm"  />
+            <Image Tag="aut.jpg" Width="8cm"/>
         </Paragraph>
         <Paragraph TextAlignment="Center"  FontFamily="Segoe UI" FontSize="38" FontWeight="Bold">
             Report

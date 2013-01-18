@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CodeReason.Reports">
       <HintPath>..\..\Libraries\CodeReason.Reports.dll</HintPath>
@@ -68,6 +71,9 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="WPFToolkit.Extended">
       <HintPath>..\..\Libraries\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFVisifire.Charts">
+      <HintPath>..\..\Libraries\WPFVisifire.Charts.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -438,6 +444,7 @@
     <Content Include="Charts\FinalProject_files\zoom.htm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="icon.ico" />
     <Content Include="Simulator\Report\Template\aut.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

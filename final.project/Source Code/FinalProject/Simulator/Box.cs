@@ -36,5 +36,33 @@ namespace FinalProject.Simulator
         {
             get { return DepartureTime - ArrivalTime; }
         }
+
+        public TimeSpan GetServiceDurationA
+        {
+            get { return StationAServiceEndTime - StationAServiceStartTime; }
+        }
+
+        public TimeSpan GetServiceDurationB
+        {
+            get { return StationBServiceEndTime - StationBServiceStartTime; }
+        }
+
+        public TimeSpan GetServiceDurationC
+        {
+            get { return StationCServiceEndTime - StationCServiceStartTime; }
+        }
+
+        public TimeSpan GetInspectorServiceDuration
+        {
+            get { return InspectorServiceDoneTime - InspectorServiceStartTime ; }
+        }
+
+
+        public TimeSpan GetTotalServiceTime(bool calculateInspector)
+        {
+            if (calculateInspector)
+                return GetServiceDurationA + GetServiceDurationB + GetServiceDurationC + GetInspectorServiceDuration;
+            return GetServiceDurationA + GetServiceDurationB + GetServiceDurationC;
+        }
     }
 }

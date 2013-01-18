@@ -36,7 +36,7 @@ namespace FinalProject.Simulator.Report
                 var reportDocument = new ReportDocument();
 
                 String appStartPath = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
-                
+
                 var reader =
                     new StreamReader(new FileStream(appStartPath + @"\Simulator\Report\Template\Template.xaml",
                                                     FileMode.Open,
@@ -97,7 +97,7 @@ namespace FinalProject.Simulator.Report
                 table.Columns.Add("BTotalService", typeof (string));
                 table.Columns.Add("CTotalService", typeof (string));
                 table.Columns.Add("InspectorTotalService", typeof (string));
-                table.Columns.Add("TotalServiceTime", typeof(string));
+                table.Columns.Add("TotalServiceTime", typeof (string));
 
                 counter = 1;
 
@@ -106,7 +106,7 @@ namespace FinalProject.Simulator.Report
                 var averageB = new TimeSpan(0);
                 var averageC = new TimeSpan(0);
                 var averageInspector = new TimeSpan(0);
-                var averagetotal= new TimeSpan(0);
+                var averagetotal = new TimeSpan(0);
 
 
                 foreach (SimulationResult element in _data)
@@ -138,6 +138,81 @@ namespace FinalProject.Simulator.Report
                 data.DataTables.Add(table);
 
                 // Table 2
+
+
+                table = new DataTable("TableTwo");
+                table.Columns.Add("NoRunBox", typeof (string));
+                table.Columns.Add("ArDate", typeof (string));
+                table.Columns.Add("DeDate", typeof (string));
+                table.Columns.Add("SSSA", typeof (string));
+                table.Columns.Add("SESA", typeof (string));
+                table.Columns.Add("SSSB", typeof (string));
+                table.Columns.Add("SESB", typeof (string));
+                table.Columns.Add("SSSC", typeof (string));
+                table.Columns.Add("SESC", typeof (string));
+                table.Columns.Add("TotalServiceTime", typeof (string));
+
+                counter = 1;
+
+                foreach (SimulationResult element in _data)
+                {
+                    int boxCounter = 1;
+                    foreach (Box box in element.BoxResult)
+                    {
+                        table.Rows.Add(new object[]
+                            {
+                                counter + "." + boxCounter,
+                                box.ArrivalTime.TimeOfDay.ToString(),
+                                box.DepartureTime.TimeOfDay.ToString(),
+                                box.StationAServiceStartTime.TimeOfDay.ToString(),
+                                box.StationAServiceEndTime.TimeOfDay.ToString(),
+                                box.StationBServiceStartTime.TimeOfDay.ToString(),
+                                box.StationBServiceEndTime.TimeOfDay.ToString(),
+                                box.StationCServiceStartTime.TimeOfDay.ToString(),
+                                box.StationCServiceEndTime.TimeOfDay.ToString(),
+                                box.GetTotalServiceTime(true).ToString()
+                            });
+
+                        boxCounter++;
+                    }
+
+                    if (counter != 10)
+                    {
+                        table.Rows.Add(new object[]
+                            {
+                                "--", "--", "--", "--", "--", "--", "--", "--", "--", "--"
+                            });
+                        table.Rows.Add(new object[]
+                            {
+                                "", ">>", "", "R", "U", "N", "", (counter + 1).ToString()
+                            });
+                        table.Rows.Add(new object[]
+                            {
+                                "--", "--", "--", "--", "--", "--", "--", "--", "--", "--"
+                            });
+                    }
+
+                    counter++;
+                }
+
+                data.DataTables.Add(table);
+
+
+
+                // CHART
+                var chartTable = new DataTable("ChartOne");
+                chartTable.Columns.Add("Run", typeof (string));
+                chartTable.Columns.Add("TotalBoxes", typeof (int));
+
+                counter = 1;
+                foreach (SimulationResult element in _data)
+                {
+                    chartTable.Rows.Add(new object[] {counter, element.BoxResult.Count});
+                    counter++;
+                }
+
+                data.DataTables.Add(chartTable);
+
 
                 DateTime dateTimeStart = DateTime.Now; // start time measure here
 

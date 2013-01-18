@@ -284,5 +284,169 @@
         </xrd:SectionDataGroup>
         
     </Section>
-   
+    <Section Padding="80,10,40,10" FontSize="12" BreakPageBefore="True">
+        <Paragraph/>
+        <Paragraph FontFamily="Segoe UI" FontSize="16">Detailed Information for Each Run</Paragraph>
+        <Paragraph/>
+        <!-- Table -->
+        <xrd:SectionDataGroup DataGroupName="ItemList">
+            <Table CellSpacing="0" BorderBrush="White" BorderThickness="0.02cm" FontFamily="Segoe UI">
+                <Table.Resources>
+                    <!-- Style for header/footer rows. -->
+                    <Style x:Key="headerFooterRowStyle" TargetType="{x:Type TableRowGroup}">
+                        <Setter Property="FontWeight" Value="Normal"/>
+                        <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="Background" Value="YellowGreen"/>
+                    </Style>
+
+                    <!-- Style for data rows. -->
+                    <Style x:Key="dataRowStyle" TargetType="{x:Type TableRowGroup}">
+                        <Setter Property="FontSize" Value="12"/>
+                    </Style>
+
+                    <!-- Style for data cells. -->
+                    <Style TargetType="{x:Type TableCell}">
+                        <Setter Property="Padding" Value="0.1cm"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="BorderThickness" Value="0.02cm"/>
+                    </Style>
+                </Table.Resources>
+
+                <Table.Columns>
+                    <TableColumn Width="0.17*" />
+                    <TableColumn Width="0.25*" />
+                    <TableColumn Width="0.25*" />
+                    <TableColumn Width="0.25*" />
+                    <TableColumn Width="0.25*" />
+                    <TableColumn Width="0.25*" />
+                    <TableColumn Width="0.25*" />
+                    <TableColumn Width="0.25*" />
+                    <TableColumn Width="0.25*" />
+                    <TableColumn Width="0.25*" />
+                </Table.Columns>
+                <TableRowGroup Style="{StaticResource headerFooterRowStyle}">
+                    <TableRow>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>#Run.#Box</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Arrival Date</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Departure Date</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Service Start (A)</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Service End (A)</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Service Start (B)</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Service End (B)</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Service Start (C)</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Service End (C)</Bold>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <Bold>Total Service</Bold>
+                            </Paragraph>
+                        </TableCell>
+                    </TableRow>
+                </TableRowGroup>
+                <TableRowGroup Style="{StaticResource dataRowStyle}">
+                    <xrd:TableRowForDataTable TableName="TableTwo">
+                        <TableCell>
+                            <Paragraph TextAlignment="Center"  FontFamily="Arial">
+                                <xrd:InlineTableCellValue PropertyName="NoRunBox" AggregateGroup="ItemCount"/>
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center"  FontFamily="Arial">
+                                <xrd:InlineTableCellValue PropertyName="ArDate" />
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="DeDate" />
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="SSSA" />
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="SESA" />
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="SSSB" />
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="SESB" />
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="SSSC" />
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="SESC" />
+                            </Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph TextAlignment="Center">
+                                <xrd:InlineTableCellValue PropertyName="TotalServiceTime" />
+                            </Paragraph>
+                        </TableCell>
+                    </xrd:TableRowForDataTable>
+                </TableRowGroup>
+            </Table>
+        </xrd:SectionDataGroup>
+    </Section>
+
+
+    <Section Padding="60,10,40,10" FontSize="12" BreakPageBefore="True" FontFamily="Segoe UI">
+        <Paragraph  FontFamily="Segoe UI" FontSize="14">
+            Charts
+        </Paragraph>
+
+        <Paragraph FontFamily="Segoe UI" FontSize="10" >
+            <crcv:ColumnChart TableName="ChartOne" TableColumns="Run,TotalBoxes" Width="18cm" Height="12cm" Title="Run/Total Boxes" View3D="True">
+            </crcv:ColumnChart>
+        </Paragraph>
+    </Section>
+    
+    
 </FlowDocument>
